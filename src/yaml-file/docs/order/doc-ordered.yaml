@@ -1,0 +1,24 @@
+apiVersion: 1.0
+type: demo
+name: doc_ordered
+label: Doc Ordered
+description:
+components:
+  - name: ordered_gird_container
+    type: grid
+    label: Doc Ordered
+    container: true
+    children:
+      - name: ordered_gird
+        type: grid
+        label: Doc Ordered
+        breakpoint:
+          xs: 12
+        children:
+          - name: ordered_paper
+            label: Doc Ordered
+            type: paper
+            children:
+              - name: ordered_button
+                label: Button
+                type: button

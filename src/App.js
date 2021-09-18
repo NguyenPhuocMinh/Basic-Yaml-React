@@ -1,11 +1,15 @@
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Layout from './layout/Layout';
+import dynamicServices from './services/dynamic-service';
 
-import {
-  DrawerCustom,
-} from './components';
+const theme = createTheme();
 
 const App = () => {
+
   return (
-      <DrawerCustom />
+    <ThemeProvider theme={theme}>
+      <Layout dynamicDefinition={dynamicServices.getSysRouters()} />
+    </ThemeProvider>
   );
 }
 

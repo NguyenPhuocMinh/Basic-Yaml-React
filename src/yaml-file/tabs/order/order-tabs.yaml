@@ -1,0 +1,24 @@
+apiVersion: 1.0
+type: demo
+name: order_tabs
+label: Order Tabs
+description: All tabs render dynamic ui
+
+includes:
+  - path: /tabs/ordered
+  - path: /tabs/delivered
+  - path: /tabs/canceled
+
+tabs:
+  - name: ordered
+    label: Ordered
+    doc: doc_ordered
+    
+  - name: delivered
+    label: Delivered
+    doc: doc_delivered
+  
+  - name: canceled
+    label: Canceled
+    doc: doc_canceled
+    

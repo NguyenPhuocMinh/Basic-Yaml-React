@@ -1,0 +1,6 @@
+apiVersion: 1.0
+type: demo
+name: product
+label: Product Component
+description: Product Component
+app: product_tabs

@@ -1,0 +1,24 @@
+apiVersion: 1.0
+type: demo
+name: doc_car
+label: Doc Car
+description:
+components:
+  - name: car_gird_container
+    type: grid
+    label: Doc Car
+    container: true
+    children:
+      - name: car_gird
+        type: grid
+        label: Doc Car
+        breakpoint:
+          xs: 12
+        children:
+          - name: car_paper
+            label: Doc Car
+            type: paper
+            children:
+              - name: car_button
+                label: Button
+                type: button

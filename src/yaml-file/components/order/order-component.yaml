@@ -1,0 +1,6 @@
+apiVersion: 1.0
+type: demo
+name: order
+label: Order Component
+description: Order Component
+app: order_tabs
