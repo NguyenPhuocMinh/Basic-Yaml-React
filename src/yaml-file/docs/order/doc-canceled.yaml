@@ -18,7 +18,3 @@ components:
           - name: canceled_paper
             label: Doc Canceled
             type: paper
-            children:
-              - name: canceled_button
-                label: Button
-                type: button

@@ -4,12 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
+// redux
+import { Provider } from 'react-redux';
+import { store } from './store';
+// theme
+import { ThemeProvider } from '@mui/material/styles';
+import themes from './themes';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <ThemeProvider theme={themes}>
+          <App />
+        </ThemeProvider>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

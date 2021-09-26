@@ -1,23 +1,29 @@
 import {
-  GridCustom,
-  PaperCustom,
-  ButtonCustom
-} from '../material-ui-custom';
+  GridHelper,
+  PaperHelper,
+  ButtonHelper,
+  TextFieldHelper
+} from '../material-helpers';
 import {
   Home,
   Order,
   Product
 } from '../views';
+// forms
+import { DynamicMuiForm } from '../common';
 
 const registerComponents = {
   // components
-  grid: (props) => <GridCustom {...props} />,
-  paper: (props) => <PaperCustom {...props} />,
-  button: (props) => <ButtonCustom {...props} />,
+  grid: (props) => <GridHelper {...props} />,
+  paper: (props) => <PaperHelper {...props} />,
+  button: (props) => <ButtonHelper {...props} />,
   // views
   home: (props) => <Home {...props} />,
   order: (props) => <Order {...props} />,
-  product: (props) => <Product {...props} />
+  product: (props) => <Product {...props} />,
+  // forms
+  form: (props) => <DynamicMuiForm {...props} />,
+  text: (props) => <TextFieldHelper {...props} />
 };
 
 export default registerComponents;

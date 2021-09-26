@@ -14,6 +14,8 @@ import orderOrderedYaml from '../yaml-file/docs/order/doc-ordered.yaml';
 // docs product
 import productCarYaml from '../yaml-file/docs/product/doc-car.yaml';
 import productFoodYaml from '../yaml-file/docs/product/doc-food.yaml';
+// datamodel
+import dataModelYaml from '../yaml-file/datamodel/datamodel.yaml';
 
 const parseYamlToJson = (yamlFile) => {
   const doc = yaml.load(yamlFile);
@@ -67,10 +69,15 @@ const getDocsYaml = (path) => {
   }
 };
 
+const getDataModelYaml = () => {
+  return yaml.load(dataModelYaml);
+};
+
 export {
   parseYamlToJson,
   getSysRouterYaml,
   getComponentYaml,
   getTabsYaml,
-  getDocsYaml
+  getDocsYaml,
+  getDataModelYaml
 }

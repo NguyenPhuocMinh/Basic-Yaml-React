@@ -18,7 +18,3 @@ components:
           - name: car_paper
             label: Doc Car
             type: paper
-            children:
-              - name: car_button
-                label: Button
-                type: button

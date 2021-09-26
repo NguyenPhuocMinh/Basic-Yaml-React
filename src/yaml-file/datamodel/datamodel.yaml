@@ -1,0 +1,36 @@
+apiVersion: 1.0
+type: demo
+name: datamodel
+label: Data Model
+description: Data Model render dynamic ui
+
+tables:
+  - name: my_table
+    label: My Tables
+    columns:
+      # column1
+      - name: id
+        label: ID
+        description: Column ID
+        type: integer
+        not-null: yes
+        primary: yes
+        index: yes
+      # column 2
+      - name: customer_name
+        label: Customer name
+        description: Customer Name
+        type: text
+        length: 50
+        not-null: yes
+        primary: no
+        foreign: no
+      # column 3
+      - name: customer_category
+        label: Customer Category
+        description: Customer Category
+        type: text
+        length: 50
+        not-null: yes
+        primary: no
+        foreign: no

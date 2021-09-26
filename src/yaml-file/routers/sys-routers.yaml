@@ -16,7 +16,7 @@ routers:
     iconName: Home
     exact: true
   
-  - name: Order
+  - name: order
     path: /orders
     component: order_component
     iconName: AddPhotoAlternate
@@ -24,7 +24,4 @@ routers:
   - name: product
     path: /products
     component: product_component
-    iconName: AddModerator
-    
-  
-    
+    iconName: AddShoppingCart

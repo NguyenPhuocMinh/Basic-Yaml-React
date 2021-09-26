@@ -3,7 +3,8 @@ import {
   getSysRouterYaml,
   getComponentYaml,
   getTabsYaml,
-  getDocsYaml
+  getDocsYaml,
+  getDataModelYaml
 } from '../utils';
 
 const dynamicServices = {
@@ -44,6 +45,9 @@ const dynamicServices = {
   getDocuments: (path) => {
     // call api server node
     return getDocsYaml(path);
+  },
+  getDataModel: () => {
+    return getDataModelYaml();
   }
 };
 

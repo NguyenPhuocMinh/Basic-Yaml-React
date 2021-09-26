@@ -18,7 +18,13 @@ components:
           - name: ordered_paper
             label: Doc Ordered
             type: paper
-            children:
-              - name: ordered_button
-                label: Button
-                type: button
+            children: 
+              - name: ordered_form
+                label: My Form
+                type: form
+                table: my_table
+                fields:
+                  - column: customer_name
+                    label: Customer Name
+                  - column: customer_category
+                    label: Customer Category

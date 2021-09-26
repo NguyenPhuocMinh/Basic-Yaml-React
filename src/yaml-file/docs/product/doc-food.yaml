@@ -18,7 +18,3 @@ components:
           - name: food_paper
             label: Doc Food
             type: paper
-            children:
-              - name: food_button
-                label: Button
-                type: button

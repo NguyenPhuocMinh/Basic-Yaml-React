@@ -1,14 +1,13 @@
 import { createElement } from 'react';
+import { registerIcons } from '../dynamic';
 
-const DynamicMuiIcon = ({ icon }) => {
-  const iconName = icon.replace(/Icon$/, '');
-  const result = require(`@mui/icons-material/${iconName}`).default;
+const DynamicMuiIcon = ({ iconName }) => {
 
-  if (!result) {
-    throw Error(`Could not find material-ui-icons/${iconName}`)
-  }
-
-  return createElement(result);
+  return createElement(
+    registerIcons[iconName],
+    null,
+    null
+  )
 };
 
 export default DynamicMuiIcon;
