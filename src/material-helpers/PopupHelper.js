@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -7,25 +7,15 @@ import Typography from '@mui/material/Typography';
 import ReactCountryFlag from 'react-country-flag';
 // i18n
 import { useTranslation } from 'react-i18next';
-// redux
-import { useDispatch } from 'react-redux';
-import { localeActions } from '../store/actions';
 
 const PopupHelper = ({ open, anchorEl, handleClose }) => {
-  // state
-  const [language, setLanguage] = useState('en');
-  // dispatch
-  const dispatch = useDispatch();
   // translate
   const { t: translate } = useTranslation();
 
   const handleChangeLanguage = (language) => {
-    setLanguage(language);
+    localStorage.setItem('language', language);
+    window.location.reload();
   };
-
-  useEffect(() => {
-    dispatch(localeActions.changeLanguages(language));
-  }, [language, dispatch])
 
   return (
     <Menu

@@ -26,9 +26,11 @@ const ButtonGroupHelper = () => {
   const dispatch = useDispatch();
   // Translate
   const { t: translate } = useTranslation();
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
   const handleChange = (event, newTheme) => {
+    console.log("🚀 ~ file: ButtonGroupHelper.js ~ line 32 ~ handleChange ~ newTheme", newTheme)
+    localStorage.setItem('theme', newTheme)
     setTheme(newTheme);
   };
 

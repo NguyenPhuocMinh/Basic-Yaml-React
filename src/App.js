@@ -1,14 +1,17 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import './i18n';
 import Layout from './layout/Layout';
 import dynamicServices from './services/dynamic-service';
 // theme
 import { ThemeProvider } from '@mui/material/styles';
-import themes from './themes';
+import { lightTheme, darkTheme } from './themes';
 // redux
 import { useSelector } from 'react-redux';
 
 const App = () => {
+
+  const theme = useSelector(state => state.theme);
+  const themes = theme === 'light' ? lightTheme : darkTheme;
 
   return (
     <Suspense fallback="loading...">

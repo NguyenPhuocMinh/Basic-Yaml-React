@@ -1,11 +1,14 @@
-const lightTheme = {
+import { createTheme } from '@mui/material/styles';
+
+const lightTheme = createTheme({
   palette: {
-    primary: {
-      main: '#007FFF',
-    },
-    secondary: {
-      main: '#edf2ff',
-    },
+    mode: 'light',
+    // primary: {
+    //   main: '#007FFF',
+    // },
+    // secondary: {
+    //   main: '#edf2ff',
+    // },
   },
   components: {
     MuiAppBar: {
@@ -35,13 +38,6 @@ const lightTheme = {
         }
       }
     },
-    MuiSelect: {
-      styleOverrides: {
-        root: {
-          borderColor: 'red'
-        }
-      }
-    },
   },
   typography: {
     fontFamily: [
@@ -58,6 +54,6 @@ const lightTheme = {
       "Segoe UI Symbol"
     ].join(',')
   }
-}
+})
 
 export default lightTheme;

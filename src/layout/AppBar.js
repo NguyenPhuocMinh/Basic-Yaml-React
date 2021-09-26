@@ -102,7 +102,7 @@ const AppBarLayout = ({ open, handleDrawerClick }) => {
             flexWrap: 'wrap',
           }}
         >
-          <Box width="auto" minWidth={50}>
+          <Box width="auto" minWidth={55}>
             <Tooltip
               title={translate('appBar.toolbar.tooltip.github')}
             >
@@ -114,14 +114,14 @@ const AppBarLayout = ({ open, handleDrawerClick }) => {
               </IconButton>
             </Tooltip>
           </Box>
-          <Box width="auto" minWidth={50}>
+          <Box width="auto" minWidth={55}>
             <IconButton
               color="inherit"
             >
               <NotificationsNoneIcon />
             </IconButton>
           </Box>
-          <Box width="auto" minWidth={50}>
+          <Box width="auto" minWidth={55}>
             <Tooltip
               title={translate('appBar.toolbar.tooltip.change_language')}
             >
@@ -138,7 +138,7 @@ const AppBarLayout = ({ open, handleDrawerClick }) => {
               handleClose={handleClose}
             />
           </Box>
-          <Box width="auto" minWidth={50}>
+          <Box width="auto" minWidth={55}>
             <Tooltip
               title={translate('appBar.toolbar.tooltip.change_setting')}
             >

@@ -1,23 +1,17 @@
-const darkTheme = {
+import { createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
-      main: '#007FFF',
-    },
-    secondary: {
-      main: '#edf2ff',
-    },
+      main: 'rgb(10, 25, 41)'
+    }
   },
   components: {
     MuiAppBar: {
       styleOverrides: {
         root: {
-          background: '#FFF',
-          borderStyle: 'solid',
           boxShadow: 'none',
-          borderColor: '#EAEEF3',
-          color: '#2F3A45',
-          borderWidth: 'thin',
-          padding: '0 2px',
         }
       }
     },
@@ -26,8 +20,6 @@ const darkTheme = {
         root: {
           border: '1px solid #E5E8EC',
           borderRadius: '10px',
-          color: '#007FFF',
-          background: '#FFF',
         }
       }
     },
@@ -37,8 +29,23 @@ const darkTheme = {
           fontSize: '1.25rem'
         }
       }
-    }
+    },
   },
-}
+  typography: {
+    fontFamily: [
+      "IBM Plex Sans",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      "Segoe UI",
+      "Roboto",
+      "Helvetica Neue",
+      "Arial",
+      "sans-serif",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol"
+    ].join(',')
+  }
+})
 
 export default darkTheme;

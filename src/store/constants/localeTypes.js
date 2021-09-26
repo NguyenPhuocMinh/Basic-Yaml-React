@@ -1,5 +1,0 @@
-const LOCALE_TYPES = {
-  CHANGE_LANGUAGE: 'CHANGE_LANGUAGE'
-};
-
-export default LOCALE_TYPES;
