@@ -32,16 +32,16 @@ const NavLinkRef = forwardRef((props, ref) => {
 
 const useStyles = makeStyles(theme => ({
   selectedRow: {
-    color: 'rgba(0, 0, 0, 0.87)',
-    '&.MuiListItem-root': {
-      color: theme.palette.primary.main
-    },
-    '& .MuiListItemIcon-root': {
-      color: theme.palette.primary.main
-    },
+    // color: 'rgba(0, 0, 0, 0.87)',
+    // '&.MuiListItem-root': {
+    //   color: theme.palette.primary.main
+    // },
+    // '& .MuiListItemIcon-root': {
+    //   color: theme.palette.primary.main
+    // },
   },
   notSelectedRow: {
-    color: 'rgba(0, 0, 0, 0.54)',
+    // color: 'rgba(0, 0, 0, 0.54)',
   },
 }))
 
@@ -74,7 +74,7 @@ const Layout = props => {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            borderRight: '1px solid #E5E8EC'
+            // borderRight: '1px solid #E5E8EC'
           },
         }}
         variant="persistent"
@@ -84,7 +84,7 @@ const Layout = props => {
         <DrawerHeader>
           <Typography
             variant='body2'
-            color='#007FFF'
+            color='inherit'
             fontSize='small'
             fontWeight={500}
           >
@@ -92,7 +92,7 @@ const Layout = props => {
           </Typography>
           <Typography
             variant='body2'
-            color='#007FFF'
+            color='inherit'
             fontSize='small'
             fontWeight={500}
           >

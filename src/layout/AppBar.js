@@ -87,7 +87,7 @@ const AppBarLayout = ({ open, handleDrawerClick }) => {
           className={classes.title}
           id="demo"
           variant='body2'
-          color='#007FFF'
+          color='inherit'
           fontSize='small'
           fontWeight={500}
         >

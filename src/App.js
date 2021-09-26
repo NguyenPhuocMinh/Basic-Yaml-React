@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import './i18n';
 import Layout from './layout/Layout';
 import dynamicServices from './services/dynamic-service';
+import CssBaseline from '@mui/material/CssBaseline';
 // theme
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme, darkTheme } from './themes';
@@ -16,6 +17,7 @@ const App = () => {
   return (
     <Suspense fallback="loading...">
       <ThemeProvider theme={themes}>
+        <CssBaseline />
         <Layout dynamicDefinition={dynamicServices.getSysRouters()} />
       </ThemeProvider>
     </Suspense>
