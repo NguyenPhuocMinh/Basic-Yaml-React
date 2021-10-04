@@ -26,7 +26,7 @@ const SettingHelper = ({
       >
         <Box
           sx={{
-            width: 360,
+            width: 300,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',

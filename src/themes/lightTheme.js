@@ -3,32 +3,33 @@ import { createTheme } from '@mui/material/styles';
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
+    primary: {
+      main: '#F2C48D',
+    },
+    secondary: {
+      main: '#8C4404'
+    }
   },
   components: {
-    // MuiAppBar: {
-    //   styleOverrides: {
-    //     root: {
-    //       background: '#FFF',
-    //       borderBottom: '1px solid #EAEEF3',
-    //       boxShadow: 'none',
-    //       color: '#2F3A45',
-    //     }
-    //   }
-    // },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          background: '#F2C48D',
+        }
+      }
+    },
     MuiIconButton: {
       styleOverrides: {
         root: {
           border: '1px solid #E5E8EC',
           borderRadius: '10px',
-          // color: '#007FFF',
-          // background: '#FFF',
         }
       }
     },
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          fontSize: '1.25rem'
+          fontSize: '1rem'
         }
       }
     },

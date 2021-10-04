@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+// i18n
 import './i18n';
 import Layout from './layout/Layout';
 import dynamicServices from './services/dynamic-service';

@@ -15,5 +15,5 @@ export {
   PopupHelper,
   SettingHelper,
   TextFieldHelper,
-  ButtonGroupHelper
+  ButtonGroupHelper,
 }

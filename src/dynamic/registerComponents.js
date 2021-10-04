@@ -11,6 +11,7 @@ import {
 } from '../views';
 // forms
 import { DynamicMuiForm } from '../common';
+import SubMenu from '../layout/SubMenu';
 
 const registerComponents = {
   // components
@@ -23,7 +24,9 @@ const registerComponents = {
   product: (props) => <Product {...props} />,
   // forms
   form: (props) => <DynamicMuiForm {...props} />,
-  text: (props) => <TextFieldHelper {...props} />
+  text: (props) => <TextFieldHelper {...props} />,
+  // menu
+  menu: (props) => <SubMenu {...props} />
 };
 
 export default registerComponents;

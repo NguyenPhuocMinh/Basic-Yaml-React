@@ -1,4 +1,6 @@
 import { useState } from 'react';
+// redux
+import { useSelector } from 'react-redux';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -44,20 +46,21 @@ const useStyles = makeStyles({
   },
 })
 
-const AppBarLayout = ({ open, handleDrawerClick }) => {
+const AppBarLayout = ({ open, handleClickSideBar }) => {
+  // hooks
   const classes = useStyles();
-
-  // translate
   const { t: translate } = useTranslation();
+  // stores
+  const sidebarIsOpen = useSelector(state => state.admin.ui.sidebarIsOpen);
 
   const [anchorEl, setAnchorEl] = useState(null);
-  const openPopper = Boolean(anchorEl);
+  const openPopup = Boolean(anchorEl);
 
   const handleClickChangeLng = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClosePopup = () => {
     setAnchorEl(null);
   };
 
@@ -72,12 +75,11 @@ const AppBarLayout = ({ open, handleDrawerClick }) => {
   };
 
   return (
-    <AppBar position="fixed" open={open}>
+    <AppBar position="fixed" open={sidebarIsOpen}>
       <Toolbar>
         <IconButton
           color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerClick}
+          onClick={handleClickSideBar}
           edge="start"
           sx={{ mr: 2 }}
         >
@@ -102,26 +104,26 @@ const AppBarLayout = ({ open, handleDrawerClick }) => {
             flexWrap: 'wrap',
           }}
         >
-          <Box width="auto" minWidth={55}>
+          <Box width="auto" minWidth={50}>
             <Tooltip
               title={translate('appBar.toolbar.tooltip.github')}
             >
               <IconButton
                 color="inherit"
-                onClick={() => window.open('https://github.com/NguyenPhuocMinh', '_blank')}
+                onClick={() => window.open('https://github.com/NguyenPhuocMinh/story-book', '_blank')}
               >
                 <GithubIcon />
               </IconButton>
             </Tooltip>
           </Box>
-          <Box width="auto" minWidth={55}>
+          <Box width="auto" minWidth={50}>
             <IconButton
               color="inherit"
             >
               <NotificationsNoneIcon />
             </IconButton>
           </Box>
-          <Box width="auto" minWidth={55}>
+          <Box width="auto" minWidth={50}>
             <Tooltip
               title={translate('appBar.toolbar.tooltip.change_language')}
             >
@@ -133,12 +135,12 @@ const AppBarLayout = ({ open, handleDrawerClick }) => {
               </IconButton>
             </Tooltip>
             <PopupHelper
-              open={openPopper}
+              open={openPopup}
               anchorEl={anchorEl}
-              handleClose={handleClose}
+              handleClose={handleClosePopup}
             />
           </Box>
-          <Box width="auto" minWidth={55}>
+          <Box width="auto" minWidth={50}>
             <Tooltip
               title={translate('appBar.toolbar.tooltip.change_setting')}
             >

@@ -23,7 +23,7 @@ const darkTheme = createTheme({
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          fontSize: '1.25rem'
+          fontSize: '1rem'
         }
       }
     },
