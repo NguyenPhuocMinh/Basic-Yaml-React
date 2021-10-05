@@ -1,12 +1,9 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-// redux
-import { useSelector } from 'react-redux';
 import {
   Box,
   Tooltip,
-  MenuItem,
   ListItemIcon,
-  Typography,
   Collapse,
   List,
   ListItemButton,
@@ -14,21 +11,30 @@ import {
 } from '@mui/material';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { DynamicMuiIcon } from '../common';
+import { renderMenuItem } from '../dynamic';
+import { isEmpty } from 'lodash';
 
-
-const SubMenu = props => {
-  console.log("🚀 ~ file: SubMenu.js ~ line 18 ~ props", props)
+const SubMenuHelper = props => {
   const {
-    handleToggle,
-    isOpen,
     name,
-    icon,
-    children,
+    iconName,
+    groups,
     dense
   } = props;
+  // hooks
   const { t: translate } = useTranslation();
-  // store
-  const sidebarIsOpen = useSelector(state => state.admin.ui.sidebarIsOpen);
+  // states
+  const [toggle, setToggle] = useState({});
+  // func
+  const handleToggle = (newToggle) => {
+    setToggle((prevToggle) => {
+      return {
+        ...prevToggle,
+        [newToggle]: !prevToggle[newToggle]
+      }
+    })
+  };
 
   const header = (
     <ListItemButton
@@ -37,10 +43,10 @@ const SubMenu = props => {
       sx={{ px: 3 }}
     >
       <ListItemIcon sx={{ color: 'inherit' }}>
-        {/* <DynamicMuiIcon iconName={item.iconName} /> */}
+        <DynamicMuiIcon iconName={iconName} />
       </ListItemIcon>
       <ListItemText
-        // primary={item.label}
+        primary={translate(`resources.${name}.title`)}
         primaryTypographyProps={{
           fontSize: 15,
           fontWeight: 'medium',
@@ -49,7 +55,7 @@ const SubMenu = props => {
         }}
         sx={{ my: 0 }}
       />
-      {isOpen ? (
+      {toggle[name] ? (
         <KeyboardArrowDown
           sx={{ mr: -1 }}
         />
@@ -64,29 +70,26 @@ const SubMenu = props => {
 
   return (
     <Box>
-      {sidebarIsOpen || isOpen ? (
-        header
-      ) : (
-          <Tooltip title={translate(name)} placement="right">
-            {header}
-          </Tooltip>
-        )}
-      <Collapse in={isOpen} timeout="auto" unmountOnExit>
+      <Tooltip title={translate(`resources.${name}.title`)} placement="right">
+        {header}
+      </Tooltip>
+      <Collapse in={toggle[name]} timeout="auto" unmountOnExit>
         <List
           dense={dense}
           component="div"
           disablePadding
-        // className={
-        //   sidebarIsOpen
-        //     ? classes.sidebarIsOpen
-        //     : classes.sidebarIsClosed
-        // }
         >
-          {children}
+          {!isEmpty(groups) && groups.map((item, index) => {
+            return (
+              <Box key={index}>
+                {renderMenuItem(item)}
+              </Box>
+            )
+          })}
         </List>
       </Collapse>
     </Box>
   );
 };
 
-export default SubMenu;
+export default SubMenuHelper;

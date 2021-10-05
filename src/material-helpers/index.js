@@ -6,6 +6,8 @@ import PopupHelper from './PopupHelper';
 import SettingHelper from './SettingHelper';
 import TextFieldHelper from './TextFieldHelper';
 import ButtonGroupHelper from './ButtonGroupHelper';
+import SubMenuHelper from './SubMenuHelper';
+import MenuItemHelper from './MenuItemHelper';
 
 export {
   GridHelper,
@@ -16,4 +18,6 @@ export {
   SettingHelper,
   TextFieldHelper,
   ButtonGroupHelper,
+  SubMenuHelper,
+  MenuItemHelper
 }

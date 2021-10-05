@@ -1,10 +1,9 @@
-import { forwardRef, useState } from 'react';
+import { useState } from 'react';
+import { version } from '../../package.json';
 import {
   Route,
   Switch,
   Redirect,
-  NavLink,
-  useLocation
 } from 'react-router-dom';
 // redux
 import { useDispatch } from 'react-redux';
@@ -12,63 +11,19 @@ import { useDispatch } from 'react-redux';
 import { adminActions } from '../store/actions';
 import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@mui/styles';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemButton from '@mui/material/ListItemButton';
 import Typography from '@mui/material/Typography';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import AutoAwesomeMotionIcon from '@mui/icons-material/AutoAwesomeMotion';
 import AppBar from './AppBar';
 import DrawerHeader from './DrawerHeader';
 import Main from './Main';
-import NavBar from './NavBar';
 import { get } from 'lodash';
-import { DynamicMui, DynamicMuiIcon } from '../common';
-import { version } from '../../package.json';
-
-import People from '@mui/icons-material/People';
-import PermMedia from '@mui/icons-material/PermMedia';
-import Dns from '@mui/icons-material/Dns';
-import Public from '@mui/icons-material/Public';
+import { DynamicMui } from '../common';
 import Menu from './Menu';
 // data
 import routerData from '../data';
-
-const NavLinkRef = forwardRef((props, ref) => {
-  return (
-    <NavLink innerRef={ref} {...props} />
-  )
-});
-
-const data = [
-  { icon: <People />, label: 'Authentication' },
-  { icon: <Dns />, label: 'Database' },
-  { icon: <PermMedia />, label: 'Storage' },
-  { icon: <Public />, label: 'Hosting' },
-];
-
-const FireNav = styled(List)({
-  '& .MuiListItemButton-root': {
-    paddingLeft: 24,
-    paddingRight: 24,
-  },
-  '& .MuiListItemIcon-root': {
-    minWidth: 0,
-    marginRight: 16,
-  },
-  '& .MuiSvgIcon-root': {
-    fontSize: 20,
-  },
-});
 
 const useStyles = makeStyles(theme => ({
   selectedRow: {
@@ -89,33 +44,17 @@ const drawerWidth = 240;
 
 const Layout = props => {
   // hooks
-  const location = useLocation();
-  const classes = useStyles();
   const { t: translate } = useTranslation();
   const dispatch = useDispatch();
-
   // states
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
-  const [toggle, setToggle] = useState({});
-
   // func
   const handleClickSideBar = () => {
     setSideBarIsOpen(!sideBarIsOpen);
     dispatch(adminActions.changeSideBar(!sideBarIsOpen));
   };
-
-  const handleToggle = (newToggle) => {
-    setToggle((prevToggle) => {
-      return {
-        ...prevToggle,
-        [newToggle]: !prevToggle[newToggle]
-      }
-    })
-  };
   // router
   const routers = get(props, 'dynamicDefinition.routers', []);
-
-  console.log("AAAA", toggle)
 
   return (
     <Box sx={{ display: 'flex', flexGrow: 1 }}>

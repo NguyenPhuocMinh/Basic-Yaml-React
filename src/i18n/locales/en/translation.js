@@ -22,7 +22,21 @@ const TRANSLATIONS_EN = {
       },
     }
   },
+  menus: {
+    vampires: {
+      title: 'Vampire'
+    },
+    monsters: {
+      title: 'Monster'
+    }
+  },
   resources: {
+    ancients: {
+      title: 'Ancient',
+    },
+    animes: {
+      title: 'Anime'
+    },
     home: {
       title: 'Home'
     },

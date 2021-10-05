@@ -1,9 +1,9 @@
 import { createElement } from 'react';
 import registerComponents from './registerComponents';
 
-const renderMenu = (data) => {
+const renderMenuItem = (data) => {
   return createElement(
-    registerComponents['menu'],
+    registerComponents['menuItem'],
     {
       id: data.name,
       key: data.name,
@@ -13,4 +13,4 @@ const renderMenu = (data) => {
   )
 }
 
-export default renderMenu;
+export default renderMenuItem;

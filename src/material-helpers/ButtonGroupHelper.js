@@ -14,6 +14,7 @@ import { themeActions } from '../store/actions';
 
 const useStyles = makeStyles({
   selected: {
+    color: (props) => props.theme === 'light' ? 'rgba(0, 0, 0, 0.54) !important' : 'inherit',
     borderColor: 'rgb(0, 127, 255) !important'
   },
   rootIcon: {
@@ -22,20 +23,21 @@ const useStyles = makeStyles({
 })
 
 const ButtonGroupHelper = () => {
-  const classes = useStyles();
+  // hooks
   const dispatch = useDispatch();
-  // Translate
   const { t: translate } = useTranslation();
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-
+  // func
   const handleChange = (event, newTheme) => {
     localStorage.setItem('theme', newTheme)
     setTheme(newTheme);
   };
-
+  // render
   useEffect(() => {
     dispatch(themeActions.changeThemes(theme))
   }, [theme, dispatch]);
+
+  const classes = useStyles({ theme });
 
   return (
     <ToggleButtonGroup
@@ -56,10 +58,9 @@ const ButtonGroupHelper = () => {
           selected: classes.selected
         }}
         value="light"
-        fullWidth
       >
-        <WbSunnyIcon color="inherit" className={classes.rootIcon} />
-        <Typography variant="inherit">
+        <WbSunnyIcon className={classes.rootIcon} />
+        <Typography variant="subtitle1">
           {translate('appBar.toolbar.setting.themes.light')}
         </Typography>
       </ToggleButton>

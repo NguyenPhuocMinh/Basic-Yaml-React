@@ -22,7 +22,21 @@ const TRANSLATIONS_VN = {
       }
     }
   },
+  menus: {
+    vampires: {
+      title: 'Ma ca rồng'
+    },
+    monsters: {
+      title: 'Quái vật'
+    }
+  },
   resources: {
+    ancients: {
+      title: 'Cổ đại',
+    },
+    animes: {
+      title: 'Hoạt hình'
+    },
     home: {
       title: 'Trang chủ'
     },

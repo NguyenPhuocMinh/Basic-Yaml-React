@@ -27,6 +27,17 @@ const darkTheme = createTheme({
         }
       }
     },
+    MuiPopover: {
+      styleOverrides: {
+        paper: {
+          background: '#FFF',
+          color: 'rgba(0, 0, 0, 0.87)',
+          '&::before': {
+            background: '#FFF !important'
+          }
+        }
+      }
+    }
   },
   typography: {
     fontFamily: [

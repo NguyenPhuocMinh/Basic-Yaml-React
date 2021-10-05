@@ -33,6 +33,15 @@ const lightTheme = createTheme({
         }
       }
     },
+    MuiPopover: {
+      styleOverrides: {
+        paper: {
+          '&::before': {
+            background: '#F2C48D !important'
+          }
+        }
+      }
+    },
   },
   typography: {
     fontFamily: [

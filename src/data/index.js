@@ -1,71 +1,29 @@
 const routerData = [
   {
-    name: 'creatures',
-    label: 'Creatures',
+    name: 'ancients',
     iconName: 'AutoAwesomeMotion',
     groups: [
       {
-        path: '/lands',
-        name: 'land',
-        label: 'Land',
-        iconName: 'AutoAwesomeMotion',
-        groups: []
+        path: '/vampires',
+        name: 'vampires',
       },
       {
-        path: '/oceans',
-        name: 'ocean',
-        label: 'Ocean',
-        iconName: 'AutoAwesomeMotion',
-        groups: []
-      },
-      {
-        path: '/Deserts',
-        name: 'desert',
-        label: 'Desert',
-        iconName: 'AutoAwesomeMotion',
-        groups: []
-      },
-      {
-        path: '/Swamps',
-        name: 'swamp',
-        label: 'Swamp',
-        iconName: 'AutoAwesomeMotion',
-        groups: []
+        path: '/monsters',
+        name: 'monsters',
       },
     ]
   },
   {
-    name: 'story_books',
-    label: 'Story Books',
+    name: 'animes',
     iconName: 'MenuBook',
     groups: [
       {
         path: '/lands',
         name: 'land',
-        label: 'Land1',
-        iconName: 'AutoAwesomeMotion',
-        groups: []
       },
       {
         path: '/oceans',
         name: 'ocean',
-        label: 'Ocean',
-        iconName: 'AutoAwesomeMotion',
-        groups: []
-      },
-      {
-        path: '/Deserts',
-        name: 'desert',
-        label: 'Desert',
-        iconName: 'AutoAwesomeMotion',
-        groups: []
-      },
-      {
-        path: '/Swamps',
-        name: 'swamp',
-        label: 'Swamp',
-        iconName: 'AutoAwesomeMotion',
-        groups: []
       },
     ]
   }
