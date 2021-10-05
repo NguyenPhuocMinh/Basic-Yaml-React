@@ -23,11 +23,20 @@ const TRANSLATIONS_EN = {
     }
   },
   menus: {
+    home: {
+      title: 'Home'
+    },
     vampires: {
       title: 'Vampire'
     },
     monsters: {
       title: 'Monster'
+    },
+    land: {
+      title: 'Lands'
+    },
+    ocean: {
+      title: 'Ocean'
     }
   },
   resources: {

@@ -23,6 +23,9 @@ const TRANSLATIONS_VN = {
     }
   },
   menus: {
+    home: {
+      title: 'Trang chủ'
+    },
     vampires: {
       title: 'Ma ca rồng'
     },

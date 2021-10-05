@@ -1,15 +1,30 @@
 const routerData = [
   {
+    name: 'home',
+    iconName: 'Home',
+    pathName: '/home',
+  },
+  {
     name: 'ancients',
     iconName: 'AutoAwesomeMotion',
     groups: [
       {
-        path: '/vampires',
         name: 'vampires',
+        pathName: '/vampires',
+        groups: [
+          {
+            name: 'vampires',
+            pathName: '/vampires',
+          },
+          {
+            name: 'monsters',
+            pathName: '/monsters',
+          },
+        ]
       },
       {
-        path: '/monsters',
         name: 'monsters',
+        pathName: '/monsters',
       },
     ]
   },
@@ -18,12 +33,12 @@ const routerData = [
     iconName: 'MenuBook',
     groups: [
       {
-        path: '/lands',
         name: 'land',
+        pathName: '/lands',
       },
       {
-        path: '/oceans',
         name: 'ocean',
+        pathName: '/oceans',
       },
     ]
   }

@@ -1,86 +1,101 @@
-import { forwardRef, useCallback } from 'react';
-// redux
-import { useSelector } from 'react-redux';
+import {
+  forwardRef,
+  useCallback,
+} from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 // material ui
 import {
-  ListItemButton,
   ListItemIcon,
   ListItemText,
   Tooltip,
-  ListItem,
-  MenuItem
+  ListItemButton
 } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 // router dom
-import { NavLink, useLocation } from 'react-router-dom';
-// i18n
-import { useTranslation } from 'react-i18next';
 import { DynamicMuiIcon } from '../common';
+import NavLinkRef from './NavLinkRef';
 
-const NavLinkRef = forwardRef((props, ref) => {
-  console.log("🚀 ~ file: MenuItemHelper.js ~ line 19 ~ NavLinkRef ~ ref", ref)
-  console.log("🚀 ~ file: MenuItemHelper.js ~ line 19 ~ NavLinkRef ~ props", props)
-  return (
-    <NavLink innerRef={ref} {...props} />
-  )
-});
+const useStyles = makeStyles(
+  theme => ({
+    root: {
+      color: theme.palette.text.secondary,
+    },
+    active: {
+      color: '#fff',
+      // background: '#F4F3DF',
+      fontWeight: '600 !important'
+    },
+    icon: { minWidth: theme.spacing(5) },
+  }),
+);
 
 const MenuItemHelper = forwardRef((props, ref) => {
   const {
-    iconName,
-    name,
-    path,
+    classes: classesOverride,
+    className,
+    primaryText,
+    leftIcon,
     onClick,
+    tooltipProps,
     ...rest
   } = props;
 
-  // hooks
-  const { t: translate } = useTranslation();
-  const sidebarOpen = useSelector((state) => state.admin.ui.sidebarOpen);
-  const location = useLocation();
+  const classes = useStyles(props);
 
-  const selected = path === location.pathname;
+  const handleMenuTap = useCallback(
+    e => onClick && onClick(e),
+    [onClick]
+  );
 
   const renderMenuItem = () => {
     return (
-      <MenuItem
-        key={name}
+      <ListItemButton
+        className={classnames(classes.root, className)}
+        activeClassName={classes.active}
         component={NavLinkRef}
-        path={path}
-        sx={{
-          py: 0,
-          minHeight: 32
-        }}
         ref={ref}
         tabIndex={0}
         {...rest}
+        onClick={handleMenuTap}
+        sx={{
+          py: 0,
+          minHeight: 32,
+        }}
       >
-        {iconName ? (
-          <ListItemIcon sx={{ color: 'inherit' }}>
-            <DynamicMuiIcon iconName={iconName} />
+        {leftIcon && (
+          <ListItemIcon className={classes.icon}>
+            <DynamicMuiIcon iconName={leftIcon} />
           </ListItemIcon>
-        ) : (
-            <ListItemIcon sx={{ color: 'inherit' }} />
-          )
-        }
+        )}
         <ListItemText
-          primary={translate(`menus.${name}.title`)}
+          primary={primaryText}
           primaryTypographyProps={{
             fontSize: 14,
-            marginLeft: '20px',
-            fontWeight: 'medium'
+            fontWeight: 'medium',
+            paddingLeft: !leftIcon ? '35px' : '0px'
           }}
         />
-      </MenuItem>
+      </ListItemButton>
     );
   };
 
-  return sidebarOpen ? (
-    renderMenuItem()
-  ) : (
-      <Tooltip title={translate(`menus.${name}.title`)} placement="right">
-        {renderMenuItem()}
-      </Tooltip>
-    );
+  return (
+    <Tooltip title={primaryText} placement="right" {...tooltipProps}>
+      {renderMenuItem()}
+    </Tooltip>
+  )
 });
+
+MenuItemHelper.propTypes = {
+  classes: PropTypes.object,
+  className: PropTypes.string,
+  leftIcon: PropTypes.string,
+  onClick: PropTypes.func,
+  primaryText: PropTypes.node,
+  staticContext: PropTypes.object,
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  sidebarIsOpen: PropTypes.bool,
+};
 
 export default MenuItemHelper;

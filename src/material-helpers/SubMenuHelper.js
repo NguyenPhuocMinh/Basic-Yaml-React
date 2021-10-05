@@ -1,4 +1,5 @@
 import { useState } from 'react';
+// i18n
 import { useTranslation } from 'react-i18next';
 import {
   Box,
@@ -10,20 +11,40 @@ import {
   ListItemText,
   Divider
 } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { DynamicMuiIcon } from '../common';
-import { renderMenuItem } from '../dynamic';
+// lodash
 import { isEmpty } from 'lodash';
+import MenuItemHelper from './MenuItemHelper';
+
+const useStyles = makeStyles({
+  iconSingle: {
+    '& .MuiSvgIcon-root': {
+      color: 'rgba(0, 0, 0, 0.87)',
+      fill: 'currentcolor',
+      marginRight: '-3px',
+      fontSize: '20px'
+    },
+    '& .MuiTypography-root': {
+      lineHeight: '20px',
+      fontSize: '15px',
+      color: 'rgba(0, 0, 0, 0.87)'
+    }
+  }
+})
 
 const SubMenuHelper = props => {
   const {
     name,
     iconName,
     groups,
-    dense
+    dense,
+    pathName
   } = props;
   // hooks
+  const classes = useStyles();
   const { t: translate } = useTranslation();
   // states
   const [toggle, setToggle] = useState({});
@@ -69,7 +90,7 @@ const SubMenuHelper = props => {
     </ListItemButton>
   );
 
-  return (
+  return isEmpty(pathName) ? (
     <Box>
       <Tooltip title={translate(`resources.${name}.title`)} placement="right">
         {header}
@@ -83,7 +104,18 @@ const SubMenuHelper = props => {
           {!isEmpty(groups) && groups.map((item, index) => {
             return (
               <Box key={index}>
-                {renderMenuItem(item)}
+                <MenuItemHelper
+                  key={item.name}
+                  to={{
+                    pathname: item.pathName,
+                    state: { _scrollToTop: true },
+                  }}
+                  primaryText={translate(`menus.${item.name}.title`, {
+                    smart_count: 2,
+                  })}
+                  leftIcon={item.iconName}
+                  dense={dense}
+                />
               </Box>
             )
           })}
@@ -91,7 +123,21 @@ const SubMenuHelper = props => {
       </Collapse>
       {toggle[name] ? <Divider /> : <> </>}
     </Box>
-  );
+  ) : (
+      <MenuItemHelper
+        className={classes.iconSingle}
+        key={name}
+        to={{
+          pathname: pathName,
+          state: { _scrollToTop: true },
+        }}
+        primaryText={translate(`menus.${name}.title`, {
+          smart_count: 2,
+        })}
+        leftIcon={iconName}
+        dense={dense}
+      />
+    );
 };
 
 export default SubMenuHelper;
