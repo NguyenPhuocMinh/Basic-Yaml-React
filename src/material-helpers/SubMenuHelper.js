@@ -7,7 +7,8 @@ import {
   Collapse,
   List,
   ListItemButton,
-  ListItemText
+  ListItemText,
+  Divider
 } from '@mui/material';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -88,6 +89,7 @@ const SubMenuHelper = props => {
           })}
         </List>
       </Collapse>
+      {toggle[name] ? <Divider /> : <> </>}
     </Box>
   );
 };

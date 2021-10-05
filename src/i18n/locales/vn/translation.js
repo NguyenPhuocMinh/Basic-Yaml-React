@@ -46,6 +46,19 @@ const TRANSLATIONS_VN = {
     product: {
       title: 'Sản phẩm'
     }
+  },
+  errors: {
+    page: 'Đã xảy ra sự cố',
+    message: 'Đã xảy ra lỗi máy khách và không thể hoàn thành yêu cầu của bạn.',
+    messageText: 'Cần giúp đỡ với lỗi này? Hãy thử những cách sau',
+    searchOn: 'Tìm kiếm trên',
+    communityAnswers: 'cho câu trả lời của cộng đồng',
+    textHelp: 'Nhận trợ giúp từ nhóm cốt lõi qua'
+  },
+  actions: {
+    button: {
+      back: 'Quay lại'
+    }
   }
 }
 
