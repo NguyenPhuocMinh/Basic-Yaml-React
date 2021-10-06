@@ -1,4 +1,9 @@
 import React from 'react';
+// redux
+import { useDispatch } from 'react-redux';
+// action
+import { languageActions } from '../store/actions';
+// material ui
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -7,14 +12,27 @@ import Typography from '@mui/material/Typography';
 import ReactCountryFlag from 'react-country-flag';
 // i18n
 import { useTranslation } from 'react-i18next';
+import { languages } from './utils';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+  selectedItem: {
+    background: 'red'
+  },
+  notSelectedItem: {
+    background: 'green'
+  }
+})
 
 const PopupHelper = ({ open, anchorEl, handleClose }) => {
-  // translate
+  // hooks
   const { t: translate } = useTranslation();
+  const dispatch = useDispatch();
 
-  const handleChangeLanguage = (language) => {
+  const handleChangeLanguage = (language, index) => {
     localStorage.setItem('language', language);
     window.location.reload();
+    dispatch(languageActions.changeLanguages(language));
   };
 
   return (
@@ -53,42 +71,29 @@ const PopupHelper = ({ open, anchorEl, handleClose }) => {
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-      <MenuItem
-        onClick={() => handleChangeLanguage('en')}
-      >
-        <ListItemIcon>
-          <ReactCountryFlag
-            svg
-            countryCode='US'
-            style={{
-              fontSize: '1.25rem',
-              width: '1em',
-              height: '1em',
-            }}
-          />
-        </ListItemIcon>
-        <Typography variant='caption'>
-          {translate('appBar.toolbar.language.en')}
-        </Typography>
-      </MenuItem>
-      <MenuItem
-        onClick={() => handleChangeLanguage('vn')}
-      >
-        <ListItemIcon>
-          <ReactCountryFlag
-            svg
-            countryCode='VN'
-            style={{
-              fontSize: '1.25rem',
-              width: '1em',
-              height: '1em',
-            }}
-          />
-        </ListItemIcon>
-        <Typography variant='caption'>
-          {translate('appBar.toolbar.language.vn')}
-        </Typography>
-      </MenuItem>
+      {languages.map((item, index) => {
+        return (
+          <MenuItem
+            key={index}
+            onClick={() => handleChangeLanguage(item.name, index)}
+          >
+            <ListItemIcon>
+              <ReactCountryFlag
+                svg
+                countryCode={item.countryCode}
+                style={{
+                  fontSize: '1.25rem',
+                  width: '1em',
+                  height: '1em',
+                }}
+              />
+            </ListItemIcon>
+            <Typography variant='caption'>
+              {translate(`appBar.toolbar.language.${item.name}`)}
+            </Typography>
+          </MenuItem>
+        )
+      })}
     </Menu>
   )
 };

@@ -3,15 +3,17 @@ import { get } from 'lodash';
 import { registerComponents } from '../dynamic';
 
 const DynamicMui = props => {
-  const componentDefinition = get(props, 'componentDefinition');
-  const type = get(componentDefinition, 'name');
+  const resource = get(props, 'resource');
+  const component = get(resource, 'component');
+  const name = get(resource, 'name');
 
   return createElement(
-    registerComponents[type],
+    registerComponents[component],
     {
-      id: type,
-      key: type,
-      data: componentDefinition
+      id: name,
+      key: name,
+      name: name,
+      ...props
     },
     null
   )

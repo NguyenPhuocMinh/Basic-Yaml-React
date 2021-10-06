@@ -5,7 +5,6 @@ import createIcon from './createIcon';
 import registerIcons from './registerIcons';
 import createMenu from './createMenu';
 import renderMenu from './renderMenu';
-import renderMenuItem from './renderMenuItem';
 
 export {
   renderComponent,
@@ -15,5 +14,4 @@ export {
   registerIcons,
   renderMenu,
   createMenu,
-  renderMenuItem
 }

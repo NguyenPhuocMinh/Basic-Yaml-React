@@ -3,11 +3,13 @@ import { combineReducers } from 'redux';
 import adminReducer from './adminReducer';
 import homeReducer from './homeReducer';
 import themeReducer from './themeReducer';
+import languageReducer from './languageReducer';
 
 const rootReducer = combineReducers({
   admin: adminReducer,
   home: homeReducer,
-  theme: themeReducer
+  theme: themeReducer,
+  language: languageReducer
 });
 
 export default rootReducer;

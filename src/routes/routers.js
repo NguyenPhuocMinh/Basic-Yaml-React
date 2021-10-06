@@ -1,8 +1,8 @@
-const routerData = [
+const routers = [
   {
     name: 'home',
     iconName: 'Home',
-    pathName: '/home',
+    pathName: '/',
   },
   {
     name: 'ancients',
@@ -44,4 +44,4 @@ const routerData = [
   }
 ];
 
-export default routerData;
+export default routers;

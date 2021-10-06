@@ -22,9 +22,15 @@ const TRANSLATIONS_EN = {
       },
     }
   },
-  menus: {
+  resources: {
     home: {
       title: 'Home'
+    },
+    ancients: {
+      title: 'Ancient',
+    },
+    animes: {
+      title: 'Anime'
     },
     vampires: {
       title: 'Vampire'
@@ -32,37 +38,20 @@ const TRANSLATIONS_EN = {
     monsters: {
       title: 'Monster'
     },
-    land: {
-      title: 'Lands'
-    },
-    ocean: {
-      title: 'Ocean'
-    }
   },
-  resources: {
-    ancients: {
-      title: 'Ancient',
+  page: {
+    error: {
+      name: 'Something went wrong',
+      message: "A client error occurred and your request couldn't be completed.",
+      message_text: 'Need help with this error? Try the following',
+      message_help: 'Get help from the core team via',
+      search_on: 'Search on',
+      community_answers: 'for community answers',
     },
-    animes: {
-      title: 'Anime'
-    },
-    home: {
-      title: 'Home'
-    },
-    order: {
-      title: 'order'
-    },
-    product: {
-      title: 'product'
+    not_found: {
+      name: 'Not found',
+      message: 'Either you typed a wrong URL, or you followed a bad link.'
     }
-  },
-  errors: {
-    page: 'Something went wrong',
-    message: "A client error occurred and your request couldn't be completed.",
-    messageText: 'Need help with this error? Try the following',
-    searchOn: 'Search on',
-    communityAnswers: 'for community answers',
-    textHelp : 'Get help from the core team via'
   },
   actions: {
     button: {

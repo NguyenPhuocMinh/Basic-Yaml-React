@@ -2,7 +2,7 @@ import { ADMIN_TYPES } from '../constants';
 
 const initialState = {
   ui: {
-    sidebarIsOpen: false
+    sidebarIsOpen: false,
   }
 };
 

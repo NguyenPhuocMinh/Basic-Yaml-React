@@ -18,11 +18,10 @@ import Typography from '@mui/material/Typography';
 import AppBar from './AppBar';
 import DrawerHeader from './DrawerHeader';
 import Main from './Main';
-import { get } from 'lodash';
 import { DynamicMui } from '../common';
 import Menu from './Menu';
 // data
-import routerData from '../data';
+import { routers, resources } from '../routes';
 
 const drawerWidth = 240;
 
@@ -37,8 +36,6 @@ const Layout = props => {
     setSideBarIsOpen(!sideBarIsOpen);
     dispatch(adminActions.changeSideBar(!sideBarIsOpen));
   };
-  // router
-  const routers = get(props, 'dynamicDefinition.routers', []);
 
   return (
     <Box sx={{ display: 'flex', flexGrow: 1 }}>
@@ -78,18 +75,19 @@ const Layout = props => {
           </Typography>
         </DrawerHeader>
         <Divider />
-        <Menu menuRouters={routerData} />
+        <Menu menuRouters={routers} />
       </Drawer>
       <Main open={sideBarIsOpen}>
         <DrawerHeader />
+        {/* RESOURCES */}
         <Switch>
-          {routers.map((item, index) => {
+          {resources.map((item, index) => {
             return (
               <Route
                 key={index}
                 exact={item.exact}
                 path={item.path}
-                component={() => <DynamicMui componentDefinition={item.component} />}
+                component={(props) => <DynamicMui resource={item} {...props} />}
               />
             )
           })}

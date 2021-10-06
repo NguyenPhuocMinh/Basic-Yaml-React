@@ -29,8 +29,10 @@ const ButtonGroupHelper = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   // func
   const handleChange = (event, newTheme) => {
-    localStorage.setItem('theme', newTheme)
-    setTheme(newTheme);
+    if (newTheme !== null) {
+      setTheme(newTheme);
+      localStorage.setItem('theme', newTheme)
+    }
   };
   // render
   useEffect(() => {
@@ -38,6 +40,8 @@ const ButtonGroupHelper = () => {
   }, [theme, dispatch]);
 
   const classes = useStyles({ theme });
+
+  console.log("XXX", theme)
 
   return (
     <ToggleButtonGroup

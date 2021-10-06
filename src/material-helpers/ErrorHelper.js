@@ -70,9 +70,9 @@ const ErrorHelper = (props) => {
       <div className={classnames(classes.container, className)} {...rest}>
         <h1 className={classes.title} role="alert">
           <ErrorIcon className={classes.icon} />
-          {translate('errors.page')}
+          {translate('page.error.name')}
         </h1>
-        <div>{translate('errors.message')}</div>
+        <div>{translate('page.error.message')}</div>
         {process.env.NODE_ENV !== 'production' && (
           <>
             <Accordion className={classes.panel}>
@@ -91,18 +91,18 @@ const ErrorHelper = (props) => {
             </Accordion>
             <div className={classes.advice}>
               <Typography align="center">
-                {translate('errors.messageText')}:
+                {translate('page.error.message_text')}:
               </Typography>
               <Typography component="div">
                 <ul>
                   <li>
-                    {translate('errors.searchOn')}{' '}
+                    {translate('page.error.search_on')}{' '}
                     <a href="https://stackoverflow.com/questions/tagged/react-admin">
                       StackOverflow
-                    </a>{' '} {translate('errors.communityAnswers')}
+                    </a>{' '} {translate('page.error.community_answers')}
                   </li>
                   <li>
-                    {translate('errors.textHelp')}{' '}
+                    {translate('page.error.message_help')}{' '}
                     <a href="https://reactjs.org/docs/error-boundaries.html">
                       React Error Boundaries
                     </a>

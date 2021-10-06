@@ -8,7 +8,7 @@ const changeSideBar = (sideBarIsOpen) => async dispatch => {
 };
 
 const adminActions = {
-  changeSideBar
+  changeSideBar,
 };
 
 export default adminActions;

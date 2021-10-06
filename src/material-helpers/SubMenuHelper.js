@@ -1,4 +1,6 @@
 import { useState } from 'react';
+// redux
+import { useSelector } from 'react-redux';
 // i18n
 import { useTranslation } from 'react-i18next';
 import {
@@ -19,21 +21,20 @@ import { DynamicMuiIcon } from '../common';
 import { isEmpty } from 'lodash';
 import MenuItemHelper from './MenuItemHelper';
 
-const useStyles = makeStyles({
-  iconSingle: {
+const useStyles = makeStyles(theme => ({
+  singleResource: {
     '& .MuiSvgIcon-root': {
-      color: 'rgba(0, 0, 0, 0.87)',
+      color: (props) => props.theme === 'light' ? 'rgba(0, 0, 0, 0.87)' : '#fff',
       fill: 'currentcolor',
-      marginRight: '-3px',
+      marginRight: theme.spacing(-0.5),
       fontSize: '20px'
     },
     '& .MuiTypography-root': {
-      lineHeight: '20px',
       fontSize: '15px',
-      color: 'rgba(0, 0, 0, 0.87)'
+      color: (props) => props.theme === 'light' ? 'rgba(0, 0, 0, 0.87)' : '#fff'
     }
   }
-})
+}));
 
 const SubMenuHelper = props => {
   const {
@@ -43,8 +44,10 @@ const SubMenuHelper = props => {
     dense,
     pathName
   } = props;
+  // store
+  const theme = useSelector(state => state.theme);
   // hooks
-  const classes = useStyles();
+  const classes = useStyles({ theme });
   const { t: translate } = useTranslation();
   // states
   const [toggle, setToggle] = useState({});
@@ -110,7 +113,7 @@ const SubMenuHelper = props => {
                     pathname: item.pathName,
                     state: { _scrollToTop: true },
                   }}
-                  primaryText={translate(`menus.${item.name}.title`, {
+                  primaryText={translate(`resources.${item.name}.title`, {
                     smart_count: 2,
                   })}
                   leftIcon={item.iconName}
@@ -124,19 +127,21 @@ const SubMenuHelper = props => {
       {toggle[name] ? <Divider /> : <> </>}
     </Box>
   ) : (
-      <MenuItemHelper
-        className={classes.iconSingle}
-        key={name}
-        to={{
-          pathname: pathName,
-          state: { _scrollToTop: true },
-        }}
-        primaryText={translate(`menus.${name}.title`, {
-          smart_count: 2,
-        })}
-        leftIcon={iconName}
-        dense={dense}
-      />
+      <Box>
+        <MenuItemHelper
+          className={classes.singleResource}
+          key={name}
+          to={{
+            pathname: pathName,
+            state: { _scrollToTop: true },
+          }}
+          primaryText={translate(`resources.${name}.title`, {
+            smart_count: 2,
+          })}
+          leftIcon={iconName}
+          dense={dense}
+        />
+      </Box>
     );
 };
 
