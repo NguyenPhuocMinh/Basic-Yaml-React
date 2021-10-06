@@ -22,7 +22,30 @@ const TRANSLATIONS_EN = {
       },
     }
   },
+  menus: {
+    home: {
+      title: 'Home'
+    },
+    vampires: {
+      title: 'Vampire'
+    },
+    monsters: {
+      title: 'Monster'
+    },
+    land: {
+      title: 'Lands'
+    },
+    ocean: {
+      title: 'Ocean'
+    }
+  },
   resources: {
+    ancients: {
+      title: 'Ancient',
+    },
+    animes: {
+      title: 'Anime'
+    },
     home: {
       title: 'Home'
     },
@@ -32,7 +55,20 @@ const TRANSLATIONS_EN = {
     product: {
       title: 'product'
     }
-  }
+  },
+  errors: {
+    page: 'Something went wrong',
+    message: "A client error occurred and your request couldn't be completed.",
+    messageText: 'Need help with this error? Try the following',
+    searchOn: 'Search on',
+    communityAnswers: 'for community answers',
+    textHelp : 'Get help from the core team via'
+  },
+  actions: {
+    button: {
+      back: 'Back'
+    }
+  },
 }
 
 export default TRANSLATIONS_EN;

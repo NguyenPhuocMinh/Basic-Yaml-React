@@ -2,7 +2,9 @@ import {
   GridHelper,
   PaperHelper,
   ButtonHelper,
-  TextFieldHelper
+  TextFieldHelper,
+  SubMenuHelper,
+  MenuItemHelper
 } from '../material-helpers';
 import {
   Home,
@@ -11,7 +13,6 @@ import {
 } from '../views';
 // forms
 import { DynamicMuiForm } from '../common';
-import SubMenu from '../layout/SubMenu';
 
 const registerComponents = {
   // components
@@ -26,7 +27,8 @@ const registerComponents = {
   form: (props) => <DynamicMuiForm {...props} />,
   text: (props) => <TextFieldHelper {...props} />,
   // menu
-  menu: (props) => <SubMenu {...props} />
+  menu: (props) => <SubMenuHelper {...props} />,
+  menuItem: (props) => <MenuItemHelper {...props} />
 };
 
 export default registerComponents;

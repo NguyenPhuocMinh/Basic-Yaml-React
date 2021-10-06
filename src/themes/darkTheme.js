@@ -23,10 +23,21 @@ const darkTheme = createTheme({
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          fontSize: '1rem'
+          fontSize: '1rem !important'
         }
       }
     },
+    MuiPopover: {
+      styleOverrides: {
+        paper: {
+          background: '#FFF',
+          color: 'rgba(0, 0, 0, 0.87)',
+          '&::before': {
+            background: '#FFF !important'
+          }
+        }
+      }
+    }
   },
   typography: {
     fontFamily: [

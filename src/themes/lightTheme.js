@@ -29,7 +29,16 @@ const lightTheme = createTheme({
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          fontSize: '1rem'
+          fontSize: '1rem !important'
+        }
+      }
+    },
+    MuiPopover: {
+      styleOverrides: {
+        paper: {
+          '&::before': {
+            background: '#F2C48D !important'
+          }
         }
       }
     },
