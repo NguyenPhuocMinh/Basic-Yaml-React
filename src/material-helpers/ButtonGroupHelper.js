@@ -41,8 +41,6 @@ const ButtonGroupHelper = () => {
 
   const classes = useStyles({ theme });
 
-  console.log("XXX", theme)
-
   return (
     <ToggleButtonGroup
       color="primary"

@@ -3,6 +3,7 @@ import { ADMIN_TYPES } from '../constants';
 const initialState = {
   ui: {
     sidebarIsOpen: false,
+    changeSelectedIndex: 0
   }
 };
 
@@ -14,7 +15,16 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         ui: {
+          ...state.ui,
           sidebarIsOpen: payload
+        }
+      }
+    case ADMIN_TYPES.CHANGE_SELECTED_INDEX:
+      return {
+        ...state,
+        ui: {
+          ...state.ui,
+          changeSelectedIndex: payload
         }
       }
     default:

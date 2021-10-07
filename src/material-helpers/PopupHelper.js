@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // redux
 import { useDispatch } from 'react-redux';
 // action
@@ -16,24 +16,28 @@ import { languages } from './utils';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-  selectedItem: {
-    background: 'red'
+  selected: {
+    background: 'red !important'
   },
-  notSelectedItem: {
-    background: 'green'
-  }
 })
 
 const PopupHelper = ({ open, anchorEl, handleClose }) => {
   // hooks
+  const classes = useStyles();
   const { t: translate } = useTranslation();
   const dispatch = useDispatch();
-
+  // states
+  const [selectedIndex, setSelectedIndex] = useState(localStorage.getItem('selectedIndex'));
+  // func
   const handleChangeLanguage = (language, index) => {
+    localStorage.setItem('selectedIndex', index);
     localStorage.setItem('language', language);
+    setSelectedIndex(index);
     window.location.reload();
     dispatch(languageActions.changeLanguages(language));
   };
+
+  console.log("🚀 ~ file: PopupHelper.js ~ line 31 ~ PopupHelper ~ selectedIndex", selectedIndex)
 
   return (
     <Menu
@@ -72,10 +76,17 @@ const PopupHelper = ({ open, anchorEl, handleClose }) => {
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
       {languages.map((item, index) => {
+        console.log("🚀 ~ file: PopupHelper.js ~ line 79 ~ {languages.map ~ index", index)
+        console.log("🚀 ~ file: PopupHelper.js ~ line 84 ~ {languages.map ~ index === selectedIndex", index === selectedIndex)
+
         return (
           <MenuItem
             key={index}
             onClick={() => handleChangeLanguage(item.name, index)}
+            selected={index === selectedIndex}
+            classes={{
+              selected: classes.selected
+            }}
           >
             <ListItemIcon>
               <ReactCountryFlag

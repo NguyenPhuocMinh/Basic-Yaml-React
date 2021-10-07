@@ -8,6 +8,9 @@ const languageReducer = (state = initialState, action) => {
   if (type === LANGUAGE_TYPES.CHANGE_LANGUAGE) {
     return payload;
   }
+  if (type === LANGUAGE_TYPES.CHANGE_SELECTED) {
+    return payload
+  }
   return state;
 };
 
