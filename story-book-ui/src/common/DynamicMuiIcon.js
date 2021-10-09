@@ -1,10 +1,10 @@
 import { createElement } from 'react';
 import { registerIcons } from '../dynamic';
 
-const DynamicMuiIcon = ({ iconName }) => {
+const DynamicMuiIcon = ({ icon }) => {
 
   return createElement(
-    registerIcons[iconName],
+    registerIcons[icon],
     null,
     null
   )

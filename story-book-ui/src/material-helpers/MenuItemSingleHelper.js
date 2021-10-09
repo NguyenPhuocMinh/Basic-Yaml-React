@@ -1,36 +1,31 @@
-import {
-  forwardRef,
-  useCallback,
-} from 'react';
+import { forwardRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-// material ui
-import {
-  ListItemIcon,
-  ListItemText,
-  Tooltip,
-  ListItemButton
-} from '@mui/material';
-import { makeStyles } from '@mui/styles';
-// router dom
 import { DynamicMuiIcon } from '../common';
 import NavLinkRef from './NavLinkRef';
 import { useLocation } from 'react-router-dom';
+import {
+  Tooltip,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText
+} from "@mui/material";
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(
   theme => ({
-    root: {
+    root: {},
+    active: {
       color: theme.palette.text.secondary,
     },
     selected: {
       background: 'rgb(0 0 0 / 12%) !important',
       color: '#fff'
-    },
-    leftIcon: { minWidth: theme.spacing(5) },
+    }
   }),
 );
 
-const MenuItemHelper = forwardRef((props, ref) => {
+const MenuItemSingleHelper = forwardRef((props, ref) => {
   const {
     classes: classesOverride,
     className,
@@ -50,8 +45,8 @@ const MenuItemHelper = forwardRef((props, ref) => {
     [onClick]
   );
 
-  const renderMenuItem = () => {
-    return (
+  return (
+    <Tooltip title={primaryText} placement="right" {...tooltipProps}>
       <ListItemButton
         className={classnames(classes.root, className)}
         component={NavLinkRef}
@@ -59,43 +54,31 @@ const MenuItemHelper = forwardRef((props, ref) => {
         tabIndex={0}
         {...rest}
         onClick={handleMenuTap}
-        sx={{
-          py: 0,
-          minHeight: 32,
-        }}
+        sx={{ px: 3 }}
         classes={{
           selected: classes.selected
         }}
         selected={props.to.pathname === location.pathname}
       >
-        {leftIcon ? (
-          <ListItemIcon className={classes.leftIcon}>
-            <DynamicMuiIcon icon={leftIcon} />
-          </ListItemIcon>
-        ) : (
-            <ListItemIcon className={classes.leftIcon} />
-          )
-        }
+        <ListItemIcon sx={{ color: 'inherit' }}>
+          <DynamicMuiIcon icon={leftIcon} />
+        </ListItemIcon>
         <ListItemText
           primary={primaryText}
           primaryTypographyProps={{
-            fontSize: 14,
+            variant: 'subtitle2',
             fontWeight: 'medium',
-            marginLeft: !leftIcon ? '16px' : '0px'
+            lineHeight: '1.5',
+            mb: '2px',
           }}
+          sx={{ my: 0 }}
         />
       </ListItemButton>
-    );
-  };
-
-  return (
-    <Tooltip title={primaryText} placement="right" {...tooltipProps}>
-      {renderMenuItem()}
     </Tooltip>
   )
 });
 
-MenuItemHelper.propTypes = {
+MenuItemSingleHelper.propTypes = {
   classes: PropTypes.object,
   className: PropTypes.string,
   leftIcon: PropTypes.string,
@@ -103,7 +86,6 @@ MenuItemHelper.propTypes = {
   primaryText: PropTypes.node,
   staticContext: PropTypes.object,
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  sidebarIsOpen: PropTypes.bool,
 };
 
-export default MenuItemHelper;
+export default MenuItemSingleHelper;

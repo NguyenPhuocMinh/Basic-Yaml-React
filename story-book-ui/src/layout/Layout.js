@@ -75,7 +75,7 @@ const Layout = props => {
           </Typography>
         </DrawerHeader>
         <Divider />
-        <Menu menuRouters={routers} />
+        <Menu dense={true} />
       </Drawer>
       <Main open={sideBarIsOpen}>
         <DrawerHeader />

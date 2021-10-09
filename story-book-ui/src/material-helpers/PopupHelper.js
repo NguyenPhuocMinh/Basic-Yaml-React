@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // action
 import { languageActions } from '../store/actions';
 // material ui
@@ -17,7 +17,7 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   selected: {
-    background: 'red !important'
+    background: 'rgb(0 0 0 / 12%) !important',
   },
 })
 
@@ -26,18 +26,14 @@ const PopupHelper = ({ open, anchorEl, handleClose }) => {
   const classes = useStyles();
   const { t: translate } = useTranslation();
   const dispatch = useDispatch();
-  // states
-  const [selectedIndex, setSelectedIndex] = useState(localStorage.getItem('selectedIndex'));
   // func
-  const handleChangeLanguage = (language, index) => {
-    localStorage.setItem('selectedIndex', index);
+  const handleChangeLanguage = (language) => {
     localStorage.setItem('language', language);
-    setSelectedIndex(index);
     window.location.reload();
     dispatch(languageActions.changeLanguages(language));
   };
-
-  console.log("🚀 ~ file: PopupHelper.js ~ line 31 ~ PopupHelper ~ selectedIndex", selectedIndex)
+  // store
+  const language = useSelector(state => state.language);
 
   return (
     <Menu
@@ -48,7 +44,6 @@ const PopupHelper = ({ open, anchorEl, handleClose }) => {
       PaperProps={{
         elevation: 0,
         sx: {
-          borderRadius: 3,
           overflow: 'visible',
           filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
           mt: 1.5,
@@ -76,14 +71,11 @@ const PopupHelper = ({ open, anchorEl, handleClose }) => {
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
       {languages.map((item, index) => {
-        console.log("🚀 ~ file: PopupHelper.js ~ line 79 ~ {languages.map ~ index", index)
-        console.log("🚀 ~ file: PopupHelper.js ~ line 84 ~ {languages.map ~ index === selectedIndex", index === selectedIndex)
-
         return (
           <MenuItem
             key={index}
             onClick={() => handleChangeLanguage(item.name, index)}
-            selected={index === selectedIndex}
+            selected={language === item.name}
             classes={{
               selected: classes.selected
             }}

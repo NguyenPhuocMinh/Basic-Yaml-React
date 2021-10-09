@@ -23,20 +23,20 @@ const TRANSLATIONS_EN = {
     }
   },
   resources: {
-    home: {
-      title: 'Home'
+    dashboard: {
+      name: 'Dash board'
     },
     ancients: {
-      title: 'Ancient',
+      name: 'Ancient',
+      vampires: {
+        name: 'Vampire'
+      },
+      monsters: {
+        name: 'Monster'
+      },
     },
     animes: {
-      title: 'Anime'
-    },
-    vampires: {
-      title: 'Vampire'
-    },
-    monsters: {
-      title: 'Monster'
+      name: 'Anime'
     },
   },
   page: {

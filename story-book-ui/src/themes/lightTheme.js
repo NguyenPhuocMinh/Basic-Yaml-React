@@ -6,9 +6,6 @@ const lightTheme = createTheme({
     primary: {
       main: '#F2C48D',
     },
-    secondary: {
-      main: '#8C4404'
-    }
   },
   components: {
     MuiPaper: {
@@ -39,6 +36,13 @@ const lightTheme = createTheme({
           '&::before': {
             background: '#F2C48D !important'
           }
+        }
+      }
+    },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          padding: 0
         }
       }
     },

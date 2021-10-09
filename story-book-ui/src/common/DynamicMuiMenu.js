@@ -1,7 +1,7 @@
 import { renderMenu } from '../dynamic';
 import { get } from 'lodash';
 import { Box } from '@mui/material';
-import NavBar from '../layout/NavBar';
+import { NavBar } from '../layout/NavLayout';
 
 const DynamicMuiMenu = props => {
   const menuRouters = get(props, 'menuRouters');

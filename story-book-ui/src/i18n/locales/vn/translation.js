@@ -23,14 +23,20 @@ const TRANSLATIONS_VN = {
     }
   },
   resources: {
+    dashboard: {
+      title: 'Trang chủ'
+    },
     ancients: {
-      title: 'Cổ đại',
+      name: 'Cổ đại',
+      vampires: {
+        name: 'Ma ca rồng'
+      },
+      monsters: {
+        name: 'Quái vật'
+      },
     },
     animes: {
-      title: 'Hoạt hình'
-    },
-    home: {
-      title: 'Trang chủ'
+      name: 'Hoạt hình'
     },
   },
   page: {

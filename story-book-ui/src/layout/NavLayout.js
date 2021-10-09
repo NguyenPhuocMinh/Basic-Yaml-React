@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
-import List from '@mui/material/List';
+import { List, Divider } from '@mui/material';
 
-const FireNav = styled(List)({
+const NavBar = styled(List)({
   '& .MuiListItemButton-root': {
     paddingLeft: 24,
     paddingRight: 24,
@@ -15,4 +15,11 @@ const FireNav = styled(List)({
   },
 });
 
-export default FireNav;
+const NavDivider = styled(Divider)({
+  margin: '8px 0'
+});
+
+export {
+  NavBar,
+  NavDivider
+};
