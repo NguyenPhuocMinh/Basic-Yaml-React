@@ -107,23 +107,6 @@ module.exports = {
           port: process.env.MONGO_PORT,
           name: process.env.MONGO_DATABASE
         },
-        mysql: {
-          enable: false,
-          host: process.env.SQL_HOST,
-          port: process.env.SQL_PORT,
-          user: process.env.SQL_USER,
-          password: process.env.SQL_PASSWORD,
-          name: process.env.SQL_DATABASE,
-          sequelizeOptions: {
-            dialect: 'mysql',
-            pool: {
-              max: 5,
-              min: 0,
-              acquire: 30000,
-              idle: 10000
-            }
-          }
-        }
       },
       winext_authorization: {
         enable: true,
