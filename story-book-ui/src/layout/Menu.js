@@ -42,35 +42,6 @@ const Menu = ({ dense = false }) => {
         />
       </SubMenuHelper>
       <NavDivider />
-      <SubMenuHelper
-        primaryText={translate("resources.ancients.name")}
-        leftIcon="AutoAwesomeMotion"
-        dense={dense}
-      >
-        {/* Vampires */}
-        <MenuItemHelper
-          to={{
-            pathname: '/vampires',
-            state: { _scrollToTop: true },
-          }}
-          primaryText={translate(`resources.ancients.vampires.name`, {
-            smart_count: 2,
-          })}
-          dense={dense}
-        />
-        {/* Monsters */}
-        <MenuItemHelper
-          to={{
-            pathname: '/monsters',
-            state: { _scrollToTop: true },
-          }}
-          primaryText={translate(`resources.ancients.monsters.name`, {
-            smart_count: 2,
-          })}
-          dense={dense}
-        />
-      </SubMenuHelper>
-      <NavDivider />
     </NavBar>
   )
 };

@@ -61,6 +61,8 @@ const ErrorHelper = (props) => {
     title,
     ...rest
   } = props;
+
+  // hooks
   const classes = useStyles(props);
   const { t: translate } = useTranslation();
 
@@ -116,7 +118,7 @@ const ErrorHelper = (props) => {
           <Button
             variant="contained"
             startIcon={<History />}
-            onClick={() => window.location.reload()}
+            onClick={resetErrorBoundary}
           >
             {translate('actions.button.back')}
           </Button>

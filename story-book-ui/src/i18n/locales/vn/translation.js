@@ -24,7 +24,7 @@ const TRANSLATIONS_VN = {
   },
   resources: {
     dashboard: {
-      title: 'Trang chủ'
+      name: 'Trang chủ'
     },
     ancients: {
       name: 'Cổ đại',

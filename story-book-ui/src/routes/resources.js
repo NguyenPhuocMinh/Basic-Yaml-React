@@ -1,22 +1,16 @@
+import Vampires from '../views/Ancients/Vampires';
+import Monsters from '../views/Ancients/Monsters';
+
 const resources = [
   {
-    name: 'home_page',
-    component: 'home',
-    path: '/',
-    exact: true
-  },
-  {
     name: 'vampire_page',
-    component: 'vampires',
-    path: '/vampires',
-    hasList: true,
-    hasCreate: true
+    basePath: '/vampires',
+    ...Vampires
   },
   {
     name: 'monster_page',
-    component: 'monsters',
-    path: '/monsters',
-    hasList: true,
+    basePath: '/monsters',
+    ...Monsters
   },
 ];
 

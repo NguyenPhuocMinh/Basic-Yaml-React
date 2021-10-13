@@ -1,10 +1,5 @@
 import { useState } from 'react';
 import { version } from '../../package.json';
-import {
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
 // redux
 import { useDispatch } from 'react-redux';
 // actions
@@ -18,10 +13,10 @@ import Typography from '@mui/material/Typography';
 import AppBar from './AppBar';
 import DrawerHeader from './DrawerHeader';
 import Main from './Main';
-import { DynamicMui } from '../common';
 import Menu from './Menu';
-// data
-import { routers, resources } from '../routes';
+// resources
+import { resources } from '../routes';
+import { ResourceHelper } from '../material-helpers';
 
 const drawerWidth = 240;
 
@@ -80,19 +75,14 @@ const Layout = props => {
       <Main open={sideBarIsOpen}>
         <DrawerHeader />
         {/* RESOURCES */}
-        <Switch>
-          {resources.map((item, index) => {
-            return (
-              <Route
-                key={index}
-                exact={item.exact}
-                path={item.path}
-                component={(props) => <DynamicMui resource={item} {...props} />}
-              />
-            )
-          })}
-          <Redirect from="*" to="/not-found" />
-        </Switch>
+        {resources.map((resource, index) => {
+          return (
+            <ResourceHelper
+              key={index}
+              {...resource}
+            />
+          )
+        })}
       </Main>
     </Box>
   );

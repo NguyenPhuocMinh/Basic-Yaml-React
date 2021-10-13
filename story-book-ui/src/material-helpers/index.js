@@ -10,6 +10,7 @@ import MenuItemHelper from './MenuItemHelper';
 import MenuItemSingleHelper from './MenuItemSingleHelper';
 import ErrorHelper from './ErrorHelper';
 import NotFoundHelper from './NotFoundHelper';
+import ResourceHelper from './ResourceHelper';
 
 export {
   GridHelper,
@@ -23,5 +24,6 @@ export {
   MenuItemHelper,
   MenuItemSingleHelper,
   ErrorHelper,
-  NotFoundHelper
+  NotFoundHelper,
+  ResourceHelper
 }
