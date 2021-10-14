@@ -16,7 +16,6 @@ const Menu = ({ dense = false }) => {
       <SubMenuHelper
         primaryText={translate("resources.ancients.name")}
         leftIcon="AutoAwesomeMotion"
-        dense={dense}
       >
         {/* Vampires */}
         <MenuItemHelper
@@ -27,7 +26,6 @@ const Menu = ({ dense = false }) => {
           primaryText={translate(`resources.ancients.vampires.name`, {
             smart_count: 2,
           })}
-          dense={dense}
         />
         {/* Monsters */}
         <MenuItemHelper
@@ -38,7 +36,6 @@ const Menu = ({ dense = false }) => {
           primaryText={translate(`resources.ancients.monsters.name`, {
             smart_count: 2,
           })}
-          dense={dense}
         />
       </SubMenuHelper>
       <NavDivider />

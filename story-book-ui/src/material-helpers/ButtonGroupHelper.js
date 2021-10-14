@@ -12,15 +12,15 @@ import { makeStyles } from '@mui/styles';
 import { useDispatch } from 'react-redux';
 import { themeActions } from '../store/actions';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   selected: {
-    color: (props) => props.theme === 'light' ? 'rgba(0, 0, 0, 0.54) !important' : 'inherit',
-    borderColor: 'rgb(0, 127, 255) !important'
+    color: `${theme.palette.text.primary} !important`,
+    borderColor: `${theme.palette.text.primary} !important`
   },
   rootIcon: {
     marginRight: '8px'
   }
-})
+}))
 
 const ButtonGroupHelper = () => {
   // hooks
@@ -62,7 +62,7 @@ const ButtonGroupHelper = () => {
         value="light"
       >
         <WbSunnyIcon className={classes.rootIcon} />
-        <Typography variant="subtitle1">
+        <Typography variant="inherit">
           {translate('appBar.toolbar.setting.themes.light')}
         </Typography>
       </ToggleButton>

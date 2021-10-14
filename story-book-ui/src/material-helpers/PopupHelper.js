@@ -74,11 +74,12 @@ const PopupHelper = ({ open, anchorEl, handleClose }) => {
         return (
           <MenuItem
             key={index}
-            onClick={() => handleChangeLanguage(item.name, index)}
+            onClick={() => handleChangeLanguage(item.name)}
             selected={language === item.name}
             classes={{
               selected: classes.selected
             }}
+            disabled={language === item.name}
           >
             <ListItemIcon>
               <ReactCountryFlag

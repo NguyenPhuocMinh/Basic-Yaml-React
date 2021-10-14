@@ -1,5 +1,5 @@
 const TRANSLATIONS_EN = {
-  title: 'Demo Dynamic React',
+  title: 'Demo Basic React',
   appBar: {
     toolbar: {
       title: 'Welcome to demo page',

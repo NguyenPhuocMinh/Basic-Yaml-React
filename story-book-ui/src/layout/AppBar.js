@@ -18,7 +18,7 @@ import { PopupHelper, SettingHelper } from '../material-helpers';
 // i18n
 import { useTranslation } from 'react-i18next';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -37,14 +37,14 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   title: {
     flex: 1,
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   },
-})
+}))
 
 const AppBarLayout = ({ open, handleClickSideBar }) => {
   // hooks

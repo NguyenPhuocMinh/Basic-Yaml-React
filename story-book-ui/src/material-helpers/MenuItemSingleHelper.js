@@ -14,13 +14,17 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(
   theme => ({
-    root: {},
-    active: {
+    root: {
       color: theme.palette.text.secondary,
+      '&:hover': {
+        color: theme.palette.text.primary,
+        borderRadius: 10
+      }
     },
     selected: {
-      background: 'rgb(0 0 0 / 12%) !important',
-      color: '#fff'
+      background: `rgba(0, 0, 0, 0.05) !important`,
+      color: theme.palette.text.primary,
+      borderRadius: 10
     }
   }),
 );
@@ -56,7 +60,7 @@ const MenuItemSingleHelper = forwardRef((props, ref) => {
         onClick={handleMenuTap}
         sx={{ px: 3 }}
         classes={{
-          selected: classes.selected
+          selected: classes.selected,
         }}
         selected={props.to.pathname === location.pathname}
       >

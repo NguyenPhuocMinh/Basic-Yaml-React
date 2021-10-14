@@ -71,7 +71,6 @@ const ResourceHelper = props => {
           <Route
             path={`${basePath}`}
             render={routeProps => {
-              console.log("🚀 ~ file: ResourceHelper.js ~ line 102 ~ routeProps", routeProps)
               return (
                 <WithPermissions
                   component={list}

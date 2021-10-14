@@ -21,12 +21,20 @@ const useStyles = makeStyles(
   theme => ({
     root: {
       color: theme.palette.text.secondary,
+      '&:hover': {
+        color: theme.palette.text.primary,
+        borderRadius: 10
+      },
+      marginTop: theme.spacing(0.625),
     },
     selected: {
-      background: 'rgb(0 0 0 / 12%) !important',
-      color: '#fff'
+      background: `rgba(0, 0, 0, 0.05) !important`,
+      color: theme.palette.text.primary,
+      borderRadius: 10
     },
-    leftIcon: { minWidth: theme.spacing(5) },
+    leftIcon: {
+      minWidth: theme.spacing(5)
+    },
   }),
 );
 
@@ -59,10 +67,7 @@ const MenuItemHelper = forwardRef((props, ref) => {
         tabIndex={0}
         {...rest}
         onClick={handleMenuTap}
-        sx={{
-          py: 0,
-          minHeight: 32,
-        }}
+        sx={{ px: 3 }}
         classes={{
           selected: classes.selected
         }}
@@ -79,10 +84,13 @@ const MenuItemHelper = forwardRef((props, ref) => {
         <ListItemText
           primary={primaryText}
           primaryTypographyProps={{
-            fontSize: 14,
+            variant: 'subtitle2',
             fontWeight: 'medium',
-            marginLeft: !leftIcon ? '16px' : '0px'
+            marginLeft: !leftIcon ? '16px' : '0px',
+            lineHeight: '1.5',
+            mb: '2px',
           }}
+          sx={{ my: 0 }}
         />
       </ListItemButton>
     );

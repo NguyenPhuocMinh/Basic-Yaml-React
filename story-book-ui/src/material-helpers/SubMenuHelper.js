@@ -12,6 +12,17 @@ import {
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { DynamicMuiIcon } from '../common';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    color: theme.palette.text.secondary,
+    '&:hover': {
+      color: theme.palette.text.primary,
+      borderRadius: 10
+    }
+  }
+}))
 
 const SubMenuHelper = props => {
   const {
@@ -20,8 +31,13 @@ const SubMenuHelper = props => {
     children,
     leftIcon
   } = props;
+
+  // hooks
+  const classes = useStyles();
+
   // states
   const [toggle, setToggle] = useState({});
+
   // func
   const handleToggle = (newToggle) => {
     setToggle((prevToggle) => {
@@ -37,6 +53,7 @@ const SubMenuHelper = props => {
       key={primaryText}
       onClick={() => handleToggle(primaryText)}
       sx={{ px: 3 }}
+      className={classes.root}
     >
       <ListItemIcon sx={{ color: 'inherit' }}>
         <DynamicMuiIcon icon={leftIcon} />

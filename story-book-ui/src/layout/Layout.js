@@ -18,7 +18,7 @@ import Menu from './Menu';
 import { resources } from '../routes';
 import { ResourceHelper } from '../material-helpers';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const Layout = props => {
   // hooks
@@ -54,7 +54,7 @@ const Layout = props => {
         <DrawerHeader>
           <Typography
             variant='body2'
-            color='inherit'
+            color="text.primary"
             fontSize='small'
             fontWeight={500}
           >
@@ -62,7 +62,7 @@ const Layout = props => {
           </Typography>
           <Typography
             variant='body2'
-            color='inherit'
+            color='text.primary'
             fontSize='small'
             fontWeight={500}
           >
@@ -73,7 +73,8 @@ const Layout = props => {
         <Menu dense={true} />
       </Drawer>
       <Main open={sideBarIsOpen}>
-        <DrawerHeader />
+        <br />
+        {/* <DrawerHeader /> */}
         {/* RESOURCES */}
         {resources.map((resource, index) => {
           return (

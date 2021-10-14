@@ -7,6 +7,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: 'space-around',
+  background: theme.palette.primary.main
 }));
 
 export default DrawerHeader;
