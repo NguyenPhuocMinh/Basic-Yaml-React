@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 const darkText = {
   primary: 'rgb(255,255,255)',
@@ -19,7 +19,7 @@ const darkSecondary = {
   contrastText: '#23262E',
 }
 
-const darkTheme = createTheme({
+const darkTheme = responsiveFontSizes(createTheme({
   palette: {
     mode: 'dark',
     text: darkText,
@@ -86,6 +86,6 @@ const darkTheme = createTheme({
       "Segoe UI Symbol"
     ].join(',')
   }
-})
+}))
 
 export default darkTheme;

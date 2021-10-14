@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { version } from '../../package.json';
+import { Switch, Route } from 'react-router-dom';
 // redux
 import { useDispatch } from 'react-redux';
 // actions
@@ -17,6 +18,8 @@ import Menu from './Menu';
 // resources
 import { resources } from '../routes';
 import { ResourceHelper } from '../material-helpers';
+import { WithPermissions } from '../auth';
+import DashBoard from '../views/Dashboard';
 
 const drawerWidth = 300;
 
@@ -74,12 +77,25 @@ const Layout = props => {
       </Drawer>
       <Main open={sideBarIsOpen}>
         <br />
-        {/* <DrawerHeader /> */}
+        {/* DASH BOARD */}
+        <Switch>
+          <Route
+            exact
+            render={routeProps => (
+              <WithPermissions
+                component={DashBoard}
+                basePath='/'
+                {...routeProps}
+              />
+            )}
+          />
+        </Switch>
         {/* RESOURCES */}
         {resources.map((resource, index) => {
           return (
             <ResourceHelper
               key={index}
+              name={resource.name}
               {...resource}
             />
           )
