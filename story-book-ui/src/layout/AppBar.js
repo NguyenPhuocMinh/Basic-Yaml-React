@@ -1,41 +1,31 @@
 import { useState } from 'react';
 // redux
-import { useSelector } from 'react-redux';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
+import {
+  changeTheme,
+  changeLanguage
+} from '../customStore/customActions';
+import {
+  Toolbar,
+  IconButton,
+  Typography,
+  Box,
+  Avatar,
+  Tooltip
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import TranslateIcon from '@mui/icons-material/Translate';
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import GithubIcon from '@mui/icons-material/GitHub';
-import Tooltip from '@mui/material/Tooltip';
-import { styled } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
-import { PopupHelper, SettingHelper } from '../material-helpers';
-// i18n
-import { useTranslation } from 'react-i18next';
-
-const drawerWidth = 300;
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
+import {
+  AppBarHelper,
+  PopupHelper,
+  SettingHelper,
+  ProfileHelper,
+  useTranslate,
+  useGetIdentity
+} from '../core';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -46,22 +36,32 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const AppBarLayout = ({ open, handleClickSideBar }) => {
+const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
   // hooks
   const classes = useStyles();
-  const { t: translate } = useTranslation();
-  // stores
-  const sidebarIsOpen = useSelector(state => state.admin.ui.sidebarIsOpen);
+  const translate = useTranslate();
+  const { fullName } = useGetIdentity();
+  // states
+  const [anchorLanguage, setAnchorLanguage] = useState(null);
+  const [anchorProfile, setAnchorProfile] = useState(null);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openPopup = Boolean(anchorEl);
-
+  const openPopupLanguage = Boolean(anchorLanguage);
+  const openPopupProfile = Boolean(anchorProfile);
+  // func
   const handleClickChangeLng = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorLanguage(event.currentTarget);
   };
 
-  const handleClosePopup = () => {
-    setAnchorEl(null);
+  const handleCloseChangeLng = () => {
+    setAnchorLanguage(null);
+  };
+
+  const handleClickChangeProfile = (event) => {
+    setAnchorProfile(event.currentTarget);
+  };
+
+  const handleCloseChangeProfile = () => {
+    setAnchorProfile(null);
   };
 
   const [openSetting, setOpenSetting] = useState(false);
@@ -75,11 +75,11 @@ const AppBarLayout = ({ open, handleClickSideBar }) => {
   };
 
   return (
-    <AppBar position="fixed" open={sidebarIsOpen}>
+    <AppBarHelper position="fixed" open={isOpen}>
       <Toolbar>
         <IconButton
           color="inherit"
-          onClick={handleClickSideBar}
+          onClick={toggleSidebar}
           edge="start"
           sx={{ mr: 2 }}
         >
@@ -135,9 +135,10 @@ const AppBarLayout = ({ open, handleClickSideBar }) => {
               </IconButton>
             </Tooltip>
             <PopupHelper
-              open={openPopup}
-              anchorEl={anchorEl}
-              handleClose={handleClosePopup}
+              open={openPopupLanguage}
+              anchorEl={anchorLanguage}
+              handleClose={handleCloseChangeLng}
+              changeLanguage={changeLanguage}
             />
           </Box>
           <Box width="auto" minWidth={50}>
@@ -156,11 +157,36 @@ const AppBarLayout = ({ open, handleClickSideBar }) => {
               open={openSetting}
               anchor='right'
               toggleDrawer={handleChangeSetting}
+              changeTheme={changeTheme}
+            />
+          </Box>
+          <Box width="auto" minWidth={50}>
+            <Tooltip
+              title={translate('appBar.toolbar.tooltip.change_profile')}
+            >
+              <IconButton
+                color="inherit"
+                onClick={handleClickChangeProfile}
+              >
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://hanoifootball.vn/data/source/seomaster/hinh-nen/tai-hinh-anh-ronaldo.jpg"
+                  sx={{ width: 16, height: 16, marginRight: '10px' }}
+                />
+                <Typography variant="caption">
+                  {fullName}
+                </Typography>
+              </IconButton>
+            </Tooltip>
+            <ProfileHelper
+              open={openPopupProfile}
+              anchorEl={anchorProfile}
+              handleClose={handleCloseChangeProfile}
             />
           </Box>
         </Box>
       </Toolbar>
-    </AppBar>
+    </AppBarHelper>
   )
 };
 

@@ -23,6 +23,6 @@ module.exports = [
   {
     enable: true,
     method: 'POST',
-    pathName: '/user/refreshTokens'
+    pathName: '/refreshToken'
   }
 ];

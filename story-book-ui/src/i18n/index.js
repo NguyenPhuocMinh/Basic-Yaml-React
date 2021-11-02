@@ -15,7 +15,7 @@ if (storageLanguage && allowedLanguages.indexOf(storageLanguage) > -1) {
   lng = storageLanguage;
 }
 
-i18n
+const i18nProvider = i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   // for all options read: https://www.i18next.com/overview/configuration-options
@@ -35,8 +35,8 @@ i18n
       }
     },
     react: {
-      wait: true,
+      useSuspense: true,
     }
   });
 
-export default i18n;
+export default i18nProvider;

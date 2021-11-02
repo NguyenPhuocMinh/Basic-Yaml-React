@@ -1,4 +1,5 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { grey, amber } from '@mui/material/colors';
 
 const darkText = {
   primary: 'rgb(255,255,255)',
@@ -6,40 +7,50 @@ const darkText = {
   disabled: 'rgb(156, 163, 175)',
 };
 
-const darkPrimary = {
-  light: '#C9CACE',
-  main: '#4B4F5A',
-  dark: '#23262E',
-};
-
-const darkSecondary = {
-  light: '#F8F5F2',
-  main: '#E6DED5',
-  dark: '#D5C8BA',
-  contrastText: '#23262E',
-}
-
 const darkTheme = responsiveFontSizes(createTheme({
   palette: {
     mode: 'dark',
     text: darkText,
-    primary: darkPrimary,
-    secondary: darkSecondary,
-    background: {
-      paper: '#31343E',
-      default: '#2A2D35',
+    primary: {
+      light: '#C2C2C3',
+      main: amber[700],
+      dark: amber[600],
+    },
+    secondary: {
+      light: '#B8E1D9',
+      main: '#129B7F',
+      dark: '#056D4F',
+      contrastText: '#FFFFFF',
+    },
+    common: {
+      black: '#000',
+      white: 'rgb(255, 255, 255)',
+      text: grey[500],
+      selected: 'rgba(255, 255, 255, 0.1)'
+    },
+    success: {
+      main: '#bedd9a',
+      light: '#a2cf6e',
+      dark: '#27632a'
     },
     error: {
-      light: '#F7EAEA',
-      main: '#EBCECE',
-      dark: '#E3B9B9',
+      main: '#f4511e',
+      light: '#ffa733',
+      dark: '#a02725'
     },
+    background: {
+      paper: '#262526',
+      default: '#1E1D1E',
+    },
+  },
+  status: {
+    danger: 'orange',
   },
   components: {
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          background: '#31343E',
+          background: '#262526',
           boxShadow: '0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12)'
         }
       }
@@ -47,7 +58,7 @@ const darkTheme = responsiveFontSizes(createTheme({
     MuiToolbar: {
       styleOverrides: {
         root: {
-          background: '#31343E',
+          background: '#262526',
           color: darkText.secondary
         }
       }
@@ -69,7 +80,7 @@ const darkTheme = responsiveFontSizes(createTheme({
     },
   },
   shape: {
-    borderRadius: 10
+    borderRadius: 5
   },
   typography: {
     fontFamily: [

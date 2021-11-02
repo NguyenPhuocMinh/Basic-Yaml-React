@@ -1,5 +1,0 @@
-const LANGUAGE_TYPES = {
-  CHANGE_LANGUAGE: 'CHANGE_LANGUAGE',
-};
-
-export default LANGUAGE_TYPES;

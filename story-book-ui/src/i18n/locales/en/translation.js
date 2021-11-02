@@ -1,12 +1,52 @@
 const TRANSLATIONS_EN = {
-  title: 'Demo Basic React',
+  title: 'Story Book',
+  users: {
+    title: 'Story Book React',
+    labels: {
+      first_name: 'First Name',
+      last_name: 'Last Name',
+      email: 'Email',
+      password: 'Password',
+      password_confirm: 'Password Confirm',
+      remember_me: 'Remember me'
+    },
+    texts: {
+      or: 'OR',
+      not_account: "Don't have an account?",
+      has_account: "You have an account?",
+      welcome: 'Welcome To',
+      subtitle: 'The Story Book React!',
+      description: 'Demo page admin template for Web Applications.'
+    },
+    forgotPass: 'Forgot Password?',
+    actions: {
+      login: 'Login',
+      login_google: 'Login with Google',
+      login_facebook: 'Login with Facebook',
+      register_account: 'Create an account',
+    },
+    notification: {
+      register: {
+        success: 'Register user successfully!',
+        duplicate_email: 'Duplicate email'
+      },
+      login: {
+        success: 'Login successfully!',
+        email_not_found: 'Email not found'
+      },
+      logout: {
+        success : 'Logout successfully!'
+      }
+    }
+  },
   appBar: {
     toolbar: {
       title: 'Welcome to demo page',
       tooltip: {
         github: 'Github of page',
         change_language: 'Change language',
-        change_setting: 'Change setting'
+        change_setting: 'Change setting',
+        change_profile: 'Change profile',
       },
       language: {
         en: 'English',
@@ -20,6 +60,10 @@ const TRANSLATIONS_EN = {
           dark: 'Dark'
         }
       },
+      profile: {
+        show_profile: 'My Profile',
+        logout: 'Logout'
+      }
     }
   },
   resources: {
@@ -58,6 +102,18 @@ const TRANSLATIONS_EN = {
       back: 'Back'
     }
   },
+  validation: {
+    required: 'Required',
+    minLength: 'Must be {{min}} characters at least',
+    maxLength: 'Must be {{max}} characters or less',
+    minValue: 'Must be at least {{min}}',
+    maxValue: 'Must be {{max}} or less',
+    users: {
+      email: 'Email does not match format',
+      password: 'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character',
+      password_confirm: 'Password confirm does not match password'
+    }
+  }
 }
 
 export default TRANSLATIONS_EN;

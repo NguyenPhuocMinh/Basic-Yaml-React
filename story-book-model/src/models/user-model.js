@@ -7,7 +7,10 @@ module.exports = {
     lastName: { type: String },
     email: { type: String },
     password: { type: String },
+    passwordConfirm: { type: String },
     permissions: [String],
+    rememberMe: { type: Boolean, default: false },
+    pictureURL: { type: String },
     //filter
     slug: { type: String },
     deleted: { type: Boolean, default: false },

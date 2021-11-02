@@ -8,7 +8,7 @@ const { get } = lodash;
 module.exports = [
   // user register
   {
-    pathName: '/user/registers',
+    pathName: '/register',
     method: 'POST',
     methodName: 'registerUser',
     serviceName: UserService,
@@ -18,7 +18,8 @@ module.exports = [
           firstName: req.body.firstName,
           lastName: req.body.lastName,
           email: req.body.email,
-          gender: req.body.gender,
+          password: req.body.password,
+          passwordConfirm: req.body.passwordConfirm,
           permissions: req.body.permissions
         };
       }
@@ -33,7 +34,7 @@ module.exports = [
   },
   // user login
   {
-    pathName: '/user/login',
+    pathName: '/login',
     method: 'POST',
     methodName: 'loginUser',
     serviceName: UserService,
@@ -41,7 +42,8 @@ module.exports = [
       transform: function (req, opts) {
         return {
           email: req.body.email,
-          password: req.body.password
+          password: req.body.password,
+          rememberMe: req.body.rememberMe
         };
       }
     },
@@ -58,7 +60,7 @@ module.exports = [
   },
   // refreshTokens
   {
-    pathName: '/user/refreshTokens',
+    pathName: '/refreshToken',
     method: 'POST',
     methodName: 'refreshTokenHandler',
     serviceName: UserService,

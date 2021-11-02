@@ -1,31 +1,63 @@
-import React, { Suspense } from 'react';
+import React from 'react';
+import { createBrowserHistory } from 'history';
 // i18n
-import './i18n';
-import Layout from './layout/Layout';
-import dynamicServices from './services/dynamic-service';
-// theme
-import { ThemeProvider } from '@mui/material/styles';
-import { lightTheme, darkTheme } from './themes';
-// redux
-import { useSelector } from 'react-redux';
-// errors handlers
-import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorHelper } from './material-helpers';
+import i18nProvider from './i18n';
+import { Layout } from './layout';
+// core
+import { BootStrapCore, ResourceCore } from './core';
+// authProvider
+import authProvider from './authProvider/authProvider';
+// customReducers
+import customReducers from './customStore/customReducers';
+// components
+import {
+  LoginPage,
+  RegisterPage,
+  Dashboard,
+  VampireList,
+  VampireCreate,
+  MonsterList,
+  MonsterCreate,
+} from './components';
 
 const App = () => {
 
-  const theme = useSelector(state => state.theme);
-  const themes = theme === 'light' ? lightTheme : darkTheme;
+  const history = createBrowserHistory();
 
   return (
-    <Suspense fallback="loading...">
-      <ThemeProvider theme={themes}>
-        <ErrorBoundary FallbackComponent={ErrorHelper}>
-          <Layout dynamicDefinition={dynamicServices.getSysRouters()} />
-        </ErrorBoundary>
-      </ThemeProvider>
-    </Suspense>
-  );
+    <BootStrapCore
+      title="title"
+      authProvider={authProvider}
+      customReducers={customReducers}
+      i18nProvider={i18nProvider}
+      dashboard={Dashboard}
+      loginPage={LoginPage}
+      registerPage={RegisterPage}
+      layout={Layout}
+      history={history}
+    >
+      <ResourceCore
+        name="vampires"
+        basePath="/vampires"
+        component={VampireList}
+      />
+      <ResourceCore
+        name="vampires/create"
+        basePath="/vampires/create"
+        component={VampireCreate}
+      />
+      <ResourceCore
+        name="monsters"
+        basePath="/monsters"
+        component={MonsterList}
+      />
+      <ResourceCore
+        name="monsters/create"
+        basePath="/monsters/create"
+        component={MonsterCreate}
+      />
+    </BootStrapCore>
+  )
 }
 
 export default App;

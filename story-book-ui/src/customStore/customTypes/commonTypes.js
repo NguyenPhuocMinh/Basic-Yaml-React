@@ -1,0 +1,3 @@
+export const CHANGE_THEME = 'CHANGE_THEME';
+export const CHANGE_SIDE_BAR = 'CHANGE_SIDE_BAR';
+export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';

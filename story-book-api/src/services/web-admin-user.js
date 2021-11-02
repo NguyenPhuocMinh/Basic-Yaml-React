@@ -6,14 +6,14 @@ const lodash = winext.require('lodash');
 const jwt = require('winext-authorization').jwt;
 const bcrypt = require('bcryptjs');
 const dataSecret = require('../../config/data/secret');
-const { isEmpty, get } = lodash;
+const { isEmpty, get, isEqual } = lodash;
 
 function UserService(params = {}) {
-  const { dataStore, dataSequelize, errorManager } = params;
+  const { dataStore, errorManager } = params;
 
   /**
    * @swagger
-   * /rest/api/user/registers:
+   * /rest/api/register:
    *   post:
    *      summary: Register User
    *      description: Welcome to register user
@@ -39,12 +39,15 @@ function UserService(params = {}) {
    *                      password:
    *                        type: string
    *                        default: 123
+   *                      passwordConfirm:
+   *                        type: string
+   *                        default: 123
    *                      permissions:
    *                        type: array
    *                        item:
    *                          type: string
-   *                        example: ['ADMIN']
-   *                        default: ['ADMIN']
+   *                        example: ['USER']
+   *                        default: ['USER']
    *      responses:
    *        default:
    *         description: Register user success
@@ -73,13 +76,26 @@ function UserService(params = {}) {
 
       // Hash Password
       let password = '';
+      let passwordConfirm = '';
       if (isEmpty(args.password)) {
         password = '123';
+        passwordConfirm = '123';
       } else {
         password = args.password;
+        passwordConfirm = args.passwordConfirm;
       }
+
+      if (isEmpty(args.permissions)) {
+        args.permissions = ['USER'];
+      }
+
+      if (!isEqual(password, passwordConfirm)) {
+        throw errorManager.errorBuilder('PasswordConfirmNotMatch');
+      };
+
       const salt = await bcrypt.genSalt(10);
       args.password = await bcrypt.hash(password, salt);
+      args.passwordConfirm = await bcrypt.hash(passwordConfirm, salt);
 
       await dataStore.create({
         type: 'UserModel',
@@ -95,7 +111,7 @@ function UserService(params = {}) {
 
   /**
    * @swagger
-   * /rest/api/user/login:
+   * /rest/api/login:
    *   post:
    *      summary: Login User
    *      description: Welcome to login user
@@ -131,11 +147,6 @@ function UserService(params = {}) {
         args: args
       });
 
-      // const testSequelize = await dataSequelize.find({
-      //   type: 'BoardModel'
-      // });
-      // console.log('🚀 ~ file: web-admin-user.js ~ line 129 ~ testSequelize', testSequelize);
-
       /**
        * get user login
        */
@@ -144,12 +155,6 @@ function UserService(params = {}) {
         filter: {
           email: args.email
         },
-        populates: [
-          {
-            path: 'roles',
-            select: 'name'
-          }
-        ]
       });
 
       if (!userLogin) {
@@ -165,7 +170,7 @@ function UserService(params = {}) {
       /**
        * create token
        */
-      const token = jwt.sign({ userLogin }, dataSecret.tokenSecret, {
+      const accessToken = jwt.sign({ userLogin }, dataSecret.tokenSecret, {
         expiresIn: dataSecret.tokenLife
       });
       /**
@@ -178,18 +183,19 @@ function UserService(params = {}) {
       loggerFactory.debug('function loginUser end', {
         requestId: `${requestId}`,
         args: {
-          token,
+          accessToken,
           refreshToken
         }
       });
-      return {
-        token: token,
-        refreshToken: refreshToken,
-        expiresIn: dataSecret.tokenLife,
-        id: userLogin.id,
-        name: userLogin.firstName + ' ' + userLogin.lastName,
+      // authentication
+      const auth = {
+        access_token: accessToken,
+        refresh_token: refreshToken,
+        expires_in: dataSecret.tokenLife,
         permissions: userLogin.permissions
       };
+      // user info
+      return { auth };
     } catch (err) {
       loggerFactory.error(`function loginUser has error`, {
         requestId: `${requestId}`,
@@ -242,7 +248,7 @@ function UserService(params = {}) {
       }
 
       let userLogin;
-      let newToken;
+      let newAccessToken;
       let newRefreshToken;
 
       await jwt.verify(refreshToken, dataSecret.refreshTokenSecret, (err, decoded) => {
@@ -251,7 +257,7 @@ function UserService(params = {}) {
           /**
            * post new token
            */
-          newToken = jwt.sign({ userLogin }, dataSecret.tokenSecret, {
+          newAccessToken = jwt.sign({ userLogin }, dataSecret.tokenSecret, {
             expiresIn: dataSecret.tokenLife
           });
           /**
@@ -268,19 +274,19 @@ function UserService(params = {}) {
       loggerFactory.debug(`function refreshTokenHandler end with args`, {
         requestId: `${requestId}`,
         args: {
-          newToken,
+          newAccessToken,
           refreshToken
         }
       });
 
-      return {
-        token: newToken,
-        refreshToken: newRefreshToken,
-        expiresIn: dataSecret.tokenLife,
-        id: userLogin.id,
-        name: userLogin.firstName + ' ' + userLogin.lastName,
-        permissions: userLogin.permissions
+      const auth = {
+        access_token: newAccessToken,
+        refresh_token: newRefreshToken,
+        expires_in: dataSecret.tokenLife,
+        permissions: userLogin.permissions,
       };
+
+      return { auth };
     } catch (err) {
       loggerFactory.error(`function refreshToken has error`, {
         requestId: `${requestId}`,

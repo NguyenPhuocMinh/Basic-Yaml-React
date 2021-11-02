@@ -1,12 +1,53 @@
 const TRANSLATIONS_VN = {
-  title: 'Demo Basic React',
+  title: 'Câu Truyện',
+  users: {
+    title: 'Câu Truyện React',
+    labels: {
+      first_name: 'Họ',
+      last_name: 'Tên',
+      email: 'Email',
+      password: 'Mật khẩu',
+      password_confirm: 'Xác nhận mật khẩu',
+      remember_me: 'Ghi nhớ tôi'
+    },
+    texts: {
+      or: 'Hoặc',
+      not_account: 'Bạn chưa có tài khoản?',
+      has_account: "Bạn đã có tài khoản?",
+      welcome: 'Chào mừng bạn đến',
+      subtitle: 'Câu Truyện React!',
+      description: 'Mẫu quản trị trang demo cho Ứng dụng web.'
+    },
+    forgotPass: 'Quên mật khẩu?',
+    actions: {
+      login: 'Đăng nhập',
+      login_google: 'Đăng nhập with Google',
+      login_facebook: 'Đăng nhập with Facebook',
+      register_account: 'Tạo tài khoản',
+      register: 'Đăng ký',
+    },
+    notification: {
+      register: {
+        success: 'Đăng ký người dùng thành công!',
+        duplicate_email: 'Email trùng lặp'
+      },
+      login: {
+        success: 'Đăng nhập thành công!',
+        email_not_found: 'Không tìm thấy email'
+      },
+      logout: {
+        success : 'Đăng xuất thành công!'
+      }
+    }
+  },
   appBar: {
     toolbar: {
       title: 'Chào mừng đến với trang demo',
       tooltip: {
         github: 'Github của trang',
         change_language: 'Thay đổi ngôn ngữ',
-        change_setting: 'Thay đổi cài đặt'
+        change_setting: 'Thay đổi cài đặt',
+        change_profile: 'Thay đổi thông tin',
       },
       language: {
         en: 'English',
@@ -19,6 +60,10 @@ const TRANSLATIONS_VN = {
           light: 'Sáng',
           dark: 'Tối'
         }
+      },
+      profile: {
+        show_profile: 'Thông tin cá nhân',
+        logout: 'Đăng xuất'
       }
     }
   },
@@ -53,9 +98,21 @@ const TRANSLATIONS_VN = {
       message: 'Bạn đã nhập sai URL hoặc bạn đã theo một liên kết không hợp lệ.'
     }
   },
-  action: {
+  actions: {
     button: {
       back: 'Quay lại'
+    }
+  },
+  validation: {
+    required: 'Bắt buộc',
+    minLength: 'Ít nhất phải có {{min}} ký tự',
+    maxLength: 'Phải có {{max}} ký tự trở xuống',
+    minValue: 'Ít nhất phải là {{min}}',
+    maxValue: 'Phải từ {{max}} trở xuống',
+    users: {
+      email: 'Email không khớp với định dạng',
+      password: 'Phải chứa 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự chữ hoa đặc biệt',
+      password_confirm: 'Mật khẩu xác nhận không khớp với mật khẩu'
     }
   }
 }

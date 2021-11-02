@@ -1,16 +1,19 @@
 import React from 'react';
 import { NavBar, NavDivider } from './NavLayout';
-import DashboardMenuItem from './Dashboard';
-import { SubMenuHelper, MenuItemHelper } from '../material-helpers';
-import { useTranslation } from 'react-i18next';
+import {
+  SubMenuHelper,
+  MenuItemHelper,
+  DashboardItemHelper,
+  useTranslate
+} from '../core';
 
-const Menu = ({ dense = false }) => {
+const Menu = ({ hasDashboard, ...props }) => {
   // hooks
-  const { t: translate } = useTranslation();
+  const translate = useTranslate();
 
   return (
     <NavBar>
-      <DashboardMenuItem />
+      {hasDashboard && <DashboardItemHelper />}
       <NavDivider />
       {/* Ancients */}
       <SubMenuHelper
