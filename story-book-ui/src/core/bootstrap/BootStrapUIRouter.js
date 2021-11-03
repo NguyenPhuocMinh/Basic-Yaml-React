@@ -98,14 +98,6 @@ const BootStrapUIRouter = (props) => {
 
   return (
     <div>
-      {Children.map(
-        childrenToRender,
-        (child) =>
-          cloneElement(child, {
-            key: child.props.name,
-            intent: 'registration',
-          })
-      )}
       <Switch>
         <Route
           path="/"

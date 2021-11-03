@@ -1,31 +1,31 @@
 'use strict';
 
 const errorCodes = {
-  EmailNotFound: {
-    message: 'users.notification.login.email_not_found',
-    returnCode: 3001,
-    statusCode: 404
-  },
   DuplicateEmailRegister: {
     message: 'users.notification.register.duplicate_email',
     returnCode: 3001,
     statusCode: 409
   },
-  InValidPassword: {
-    message: 'Password invalid',
+  EmailNotFound: {
+    message: 'users.notification.login.email_not_found',
     returnCode: 3002,
-    statusCode: 400
+    statusCode: 404
   },
-  RefreshTokenInvalid: {
-    message: 'RefreshToken invalid',
+  IncorrectPassword: {
+    message: 'users.notification.login.duplicate_email',
     returnCode: 3003,
     statusCode: 400
   },
   PasswordConfirmNotMatch: {
-    message: 'Password confirm not match current password',
+    message: 'users.notification.register.password_confirm_not_match',
+    returnCode: 3005,
+    statusCode: 400
+  },
+  RefreshTokenInvalid: {
+    message: 'RefreshToken invalid',
     returnCode: 3004,
     statusCode: 400
-  }
+  },
 };
 
 module.exports = errorCodes;

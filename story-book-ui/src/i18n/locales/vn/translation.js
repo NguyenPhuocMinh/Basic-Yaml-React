@@ -29,11 +29,13 @@ const TRANSLATIONS_VN = {
     notification: {
       register: {
         success: 'Đăng ký người dùng thành công!',
-        duplicate_email: 'Email trùng lặp'
+        duplicate_email: 'Email trùng lặp',
+        password_confirm_not_match: 'Mật khẩu xác nhận không khớp với mật khẩu hiện tại'
       },
       login: {
         success: 'Đăng nhập thành công!',
-        email_not_found: 'Không tìm thấy email'
+        email_not_found: 'Không tìm thấy email',
+        incorrect_password: 'Mật khẩu không đúng'
       },
       logout: {
         success : 'Đăng xuất thành công!'

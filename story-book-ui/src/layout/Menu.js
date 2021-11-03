@@ -23,7 +23,7 @@ const Menu = ({ hasDashboard, ...props }) => {
         {/* Vampires */}
         <MenuItemHelper
           to={{
-            pathname: '/vampires',
+            pathname: '/vampire-list',
             state: { _scrollToTop: true },
           }}
           primaryText={translate(`resources.ancients.vampires.name`, {
@@ -33,7 +33,7 @@ const Menu = ({ hasDashboard, ...props }) => {
         {/* Monsters */}
         <MenuItemHelper
           to={{
-            pathname: '/monsters',
+            pathname: '/monster-list',
             state: { _scrollToTop: true },
           }}
           primaryText={translate(`resources.ancients.monsters.name`, {

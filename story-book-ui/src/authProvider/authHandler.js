@@ -25,8 +25,7 @@ const refreshToken = async () => {
           'X-Access-Token': localStorage.getItem('access_token')
         }
       }
-    )
-    console.log("🚀 ~ file: authHandler.js ~ line 30 ~ refreshToken ~ response", response)
+    );
 
     const data = !isEmpty(response) && response.data;
 

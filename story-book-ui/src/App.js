@@ -1,10 +1,15 @@
 import React from 'react';
+// core
+import {
+  BootStrapCore,
+  ResourceCore,
+} from './core';
+// history
 import { createBrowserHistory } from 'history';
 // i18n
 import i18nProvider from './i18n';
+// layout
 import { Layout } from './layout';
-// core
-import { BootStrapCore, ResourceCore } from './core';
 // authProvider
 import authProvider from './authProvider/authProvider';
 // customReducers
@@ -14,11 +19,9 @@ import {
   LoginPage,
   RegisterPage,
   Dashboard,
-  VampireList,
-  VampireCreate,
-  MonsterList,
-  MonsterCreate,
 } from './components';
+// resources
+import resources from './resources';
 
 const App = () => {
 
@@ -26,7 +29,7 @@ const App = () => {
 
   return (
     <BootStrapCore
-      title="title"
+      title="title" // see translate title
       authProvider={authProvider}
       customReducers={customReducers}
       i18nProvider={i18nProvider}
@@ -36,26 +39,15 @@ const App = () => {
       layout={Layout}
       history={history}
     >
-      <ResourceCore
-        name="vampires"
-        basePath="/vampires"
-        component={VampireList}
-      />
-      <ResourceCore
-        name="vampires/create"
-        basePath="/vampires/create"
-        component={VampireCreate}
-      />
-      <ResourceCore
-        name="monsters"
-        basePath="/monsters"
-        component={MonsterList}
-      />
-      <ResourceCore
-        name="monsters/create"
-        basePath="/monsters/create"
-        component={MonsterCreate}
-      />
+      {resources.map((resource, index) => {
+        return (
+          <ResourceCore
+            key={index}
+            name={resource.name}
+            component={resource.component}
+          />
+        )
+      })}
     </BootStrapCore>
   )
 }

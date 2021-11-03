@@ -24,9 +24,13 @@ const WithPermissions = (props) => {
   const getPermissions = useGetPermissions();
 
   useEffect(() => {
-    if (!isEmpty(getPermissions)) {
-      setPermissions(getPermissions.permissions)
+    const getPermissionsUser = async () => {
+      const permissions = await getPermissions();
+      if (!isEmpty(permissions)) {
+        setPermissions(permissions)
+      }
     }
+    getPermissionsUser();
   }, [getPermissions])
 
   if (component) {

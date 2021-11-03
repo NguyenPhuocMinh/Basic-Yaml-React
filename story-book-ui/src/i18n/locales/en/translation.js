@@ -28,11 +28,13 @@ const TRANSLATIONS_EN = {
     notification: {
       register: {
         success: 'Register user successfully!',
-        duplicate_email: 'Duplicate email'
+        duplicate_email: 'Duplicate email',
+        password_confirm_not_match: 'Password confirm not match current password'
       },
       login: {
         success: 'Login successfully!',
-        email_not_found: 'Email not found'
+        email_not_found: 'Email not found',
+        incorrect_password: 'Incorrect Password'
       },
       logout: {
         success : 'Logout successfully!'

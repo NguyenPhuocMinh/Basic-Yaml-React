@@ -18,18 +18,20 @@ const RoutesWithLayout = (props) => {
 
   return (
     <Switch>
-      {Children.map(children, (child) => (
-        <Route
-          key={child.props.name}
-          path={`/${child.props.name}`}
-          render={props =>
-            cloneElement(child, {
-              intent: 'route',
-              ...props,
-            })
-          }
-        />
-      ))}
+      {Children.map(children, (child) => {
+        return (
+          <Route
+            key={child.props.name}
+            path={`/${child.props.name}`}
+            render={props =>
+              cloneElement(child, {
+                intent: 'route',
+                ...props,
+              })
+            }
+          />
+        )
+      })}
       {dashboard ? (
         <Route
           exact
