@@ -40,7 +40,6 @@ const useStyles = makeStyles(
 );
 
 const NotFoundHelper = props => {
-  console.log("🚀 ~ file: NotFoundHelper.js ~ line 43 ~ props", props)
   const {
     className,
     classes: classesOverride,

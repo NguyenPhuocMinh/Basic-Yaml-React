@@ -4,12 +4,15 @@ import {
   SubMenuHelper,
   MenuItemHelper,
   DashboardItemHelper,
-  useTranslate
+  useTranslate,
+  usePermissions
 } from '../core';
 
 const Menu = ({ hasDashboard, ...props }) => {
   // hooks
   const translate = useTranslate();
+  const { permissions } = usePermissions();
+  console.log("🚀 ~ file: Menu.js ~ line 16 ~ Menu ~ permissions", permissions)
 
   return (
     <NavBar>

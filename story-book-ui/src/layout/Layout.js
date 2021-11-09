@@ -1,9 +1,9 @@
 // redux
 import { useSelector } from 'react-redux';
-// actions
 import AppBar from './AppBar';
 import Menu from './Menu';
 import { LayoutHelper } from '../core';
+// themes
 import { lightTheme, darkTheme } from '../themes';
 
 const Layout = (props) => {

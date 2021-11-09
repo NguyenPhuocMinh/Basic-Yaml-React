@@ -116,6 +116,11 @@ const TRANSLATIONS_VN = {
       password: 'Phải chứa 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự chữ hoa đặc biệt',
       password_confirm: 'Mật khẩu xác nhận không khớp với mật khẩu'
     }
+  },
+  common: {
+    action: {
+      undo: 'Hoàn tác'
+    }
   }
 }
 

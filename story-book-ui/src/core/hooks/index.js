@@ -1,6 +1,7 @@
 // authenticated
 import useAuthProvider, { defaultAuthParams } from './auth/useAuthProvider';
 import useGetPermissions from './auth/useGetPermissions';
+import usePermissions from './auth/usePermissions';
 import useLogout from './auth/useLogout';
 import useAuthState from './auth/useAuthState';
 import useAuthenticated from './auth/useAuthenticated';
@@ -17,6 +18,7 @@ export {
   defaultAuthParams,
   useAuthenticated,
   useGetPermissions,
+  usePermissions,
   useGetIdentity,
   useLogout,
   useAuthState,

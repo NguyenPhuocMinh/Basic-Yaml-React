@@ -99,7 +99,7 @@ const LayoutHelper = props => {
               })}
             </Drawer>
             <MainHelper open={open} drawerwidth={drawerWidth}>
-              <NavBarHelper style={{ minHeight: 40, display: 'flex' }} />
+              <NavBarHelper style={{ display: 'flex' }} />
               {children}
             </MainHelper>
           </Box>

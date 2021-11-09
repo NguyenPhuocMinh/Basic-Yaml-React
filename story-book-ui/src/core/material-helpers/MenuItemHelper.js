@@ -32,9 +32,9 @@ const useStyles = makeStyles(
       color: theme.palette.text.primary,
       borderRadius: 10
     },
-    leftIcon: {
-      minWidth: theme.spacing(5)
-    },
+    // leftIcon: {
+    //   minWidth: theme.spacing(5)
+    // },
   }),
 );
 
@@ -74,11 +74,11 @@ const MenuItemHelper = forwardRef((props, ref) => {
         selected={props.to.pathname === location.pathname}
       >
         {leftIcon ? (
-          <ListItemIcon className={classes.leftIcon}>
+          <ListItemIcon>
             <DynamicMuiIcon icon={leftIcon} />
           </ListItemIcon>
         ) : (
-            <ListItemIcon className={classes.leftIcon} />
+            <ListItemIcon />
           )
         }
         <ListItemText

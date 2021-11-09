@@ -50,6 +50,7 @@ const checkExpiredTime = () => {
     (Date.now() - localStorage.getItem('expire_at')) / 1000
   );
   const callRefresh = localStorage.getItem('expires_in') - timeFromGetLastToken < 30;
+  console.log("🚀 ~ file: authHandler.js ~ line 53 ~ checkExpiredTime ~ callRefresh", callRefresh)
   return callRefresh;
 };
 
