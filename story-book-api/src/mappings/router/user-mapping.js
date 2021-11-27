@@ -8,7 +8,7 @@ const { get } = lodash;
 module.exports = [
   // user register
   {
-    pathName: '/register',
+    pathName: '/auth/register',
     method: 'POST',
     methodName: 'registerUser',
     serviceName: UserService,
@@ -34,7 +34,7 @@ module.exports = [
   },
   // user login
   {
-    pathName: '/login',
+    pathName: '/auth/login',
     method: 'POST',
     methodName: 'loginUser',
     serviceName: UserService,
@@ -60,7 +60,7 @@ module.exports = [
   },
   // refreshTokens
   {
-    pathName: '/refreshToken',
+    pathName: '/auth/refreshToken',
     method: 'POST',
     methodName: 'refreshTokenHandler',
     serviceName: UserService,

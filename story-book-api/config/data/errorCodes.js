@@ -12,18 +12,18 @@ const errorCodes = {
     statusCode: 404
   },
   IncorrectPassword: {
-    message: 'users.notification.login.duplicate_email',
+    message: 'users.notification.login.incorrect_password',
     returnCode: 3003,
     statusCode: 400
   },
   PasswordConfirmNotMatch: {
     message: 'users.notification.register.password_confirm_not_match',
-    returnCode: 3005,
+    returnCode: 3004,
     statusCode: 400
   },
   RefreshTokenInvalid: {
     message: 'RefreshToken invalid',
-    returnCode: 3004,
+    returnCode: 3005,
     statusCode: 400
   },
 };

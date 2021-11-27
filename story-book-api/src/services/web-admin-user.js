@@ -13,7 +13,7 @@ function UserService(params = {}) {
 
   /**
    * @swagger
-   * /rest/api/register:
+   * /rest/api/auth/register:
    *   post:
    *      summary: Register User
    *      description: Welcome to register user
@@ -111,7 +111,7 @@ function UserService(params = {}) {
 
   /**
    * @swagger
-   * /rest/api/login:
+   * /rest/api/auth/login:
    *   post:
    *      summary: Login User
    *      description: Welcome to login user
@@ -165,7 +165,7 @@ function UserService(params = {}) {
        */
       const validPass = await bcrypt.compare(args.password, userLogin.password);
       if (!validPass) {
-        throw errorManager.errorBuilder('InValidPassword');
+        throw errorManager.errorBuilder('IncorrectPassword');
       }
       /**
        * create token
@@ -195,7 +195,12 @@ function UserService(params = {}) {
         permissions: userLogin.permissions
       };
       // user info
-      return { auth };
+      const user = {
+        emailUser: userLogin.email,
+        fullName: `${userLogin.lastName} ${userLogin.firstName}`,
+        photoURL: userLogin.photoURL
+      };
+      return { auth, user };
     } catch (err) {
       loggerFactory.error(`function loginUser has error`, {
         requestId: `${requestId}`,
@@ -207,7 +212,7 @@ function UserService(params = {}) {
 
   /**
    * @swagger
-   * /rest/api/user/refreshTokens:
+   * /rest/api/auth/refreshToken:
    *   post:
    *      summary: Refresh token
    *      description: Welcome to refresh token user
@@ -278,15 +283,20 @@ function UserService(params = {}) {
           refreshToken
         }
       });
-
+      // authentication
       const auth = {
         access_token: newAccessToken,
         refresh_token: newRefreshToken,
         expires_in: dataSecret.tokenLife,
         permissions: userLogin.permissions,
       };
-
-      return { auth };
+      // user info
+      const user = {
+        emailUser: userLogin.email,
+        fullName: `${userLogin.lastName} ${userLogin.firstName}`,
+        photoURL: userLogin.pictureURL
+      };
+      return { auth, user };
     } catch (err) {
       loggerFactory.error(`function refreshToken has error`, {
         requestId: `${requestId}`,

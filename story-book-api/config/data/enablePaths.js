@@ -6,14 +6,14 @@ module.exports = [
    */
   {
     method: 'POST',
-    pathName: '/login'
+    pathName: '/auth/login'
   },
   /**
    * REGISTER
    */
   {
     method: 'POST',
-    pathName: '/register'
+    pathName: '/auth/register'
   },
   /**
    * CHECK HEALTH
