@@ -66,7 +66,7 @@ const ErrorHelper = (props) => {
 
   // hooks
   const classes = useStyles(props);
-  const translate = useTranslate();
+  const { translate } = useTranslate();
 
   return (
     <Fragment>

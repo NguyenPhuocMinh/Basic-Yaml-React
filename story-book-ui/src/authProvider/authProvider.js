@@ -1,14 +1,29 @@
-import { httpClient } from '../services';
+import { httpClientAuthProvider } from '../services';
 import constants from '../constants';
-import { refreshTokenHandler, removeLogin } from './authHandler';
+// auth handler
+import {
+  refreshTokenHandler,
+  removeLogin,
+  prepareResponse,
+  getProfile
+} from './authHandler';
+// firebase
+import {
+  firebaseAuth,
+  googleProvider,
+  GoogleAuthProvider,
+  signInWithPopup
+} from '../firebase';
+// lodash
 import { get, isEmpty } from 'lodash';
+
 
 const authProvider = {
   register: async (params) => {
     const { firstName, lastName, email, password, passwordConfirm } = params;
 
     try {
-      const response = await httpClient.post('/register', {
+      const response = await httpClientAuthProvider.post('/register', {
         firstName,
         lastName,
         email,
@@ -25,26 +40,14 @@ const authProvider = {
     const { email, password } = params;
 
     try {
-      const response = await httpClient.post('/login', {
+      const response = await httpClientAuthProvider.post('/login', {
         email: email,
         password: password,
       });
-
       const data = !isEmpty(response) && response.data;
 
-      const accessToken = get(data, 'auth.access_token');
-      const refreshToken = get(data, 'auth.refresh_token');
-      const expiresIn = get(data, 'auth.expires_in');
-      const permissions = get(data, 'auth.permissions');
-
+      await prepareResponse(data);
       await refreshTokenHandler();
-
-      // authenticated
-      localStorage.setItem('access_token', accessToken);
-      localStorage.setItem('refresh_token', refreshToken);
-      localStorage.setItem('expires_in', expiresIn);
-      localStorage.setItem('expire_at', Date.now());
-      localStorage.setItem('permissions', permissions);
 
       return response;
     } catch (err) {
@@ -77,6 +80,38 @@ const authProvider = {
     const permissions = localStorage.getItem('permissions');
     return permissions ? Promise.resolve(permissions) : Promise.reject();
   },
+  loginWithGoogle: async () => {
+    try {
+      const response = await signInWithPopup(firebaseAuth, googleProvider);
+      const userLogin = !isEmpty(response) && response.user;
+      const stsTokenManager = get(userLogin, 'stsTokenManager');
+      // authentication
+      const auth = {
+        access_token: get(stsTokenManager, 'accessToken'),
+        refresh_token: get(userLogin, 'refreshToken'),
+        expires_in: get(stsTokenManager, 'expirationTime'),
+        permissions: ['USER']
+      };
+      // user info
+      const user = {
+        emailUser: get(response, 'user.email'),
+        fullName: get(response, 'user.displayName'),
+        photoURL: get(response, 'user.photoURL')
+      };
+
+      await prepareResponse({ auth, user });
+      await refreshTokenHandler();
+
+      return response;
+    } catch (err) {
+      const credential = GoogleAuthProvider.credentialFromError(err);
+      console.log("🚀 ~ file: AuthProvider.js ~ line 100 ~ loginWithGoogle: ~ credential", credential)
+      return err.message;
+    }
+  },
+  getIdentity: () => {
+    return Promise.resolve(getProfile())
+  }
 };
 
 export default authProvider;

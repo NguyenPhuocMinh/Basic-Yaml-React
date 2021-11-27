@@ -49,7 +49,7 @@ const NotFoundHelper = props => {
 
   // hooks
   const classes = useStyles(props);
-  const translate = useTranslate();
+  const { translate } = useTranslate();
 
   const history = props.history;
 

@@ -25,7 +25,7 @@ const TextInputHelper = props => {
     endAdornment
   } = props;
 
-  const translate = useTranslate();
+  const { translate } = useTranslate();
 
   return (
     <TextField

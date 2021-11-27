@@ -1,14 +1,10 @@
 import { createElement } from 'react';
 import registerIcons from './registerIcons';
 
-const createIcon = (component) => {
-  const { iconName, ...rest } = component;
+const createIcon = ({ icon }) => {
 
   return createElement(
-    registerIcons[iconName],
-    {
-      ...rest,
-    },
+    registerIcons[icon],
   )
 };
 

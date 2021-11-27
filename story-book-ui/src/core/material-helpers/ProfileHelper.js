@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 const ProfileHelper = ({ open, anchorEl, handleClose }) => {
   // hooks
   const classes = useStyles();
-  const translate = useTranslate();
+  const { translate } = useTranslate();
   const authProvider = useAuthProvider();
   const dispatch = useDispatch();
   const location = useLocation();

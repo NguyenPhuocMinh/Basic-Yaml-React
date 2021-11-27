@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { DynamicMuiIcon } from '../../common';
+import { createIcon } from '../../dynamic';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -57,7 +57,7 @@ const SubMenuHelper = props => {
       className={classes.root}
     >
       <ListItemIcon sx={{ color: 'inherit' }}>
-        <DynamicMuiIcon icon={leftIcon} />
+        {createIcon({ icon: leftIcon })}
       </ListItemIcon>
       <ListItemText
         primary={primaryText}

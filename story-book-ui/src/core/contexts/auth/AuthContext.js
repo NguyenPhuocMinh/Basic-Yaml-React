@@ -7,6 +7,9 @@ const defaultProvider = {
   checkAuth: () => Promise.resolve(),
   checkError: () => Promise.resolve(),
   getPermissions: () => Promise.resolve(),
+  loginWithGoogle: () => Promise.resolve(),
+  loginWithFacebook: () => Promise.resolve(),
+  getIdentity: () => Promise.resolve()
 };
 
 const AuthContext = createContext(defaultProvider);

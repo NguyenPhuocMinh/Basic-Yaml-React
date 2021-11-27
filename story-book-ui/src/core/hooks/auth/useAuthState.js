@@ -38,9 +38,9 @@ const useAuthState = (params = emptyParams) => {
   const checkAuth = useCheckAuth();
   useEffect(() => {
     checkAuth(params, false)
-      .then(({ accessToken }) =>
+      .then(({ accessToken }) => {
         setState({ loading: false, loaded: true, authenticated: true, token: accessToken })
-      )
+      })
       .catch(() =>
         setState({ loading: false, loaded: true, authenticated: false })
       );

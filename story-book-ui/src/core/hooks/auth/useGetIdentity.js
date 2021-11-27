@@ -1,13 +1,40 @@
+import { useEffect } from 'react';
 import useAuthProvider from './useAuthProvider';
-import useDecodeToken from './useDecodeToken';
+import useSafeSetState from '../utils/useSafeSetState';
 
-const getIdentityWithoutProvider = () => Promise.resolve({});
+const defaultIdentity = {
+  fullName: null,
+  photoURL: null
+};
 
 const useGetIdentity = () => {
-  const authProvider = useAuthProvider();
-  const { user } = useDecodeToken();
+  const [state, setState] = useSafeSetState({
+    loading: true,
+    loaded: false,
+  });
 
-  return authProvider ? user : getIdentityWithoutProvider;
+  const authProvider = useAuthProvider();
+  useEffect(() => {
+    const callGetIdentity = async () => {
+      try {
+        const identity = await authProvider.getIdentity();
+        setState({
+          loading: false,
+          loaded: true,
+          identity: identity || defaultIdentity
+        })
+      } catch (err) {
+        setState({
+          loading: false,
+          loaded: true,
+          error: err
+        })
+      }
+    }
+    callGetIdentity();
+  }, [authProvider, setState])
+
+  return state;
 };
 
 export default useGetIdentity;

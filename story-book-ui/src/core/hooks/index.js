@@ -6,6 +6,7 @@ import useLogout from './auth/useLogout';
 import useAuthState from './auth/useAuthState';
 import useAuthenticated from './auth/useAuthenticated';
 import useGetIdentity from './auth/useGetIdentity';
+import useCheckRoles from './auth/useCheckRoles';
 // sideEffect
 import useNotify from './sideEffect/useNotify';
 import useTranslate from './sideEffect/useTranslate';
@@ -22,6 +23,7 @@ export {
   useGetIdentity,
   useLogout,
   useAuthState,
+  useCheckRoles,
   useNotify,
   useTranslate,
   useSafeSetState,

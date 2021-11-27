@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// redux
 import {
   changeTheme,
   changeLanguage
@@ -10,7 +9,8 @@ import {
   Typography,
   Box,
   Avatar,
-  Tooltip
+  Tooltip,
+  CircularProgress
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import TranslateIcon from '@mui/icons-material/Translate';
@@ -26,6 +26,7 @@ import {
   useTranslate,
   useGetIdentity
 } from '../core';
+import { get } from 'lodash';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -39,8 +40,10 @@ const useStyles = makeStyles(theme => ({
 const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
   // hooks
   const classes = useStyles();
-  const translate = useTranslate();
-  const { fullName } = useGetIdentity();
+  const { translate } = useTranslate();
+  const { loading, identity } = useGetIdentity();
+  const fullName = get(identity, 'fullName');
+  const photoURL = get(identity, 'photoURL');
   // states
   const [anchorLanguage, setAnchorLanguage] = useState(null);
   const [anchorProfile, setAnchorProfile] = useState(null);
@@ -73,6 +76,7 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
 
     setOpenSetting(!openSetting);
   };
+
 
   return (
     <AppBarHelper position="fixed" open={isOpen}>
@@ -169,11 +173,19 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
                 onClick={handleClickChangeProfile}
               >
                 <Avatar
-                  alt="Remy Sharp"
-                  src="https://hanoifootball.vn/data/source/seomaster/hinh-nen/tai-hinh-anh-ronaldo.jpg"
+                  alt={fullName}
+                  src={photoURL}
                   sx={{ width: 16, height: 16, marginRight: '10px' }}
                 />
                 <Typography variant="caption">
+                  {loading && (
+                    <CircularProgress
+                      sx={{ marginRight: '5px' }}
+                      color='primary'
+                      size={10}
+                      thickness={2}
+                    />
+                  )}
                   {fullName}
                 </Typography>
               </IconButton>

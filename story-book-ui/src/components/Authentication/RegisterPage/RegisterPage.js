@@ -56,7 +56,7 @@ const RegisterPage = (props) => {
   const [loading, setLoading] = useState(false);
   // hooks
   const classes = useStyles();
-  const translate = useTranslate();
+  const { translate } = useTranslate();
   const authProvider = useAuthProvider();
   const dispatch = useDispatch();
   const notify = useNotify();

@@ -1,7 +1,9 @@
-import httpClient from './http-client';
-import dynamicServices from './dynamic-service';
+import {
+  httpClientAuthProvider,
+  httpClientRestProvider,
+} from './http-client';
 
 export {
-  httpClient,
-  dynamicServices
+  httpClientAuthProvider,
+  httpClientRestProvider,
 }

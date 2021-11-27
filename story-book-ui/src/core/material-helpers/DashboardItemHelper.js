@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 
 const DashboardItemHelper = (props) => {
   const { ...rest } = props;
-  const translate = useTranslate();
+  const { translate } = useTranslate();
 
   const classes = useStyles();
 

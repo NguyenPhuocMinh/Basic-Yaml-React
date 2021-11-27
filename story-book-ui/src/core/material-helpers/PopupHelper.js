@@ -22,12 +22,12 @@ const useStyles = makeStyles({
 const PopupHelper = ({ open, anchorEl, handleClose, changeLanguage }) => {
   // hooks
   const classes = useStyles();
-  const translate = useTranslate();
+  const { translate, i18n } = useTranslate();
   const dispatch = useDispatch();
   // func
   const handleChangeLanguage = (language) => {
+    i18n.changeLanguage(language);
     localStorage.setItem('language', language);
-    window.location.reload();
     dispatch(changeLanguage(language));
   };
   // store

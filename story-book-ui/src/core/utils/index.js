@@ -1,11 +1,11 @@
 import getErrorMessage from './getErrorMessage';
-import warning from './warning';
-import resolveRedirectTo from './resolveRedirectTo';
 import linkToRecord from './linkToRecord';
+import resolveRedirectTo from './resolveRedirectTo';
+import warning from './warning';
 
 export {
   getErrorMessage,
-  warning,
+  linkToRecord,
   resolveRedirectTo,
-  linkToRecord
+  warning
 }

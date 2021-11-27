@@ -4,9 +4,6 @@ import {
   useEffect,
   useRef
 } from 'react';
-// redux
-import { useDispatch } from 'react-redux';
-import { resetNotification } from '../../../core/store/actions';
 // material ui
 import {
   Box,
@@ -22,11 +19,13 @@ import {
   Divider,
   CircularProgress,
   InputAdornment,
-  IconButton
+  IconButton,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import MailIcon from '@mui/icons-material/Mail';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme } from '../../../themes';
 import { makeStyles } from '@mui/styles';
@@ -39,11 +38,11 @@ import {
   useTranslate,
   useNotify,
   TextInputHelper,
-  NotificationHelper,
+  NotificationHelper
 } from '../../../core';
 // validate
 import { validateUserLogin } from '../../../validators';
-import { get } from 'lodash';
+import { get, isEmpty } from 'lodash';
 
 const useStyles = makeStyles({
   input: {
@@ -60,9 +59,8 @@ const LoginPage = (props) => {
 
   // hooks
   const classes = useStyles();
-  const translate = useTranslate();
+  const { translate } = useTranslate();
   const authProvider = useAuthProvider();
-  const dispatch = useDispatch();
   const notify = useNotify();
   const timer = useRef();
 
@@ -96,7 +94,6 @@ const LoginPage = (props) => {
         } else {
           timer.current = window.setTimeout(() => {
             setLoading(false);
-            dispatch(resetNotification());
             const redirectUrl = nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
             notify('users.notification.login.success', { type: 'success' });
             history.push(redirectUrl);
@@ -104,20 +101,31 @@ const LoginPage = (props) => {
           return res;
         }
       })
-  }, [authProvider, dispatch, notify, history, nextPathName, nextSearch]);
+  }, [authProvider, notify, history, nextPathName, nextSearch]);
 
   const handleRedirectRegisterPage = () => {
-    history.push('/register')
+    history.push('/register');
   };
 
-  const handleClickLoginWithGoogle = () => {
-    console.log("handleClickLoginWithGoogle");
-  };
+  const handleClickLoginWithGoogle = useCallback(() => {
+    setLoading(true)
+    authProvider.loginWithGoogle()
+      .then(res => {
+        if (!isEmpty(res)) {
+          timer.current = window.setTimeout(() => {
+            setLoading(false);
+            const redirectUrl = nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
+            notify('users.notification.login.success', { type: 'success' });
+            history.push(redirectUrl);
+          }, 500);
+          return res;
+        }
+      })
+  }, [authProvider, notify, history, nextPathName, nextSearch]);
 
-  const handleClickLoginWithFacebook = () => {
+  const handleClickLoginWithFacebook = useCallback(() => {
     console.log("handleClickLoginWithFacebook")
-  };
-
+  }, []);
 
   return (
     <Formik
@@ -350,6 +358,7 @@ const LoginPage = (props) => {
                         variant="outlined"
                         onClick={handleClickLoginWithGoogle}
                       >
+                        <GoogleIcon sx={{ mr: '5px' }} />
                         {translate('users.actions.login_google')}
                       </Button>
                     </Box>
@@ -371,6 +380,7 @@ const LoginPage = (props) => {
                         variant="outlined"
                         onClick={handleClickLoginWithFacebook}
                       >
+                        <FacebookIcon sx={{ mr: '5px' }} />
                         {translate('users.actions.login_facebook')}
                       </Button>
                     </Box>

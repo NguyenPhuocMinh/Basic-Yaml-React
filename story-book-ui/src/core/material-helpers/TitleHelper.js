@@ -12,7 +12,7 @@ const Title = ({
   title,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { translate } = useTranslate();
   const container =
     typeof document !== 'undefined'
       ? document.getElementById('demo-react-title')

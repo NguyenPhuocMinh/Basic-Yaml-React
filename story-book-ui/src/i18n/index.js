@@ -13,7 +13,7 @@ let lng = defaultLng;
 const storageLanguage = localStorage.getItem('language');
 if (storageLanguage && allowedLanguages.indexOf(storageLanguage) > -1) {
   lng = storageLanguage;
-}
+};
 
 const i18nProvider = i18n
   .use(LanguageDetector)
@@ -21,7 +21,7 @@ const i18nProvider = i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     lng,
-    fallbackLng: 'en',
+    fallbackLng: defaultLng,
     debug: true,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
@@ -36,7 +36,8 @@ const i18nProvider = i18n
     },
     react: {
       useSuspense: true,
-    }
+    },
+    load: 'all'
   });
 
 export default i18nProvider;

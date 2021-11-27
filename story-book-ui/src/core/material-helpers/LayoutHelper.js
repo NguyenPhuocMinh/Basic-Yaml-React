@@ -1,6 +1,6 @@
 import { createElement, Suspense } from 'react';
 // version
-import { version } from '../../../package.json';
+// import { version } from '../../../package.json';
 import PropTypes from 'prop-types';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -41,7 +41,7 @@ const LayoutHelper = props => {
   } = props;
 
   // hooks
-  const translate = useTranslate();
+  const { translate } = useTranslate();
   const isXSmall = useMediaQuery(theme.breakpoints.down('xs'));
   const dispatch = useDispatch();
   // store
@@ -89,7 +89,7 @@ const LayoutHelper = props => {
                   fontSize='small'
                   fontWeight={500}
                 >
-                  {`v${version}`}
+                  {/* {`v${version}`} */}
                 </Typography>
               </DrawerHeaderHelper>
               <Divider />

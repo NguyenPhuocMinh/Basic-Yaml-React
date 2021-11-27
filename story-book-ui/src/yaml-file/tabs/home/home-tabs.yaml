@@ -1,5 +1,0 @@
-apiVersion: 1.0
-type: demo
-name: home_tabs
-label: Home Tabs
-description: All tabs render dynamic ui

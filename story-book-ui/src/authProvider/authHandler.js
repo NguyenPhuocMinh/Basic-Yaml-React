@@ -1,4 +1,4 @@
-import { httpClient } from '../services';
+import { httpClientAuthProvider } from '../services';
 import { get, isEmpty } from 'lodash';
 
 export const refreshTokenHandler = () => {
@@ -16,7 +16,7 @@ export const refreshTokenHandler = () => {
 
 const refreshToken = async () => {
   try {
-    const response = await httpClient.post('/refreshToken',
+    const response = await httpClientAuthProvider.post('/refreshToken',
       {
         refreshToken: localStorage.getItem('refresh_token')
       },
@@ -39,10 +39,16 @@ const refreshToken = async () => {
 };
 
 export const removeLogin = () => {
+  // auth
   localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');
   localStorage.removeItem('expires_in');
   localStorage.removeItem('expire_at');
+  localStorage.removeItem('permissions');
+  // user
+  localStorage.removeItem('emailUser');
+  localStorage.removeItem('fullName');
+  localStorage.removeItem('photoURL');
 };
 
 const checkExpiredTime = () => {
@@ -50,15 +56,18 @@ const checkExpiredTime = () => {
     (Date.now() - localStorage.getItem('expire_at')) / 1000
   );
   const callRefresh = localStorage.getItem('expires_in') - timeFromGetLastToken < 30;
-  console.log("🚀 ~ file: authHandler.js ~ line 53 ~ checkExpiredTime ~ callRefresh", callRefresh)
   return callRefresh;
 };
 
-const prepareResponse = (data) => {
+export const prepareResponse = (data = {}) => {
   const accessToken = get(data, 'auth.access_token');
   const refreshToken = get(data, 'auth.refresh_token');
   const expiresIn = get(data, 'auth.expires_in');
   const permissions = get(data, 'auth.permissions');
+
+  const emailUser = get(data, 'user.emailUser');
+  const fullName = get(data, 'user.fullName');
+  const photoURL = get(data, 'user.photoURL');
 
   // authenticated
   localStorage.setItem('access_token', accessToken);
@@ -66,4 +75,18 @@ const prepareResponse = (data) => {
   localStorage.setItem('expires_in', expiresIn);
   localStorage.setItem('expire_at', Date.now());
   localStorage.setItem('permissions', permissions);
+  // user
+  localStorage.setItem('emailUser', emailUser);
+  localStorage.setItem('fullName', fullName);
+  localStorage.setItem('photoURL', photoURL);
+};
+
+export const getProfile = () => {
+  const fullName = localStorage.getItem('fullName');
+  const photoURL = localStorage.getItem('photoURL');
+
+  return {
+    fullName,
+    photoURL
+  }
 };

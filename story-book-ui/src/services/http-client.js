@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const basePath = process.env.REACT_APP_REST_DATA_PROVIDER;
+const restAuthProvider = process.env.REACT_APP_REST_AUTH_PROVIDER;
 
-const httpClient = axios.create({
-  baseURL: basePath,
+const httpClientAuthProvider = axios.create({
+  baseURL: restAuthProvider,
   headers: {
     "Content-type": "application/json",
     'Access-Control-Allow-Origin': '*',
@@ -11,5 +11,19 @@ const httpClient = axios.create({
   }
 });
 
-export default httpClient;
+const restDataProvider = process.env.REACT_APP_REST_DATA_PROVIDER;
+
+const httpClientRestProvider = axios.create({
+  baseURL: restDataProvider,
+  headers: {
+    "Content-type": "application/json",
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Expose-Headers': 'Access-Control-Allow-Origin',
+  }
+});
+
+export {
+  httpClientAuthProvider,
+  httpClientRestProvider
+};
 

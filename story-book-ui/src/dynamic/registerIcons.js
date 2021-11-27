@@ -1,9 +1,11 @@
-import Home from '@material-ui/icons/Home';
-import AddPhotoAlternate from '@material-ui/icons/AddPhotoAlternate';
-import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
-import AutoAwesomeMotion from '@mui/icons-material/AutoAwesomeMotion';
-import MenuBook from '@mui/icons-material/MenuBook';
-import Dashboard from '@mui/icons-material/Dashboard'
+import {
+  Home,
+  AddPhotoAlternate,
+  AddShoppingCart,
+  AutoAwesomeMotion,
+  MenuBook,
+  Dashboard
+} from '@mui/icons-material';
 
 const registerIcons = {
   Dashboard: () => <Dashboard />,

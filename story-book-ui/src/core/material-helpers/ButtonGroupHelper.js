@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 const ButtonGroupHelper = ({ changeTheme }) => {
   // hooks
   const dispatch = useDispatch();
-  const translate = useTranslate();
+  const { translate } = useTranslate();
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   // func
   const handleChange = (event, newTheme) => {

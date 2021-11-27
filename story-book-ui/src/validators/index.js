@@ -21,7 +21,7 @@ export const validateUserRegister = (translate) => {
       .max(10, translate('validation.maxLength', { max: 10 })),
     lastName: Yup.string()
       .required(translate('validation.required'))
-      .min(1, translate('validation.minLength', { min: 1 }))
+      .min(2, translate('validation.minLength', { min: 2 }))
       .max(10, translate('validation.maxLength', { max: 10 })),
     email: Yup.string()
       .required(translate('validation.required'))

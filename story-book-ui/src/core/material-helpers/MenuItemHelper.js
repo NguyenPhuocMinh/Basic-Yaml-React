@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 // router dom
-import { DynamicMuiIcon } from '../../common';
+import { createIcon } from '../../dynamic';
 import NavLinkRef from './NavLinkRef';
 import { useLocation } from 'react-router-dom';
 
@@ -75,7 +75,7 @@ const MenuItemHelper = forwardRef((props, ref) => {
       >
         {leftIcon ? (
           <ListItemIcon>
-            <DynamicMuiIcon icon={leftIcon} />
+            {createIcon({ icon: leftIcon })}
           </ListItemIcon>
         ) : (
             <ListItemIcon />

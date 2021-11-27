@@ -20,7 +20,7 @@ const SettingHelper = ({
 }) => {
 
   // hooks
-  const translate = useTranslate();
+  const { translate } = useTranslate();
 
   return (
     <Box>

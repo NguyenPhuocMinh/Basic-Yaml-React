@@ -1,5 +1,14 @@
 const TRANSLATIONS_EN = {
   title: 'Story Book',
+  auth: {
+    auth_check_error: 'Please login to continue',
+    user_menu: 'Profile',
+    username: 'Username',
+    password: 'Password',
+    sign_in: 'Sign in',
+    sign_in_error: 'Authentication failed, please retry',
+    logout: 'Logout',
+  },
   users: {
     title: 'Story Book React',
     labels: {
@@ -120,7 +129,7 @@ const TRANSLATIONS_EN = {
     action: {
       undo: 'Undo'
     }
-  }
+  },
 }
 
 export default TRANSLATIONS_EN;

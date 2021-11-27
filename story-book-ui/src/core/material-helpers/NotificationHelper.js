@@ -73,7 +73,7 @@ const NotificationHelper = (props) => {
   const notification = useSelector(state => state.admin.notification);
   // hooks
   const dispatch = useDispatch();
-  const translate = useTranslate();
+  const { translate } = useTranslate();
   const classes = useStyles(props);
 
   useEffect(() => {

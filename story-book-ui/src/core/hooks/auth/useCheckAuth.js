@@ -43,7 +43,7 @@ const useCheckAuth = () => {
             (error && error.message === false);
           !shouldSkipNotify &&
             notify(
-              getErrorMessage(error, 'auth_check_error'),
+              getErrorMessage(error, 'auth.auth_check_error'),
               'warning'
             );
         }

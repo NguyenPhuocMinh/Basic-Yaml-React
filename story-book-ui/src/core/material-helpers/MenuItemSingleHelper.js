@@ -1,7 +1,7 @@
 import { forwardRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { DynamicMuiIcon } from '../../common';
+import { createIcon } from '../../dynamic';
 import NavLinkRef from './NavLinkRef';
 import { useLocation } from 'react-router-dom';
 // material ui
@@ -66,7 +66,7 @@ const MenuItemSingleHelper = forwardRef((props, ref) => {
         selected={props.to.pathname === location.pathname}
       >
         <ListItemIcon sx={{ color: 'inherit' }}>
-          <DynamicMuiIcon icon={leftIcon} />
+          {createIcon({ icon: leftIcon })}
         </ListItemIcon>
         <ListItemText
           primary={primaryText}

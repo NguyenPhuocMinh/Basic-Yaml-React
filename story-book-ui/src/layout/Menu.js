@@ -5,25 +5,22 @@ import {
   MenuItemHelper,
   DashboardItemHelper,
   useTranslate,
-  usePermissions
+  usePermissions,
 } from '../core';
 
 const Menu = ({ hasDashboard, ...props }) => {
   // hooks
-  const translate = useTranslate();
+  const { translate } = useTranslate();
   const { permissions } = usePermissions();
-  console.log("🚀 ~ file: Menu.js ~ line 16 ~ Menu ~ permissions", permissions)
 
   return (
     <NavBar>
       {hasDashboard && <DashboardItemHelper />}
       <NavDivider />
-      {/* Ancients */}
       <SubMenuHelper
         primaryText={translate("resources.ancients.name")}
         leftIcon="AutoAwesomeMotion"
       >
-        {/* Vampires */}
         <MenuItemHelper
           to={{
             pathname: '/vampire-list',
@@ -33,7 +30,6 @@ const Menu = ({ hasDashboard, ...props }) => {
             smart_count: 2,
           })}
         />
-        {/* Monsters */}
         <MenuItemHelper
           to={{
             pathname: '/monster-list',

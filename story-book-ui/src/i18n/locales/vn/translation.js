@@ -1,5 +1,14 @@
 const TRANSLATIONS_VN = {
   title: 'Câu Truyện',
+  auth: {
+    auth_check_error: 'Vui lòng đăng nhập để tiếp tục',
+    user_menu: 'Hồ sơ',
+    username: 'Tên người dùng',
+    password: 'Mật khẩu',
+    sign_in: 'Sign in',
+    sign_in_error: 'Xác thực không thành công, vui lòng thử lại',
+    logout: 'Đăng xuất',
+  },
   users: {
     title: 'Câu Truyện React',
     labels: {
@@ -38,7 +47,7 @@ const TRANSLATIONS_VN = {
         incorrect_password: 'Mật khẩu không đúng'
       },
       logout: {
-        success : 'Đăng xuất thành công!'
+        success: 'Đăng xuất thành công!'
       }
     }
   },
