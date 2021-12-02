@@ -31,7 +31,9 @@ const useCheckAuth = () => {
       disableNotification = false
     ) =>
       authProvider.checkAuth(params).catch(error => {
+        console.log("🚀 ~ file: useCheckAuth.js ~ line 34 ~ authProvider.checkAuth ~ error", error)
         if (logoutOnFailure) {
+          console.log("🚀 ~ file: useCheckAuth.js ~ line 36 ~ authProvider.checkAuth ~ logoutOnFailure", logoutOnFailure)
           logout(
             {},
             error && error.redirectTo
@@ -41,6 +43,7 @@ const useCheckAuth = () => {
           const shouldSkipNotify =
             disableNotification ||
             (error && error.message === false);
+          console.log("🚀 ~ file: useCheckAuth.js ~ line 44 ~ authProvider.checkAuth ~ shouldSkipNotify", shouldSkipNotify)
           !shouldSkipNotify &&
             notify(
               getErrorMessage(error, 'auth.auth_check_error'),

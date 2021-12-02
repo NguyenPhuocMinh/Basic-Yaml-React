@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTranslate } from '../hooks';
 import MenuItemSingleHelper from './MenuItemSingleHelper';
 import { Box } from '@mui/material';

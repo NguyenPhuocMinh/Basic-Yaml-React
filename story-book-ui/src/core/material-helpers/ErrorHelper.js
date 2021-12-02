@@ -9,9 +9,9 @@ import {
   AccordionSummary,
   Typography,
 } from '@mui/material';
-import ErrorIcon from '@material-ui/icons/Report';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import History from '@material-ui/icons/History';
+import ErrorIcon from '@mui/icons-material/Report';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import History from '@mui/icons-material/History';
 import TitleHelper from './TitleHelper';
 // hooks
 import { useTranslate } from '../hooks';

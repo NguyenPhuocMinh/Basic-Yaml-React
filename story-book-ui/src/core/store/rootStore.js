@@ -38,12 +38,12 @@ const rootStore = ({
         },
       action
     );
-  const saga = function* rootSaga() {
-    yield all(
-      [bootStrapSaga(dataProvider, authProvider), ...customSagas].map(fork)
-    );
-  };
-  const sagaMiddleware = createSagaMiddleware();
+  // const saga = function* rootSaga() {
+  //   yield all(
+  //     [bootStrapSaga(dataProvider, authProvider), ...customSagas].map(fork)
+  //   );
+  // };
+  // const sagaMiddleware = createSagaMiddleware();
   const typedWindow = typeof window !== 'undefined' && (window);
 
   const composeEnhancers =
@@ -63,12 +63,12 @@ const rootStore = ({
       applyMiddleware(
         thunkMiddleware,
         loggerMiddleware,
-        sagaMiddleware,
+        // sagaMiddleware,
         routerMiddleware(history)
       )
     )
   );
-  sagaMiddleware.run(saga);
+  // sagaMiddleware.run(saga);
   return store;
 };
 

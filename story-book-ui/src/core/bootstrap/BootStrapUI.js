@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import BootStrapCoreUI from './BootStrapCoreUI';
 import { NotFoundHelper, LoadingHelper } from '../material-helpers';

@@ -1,6 +1,6 @@
-import { createElement, Suspense } from 'react';
+import React, { createElement, Suspense } from 'react';
 // version
-// import { version } from '../../../package.json';
+import packageMeta from '../../../package.json';
 import PropTypes from 'prop-types';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -89,7 +89,7 @@ const LayoutHelper = props => {
                   fontSize='small'
                   fontWeight={500}
                 >
-                  {/* {`v${version}`} */}
+                  {`v${packageMeta.version}`}
                 </Typography>
               </DrawerHeaderHelper>
               <Divider />

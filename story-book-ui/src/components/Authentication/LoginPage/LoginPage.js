@@ -1,4 +1,4 @@
-import {
+import React, {
   useCallback,
   useState,
   useEffect,
@@ -85,6 +85,7 @@ const LoginPage = (props) => {
     setLoading(true);
     authProvider.login(params)
       .then(res => {
+        console.log("🚀 ~ file: LoginPage.js ~ line 88 ~ handleLogin ~ res", res)
         if (res.status < 200 || res.status >= 400) {
           timer.current = window.setTimeout(() => {
             setLoading(false);

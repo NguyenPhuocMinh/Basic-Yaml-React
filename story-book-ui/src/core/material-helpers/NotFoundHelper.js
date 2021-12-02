@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
-import HotTub from '@material-ui/icons/HotTub';
-import History from '@material-ui/icons/History';
+import HotTub from '@mui/icons-material/HotTub';
+import History from '@mui/icons-material/History';
 import classnames from 'classnames';
 import Title from './TitleHelper';
 // hooks

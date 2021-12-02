@@ -1,3 +1,4 @@
+import React from 'react';
 import { NotificationHelper } from '../../core';
 import { useSelector } from 'react-redux';
 
