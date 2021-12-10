@@ -1,9 +1,3 @@
-import {
-  httpClientAuthProvider,
-  httpClientRestProvider,
-} from './http-client';
+import { httpClientAuthProvider, httpClientRestProvider } from './http-client';
 
-export {
-  httpClientAuthProvider,
-  httpClientRestProvider,
-}
+export { httpClientAuthProvider, httpClientRestProvider };

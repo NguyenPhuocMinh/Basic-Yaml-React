@@ -19,7 +19,7 @@ const BootStrapCore = (props) => {
     registerPage,
     logoutButton,
     theme,
-    title = 'Demo Basic React',
+    title = 'Demo Basic React'
   } = props;
 
   return (
@@ -63,7 +63,7 @@ BootStrapCore.propTypes = {
   registerPage: PropTypes.any,
   logoutButton: PropTypes.element,
   theme: PropTypes.any,
-  title: PropTypes.string,
-}
+  title: PropTypes.string
+};
 
 export default BootStrapCore;

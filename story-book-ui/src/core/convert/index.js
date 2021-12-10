@@ -1,5 +1,3 @@
 import convertLegacyAuthProvider from './convertLegacyAuthProvider';
 
-export {
-  convertLegacyAuthProvider,
-}
+export { convertLegacyAuthProvider };

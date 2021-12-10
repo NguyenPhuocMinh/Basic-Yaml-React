@@ -1,10 +1,10 @@
-import React, {
-  useCallback,
-  useState,
-  useEffect,
-  useRef
-} from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 // material ui
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
+import MailIcon from '@mui/icons-material/Mail';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
   Box,
   Card,
@@ -19,19 +19,12 @@ import {
   Divider,
   CircularProgress,
   InputAdornment,
-  IconButton,
+  IconButton
 } from '@mui/material';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import MailIcon from '@mui/icons-material/Mail';
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import { ThemeProvider } from '@mui/material/styles';
-import { lightTheme } from '../../../themes';
 import { makeStyles } from '@mui/styles';
-// formik
 import { Formik, Form } from 'formik';
-// core
+import { get, isEmpty } from 'lodash';
 import {
   useAuthProvider,
   defaultAuthParams,
@@ -40,15 +33,14 @@ import {
   TextInputHelper,
   NotificationHelper
 } from '../../../core';
-// validate
+import { lightTheme } from '../../../themes';
 import { validateUserLogin } from '../../../validators';
-import { get, isEmpty } from 'lodash';
 
 const useStyles = makeStyles({
   input: {
     width: 256
   }
-})
+});
 
 const LoginPage = (props) => {
   const { history, location } = props;
@@ -75,17 +67,17 @@ const LoginPage = (props) => {
   const nextPathName = locationState && locationState.nextPathname;
   const nextSearch = locationState && locationState.nextSearch;
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       clearTimeout(timer.current);
-    };
-  }, []);
+    },
+    []
+  );
 
-  const handleLogin = useCallback((params) => {
-    setLoading(true);
-    authProvider.login(params)
-      .then(res => {
-        console.log("🚀 ~ file: LoginPage.js ~ line 88 ~ handleLogin ~ res", res)
+  const handleLogin = useCallback(
+    (params) => {
+      setLoading(true);
+      authProvider.login(params).then((res) => {
         if (res.status < 200 || res.status >= 400) {
           timer.current = window.setTimeout(() => {
             setLoading(false);
@@ -95,37 +87,40 @@ const LoginPage = (props) => {
         } else {
           timer.current = window.setTimeout(() => {
             setLoading(false);
-            const redirectUrl = nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
+            const redirectUrl =
+              nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
             notify('users.notification.login.success', { type: 'success' });
             history.push(redirectUrl);
           }, 500);
           return res;
         }
-      })
-  }, [authProvider, notify, history, nextPathName, nextSearch]);
+      });
+    },
+    [authProvider, notify, history, nextPathName, nextSearch]
+  );
 
   const handleRedirectRegisterPage = () => {
     history.push('/register');
   };
 
   const handleClickLoginWithGoogle = useCallback(() => {
-    setLoading(true)
-    authProvider.loginWithGoogle()
-      .then(res => {
-        if (!isEmpty(res)) {
-          timer.current = window.setTimeout(() => {
-            setLoading(false);
-            const redirectUrl = nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
-            notify('users.notification.login.success', { type: 'success' });
-            history.push(redirectUrl);
-          }, 500);
-          return res;
-        }
-      })
+    setLoading(true);
+    authProvider.loginWithGoogle().then((res) => {
+      if (!isEmpty(res)) {
+        timer.current = window.setTimeout(() => {
+          setLoading(false);
+          const redirectUrl =
+            nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
+          notify('users.notification.login.success', { type: 'success' });
+          history.push(redirectUrl);
+        }, 500);
+        return res;
+      }
+    });
   }, [authProvider, notify, history, nextPathName, nextSearch]);
 
   const handleClickLoginWithFacebook = useCallback(() => {
-    console.log("handleClickLoginWithFacebook")
+    console.log('handleClickLoginWithFacebook');
   }, []);
 
   return (
@@ -135,17 +130,10 @@ const LoginPage = (props) => {
       validationSchema={validateUserLogin(translate)}
     >
       {(formProps) => {
-        const {
-          handleSubmit,
-          handleChange,
-          isValid,
-          dirty,
-          values
-        } = formProps;
+        const { handleSubmit, handleChange, isValid, dirty, values } =
+          formProps;
         return (
-          <Form
-            onSubmit={handleSubmit}
-          >
+          <Form onSubmit={handleSubmit}>
             <Box
               sx={{
                 display: 'flex',
@@ -155,7 +143,7 @@ const LoginPage = (props) => {
                 justifyContent: 'center',
                 background: 'url(https://source.unsplash.com/random/1600x900)',
                 backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
+                backgroundSize: 'cover'
               }}
             >
               <Box
@@ -171,15 +159,16 @@ const LoginPage = (props) => {
               >
                 <Box
                   sx={{
-                    minWidth: 400,
+                    minWidth: 400
                   }}
                 >
                   <Card>
-                    <Box component="div"
+                    <Box
+                      component="div"
                       sx={{
                         margin: '1em',
                         display: 'flex',
-                        justifyContent: 'center',
+                        justifyContent: 'center'
                       }}
                     >
                       <Avatar alt="" src="https://source.unsplash.com/random" />
@@ -206,8 +195,8 @@ const LoginPage = (props) => {
                         <TextInputHelper
                           label="users.labels.email"
                           required
-                          id='email'
-                          name='email'
+                          id="email"
+                          name="email"
                           endAdornment={
                             <InputAdornment position="end">
                               <MailIcon />
@@ -235,7 +224,7 @@ const LoginPage = (props) => {
                               <IconButton
                                 sx={{
                                   border: 'none !important',
-                                  ":hover": {
+                                  ':hover': {
                                     background: 'none'
                                   },
                                   marginRight: '-8px !important'
@@ -244,10 +233,11 @@ const LoginPage = (props) => {
                                 onMouseDown={(event) => event.preventDefault()}
                                 edge="end"
                               >
-                                {showPassword
-                                  ? <VisibilityOff />
-                                  : <Visibility />
-                                }
+                                {showPassword ? (
+                                  <VisibilityOff />
+                                ) : (
+                                  <Visibility />
+                                )}
                               </IconButton>
                             </InputAdornment>
                           }
@@ -260,7 +250,7 @@ const LoginPage = (props) => {
                           display: 'flex',
                           flexDirection: 'row',
                           justifyContent: 'center',
-                          alignItems: 'center',
+                          alignItems: 'center'
                         }}
                       >
                         <FormControlLabel
@@ -272,19 +262,24 @@ const LoginPage = (props) => {
                           control={
                             <Checkbox
                               sx={{
-                                ":hover": {
+                                ':hover': {
                                   background: 'none'
                                 },
-                                fontSize: '0.875rem',
+                                fontSize: '0.875rem'
                               }}
-                              name='rememberMe'
+                              name="rememberMe"
                               checked={values.rememberMe}
                               onChange={handleChange}
                             />
                           }
                           label={translate('users.labels.remember_me')}
                         />
-                        <Typography color="primary" variant="body2" component="a" href="/">
+                        <Typography
+                          color="primary"
+                          variant="body2"
+                          component="a"
+                          href="/"
+                        >
                           {translate('users.forgotPass')}
                         </Typography>
                       </Box>
@@ -301,19 +296,18 @@ const LoginPage = (props) => {
                           minWidth: 256,
                           borderRadius: 12,
                           textTransform: 'capitalize',
-                          ":hover": {
+                          ':hover': {
                             background: 'none'
                           }
                         }}
                         variant="contained"
                         type="submit"
-
                         disabled={!isValid || !dirty || loading}
                       >
                         {loading && (
                           <CircularProgress
                             sx={{ marginRight: '5px' }}
-                            color='primary'
+                            color="primary"
                             size={20}
                             thickness={2}
                           />
@@ -327,11 +321,12 @@ const LoginPage = (props) => {
                         marginBottom: '1em',
                         display: 'flex',
                         justifyContent: 'center',
-                        alignItems: 'center',
+                        alignItems: 'center'
                       }}
                     >
                       <Divider sx={{ width: '3.2rem' }} />
-                      <Typography variant='span'
+                      <Typography
+                        variant="span"
                         sx={{
                           marginLeft: '0.8rem',
                           marginRight: '0.8rem',
@@ -354,7 +349,7 @@ const LoginPage = (props) => {
                           width: 'auto',
                           minWidth: 210,
                           borderRadius: 12,
-                          textTransform: 'none',
+                          textTransform: 'none'
                         }}
                         variant="outlined"
                         onClick={handleClickLoginWithGoogle}
@@ -376,7 +371,7 @@ const LoginPage = (props) => {
                           width: 'auto',
                           minWidth: 210,
                           borderRadius: 12,
-                          textTransform: 'none',
+                          textTransform: 'none'
                         }}
                         variant="outlined"
                         onClick={handleClickLoginWithFacebook}
@@ -400,7 +395,7 @@ const LoginPage = (props) => {
                       <Button
                         sx={{
                           textTransform: 'none',
-                          ":hover": {
+                          ':hover': {
                             background: 'none'
                           }
                         }}
@@ -416,7 +411,7 @@ const LoginPage = (props) => {
                   sx={{
                     display: 'flex',
                     minWidth: { md: 500 },
-                    bgcolor: 'primary.main',
+                    bgcolor: 'primary.main'
                   }}
                 >
                   <Box
@@ -425,7 +420,7 @@ const LoginPage = (props) => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      flexDirection: 'column',
+                      flexDirection: 'column'
                     }}
                   >
                     <Box component="span" sx={{ fontSize: 22, mt: 1 }}>
@@ -437,7 +432,8 @@ const LoginPage = (props) => {
                     <Box
                       sx={{
                         mt: 1.5,
-                        backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
+                        backgroundColor: (theme) =>
+                          alpha(theme.palette.primary.main, 0.1),
                         borderRadius: '5px',
                         fontWeight: 'medium',
                         display: 'flex',
@@ -445,8 +441,8 @@ const LoginPage = (props) => {
                         alignItems: 'center',
                         '& svg': {
                           fontSize: 21,
-                          mr: 0.5,
-                        },
+                          mr: 0.5
+                        }
                       }}
                     >
                       {translate('users.texts.description')}
@@ -457,16 +453,18 @@ const LoginPage = (props) => {
             </Box>
             <NotificationHelper />
           </Form>
-        )
+        );
       }}
     </Formik>
   );
 };
 
-const LoginWithTheme = (props) => (
-  <ThemeProvider theme={lightTheme}>
-    <LoginPage {...props} />
-  </ThemeProvider>
-);
+const LoginWithTheme = (props) => {
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <LoginPage {...props} />
+    </ThemeProvider>
+  );
+};
 
 export default LoginWithTheme;

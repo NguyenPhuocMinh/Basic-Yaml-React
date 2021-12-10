@@ -1,5 +1,5 @@
-import { put, takeEvery } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
+import { put, takeEvery } from 'redux-saga/effects';
 
 import { resolveRedirectTo } from '../utils';
 
@@ -9,7 +9,7 @@ import { resolveRedirectTo } from '../utils';
 export function* handleRedirection({
   payload,
   requestPayload,
-  meta: { basePath, redirectTo },
+  meta: { basePath, redirectTo }
 }) {
   if (!redirectTo) {
     return;
@@ -23,13 +23,13 @@ export function* handleRedirection({
         payload
           ? payload.id || (payload.data ? payload.data.id : null)
           : requestPayload
-            ? requestPayload.id
-            : null,
+          ? requestPayload.id
+          : null,
         payload && payload.data
           ? payload.data
           : requestPayload && requestPayload.data
-            ? requestPayload.data
-            : null
+          ? requestPayload.data
+          : null
       )
     )
   );
@@ -38,7 +38,7 @@ export function* handleRedirection({
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function* () {
   yield takeEvery(
-    action => action.meta && typeof action.meta.redirectTo !== 'undefined',
+    (action) => action.meta && typeof action.meta.redirectTo !== 'undefined',
     handleRedirection
   );
 }

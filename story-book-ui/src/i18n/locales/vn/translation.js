@@ -7,7 +7,7 @@ const TRANSLATIONS_VN = {
     password: 'Mật khẩu',
     sign_in: 'Sign in',
     sign_in_error: 'Xác thực không thành công, vui lòng thử lại',
-    logout: 'Đăng xuất',
+    logout: 'Đăng xuất'
   },
   users: {
     title: 'Câu Truyện React',
@@ -22,7 +22,7 @@ const TRANSLATIONS_VN = {
     texts: {
       or: 'Hoặc',
       not_account: 'Bạn chưa có tài khoản?',
-      has_account: "Bạn đã có tài khoản?",
+      has_account: 'Bạn đã có tài khoản?',
       welcome: 'Chào mừng bạn đến',
       subtitle: 'Câu Truyện React!',
       description: 'Mẫu quản trị trang demo cho Ứng dụng web.'
@@ -33,13 +33,14 @@ const TRANSLATIONS_VN = {
       login_google: 'Đăng nhập with Google',
       login_facebook: 'Đăng nhập with Facebook',
       register_account: 'Tạo tài khoản',
-      register: 'Đăng ký',
+      register: 'Đăng ký'
     },
     notification: {
       register: {
         success: 'Đăng ký người dùng thành công!',
         duplicate_email: 'Email trùng lặp',
-        password_confirm_not_match: 'Mật khẩu xác nhận không khớp với mật khẩu hiện tại'
+        password_confirm_not_match:
+          'Mật khẩu xác nhận không khớp với mật khẩu hiện tại'
       },
       login: {
         success: 'Đăng nhập thành công!',
@@ -58,7 +59,7 @@ const TRANSLATIONS_VN = {
         github: 'Github của trang',
         change_language: 'Thay đổi ngôn ngữ',
         change_setting: 'Thay đổi cài đặt',
-        change_profile: 'Thay đổi thông tin',
+        change_profile: 'Thay đổi thông tin'
       },
       language: {
         en: 'English',
@@ -89,20 +90,21 @@ const TRANSLATIONS_VN = {
       },
       monsters: {
         name: 'Quái vật'
-      },
+      }
     },
     animes: {
       name: 'Hoạt hình'
-    },
+    }
   },
   page: {
     error: {
       name: 'Đã xảy ra sự cố',
-      message: 'Đã xảy ra lỗi máy khách và không thể hoàn thành yêu cầu của bạn.',
+      message:
+        'Đã xảy ra lỗi máy khách và không thể hoàn thành yêu cầu của bạn.',
       message_text: 'Cần giúp đỡ với lỗi này? Hãy thử những cách sau',
       message_help: 'Nhận trợ giúp từ nhóm cốt lõi qua',
       search_on: 'Tìm kiếm trên',
-      community_answers: 'cho câu trả lời của cộng đồng',
+      community_answers: 'cho câu trả lời của cộng đồng'
     },
     not_found: {
       name: 'Không tìm thấy',
@@ -122,7 +124,8 @@ const TRANSLATIONS_VN = {
     maxValue: 'Phải từ {{max}} trở xuống',
     users: {
       email: 'Email không khớp với định dạng',
-      password: 'Phải chứa 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự chữ hoa đặc biệt',
+      password:
+        'Phải chứa 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự chữ hoa đặc biệt',
       password_confirm: 'Mật khẩu xác nhận không khớp với mật khẩu'
     }
   },
@@ -131,6 +134,6 @@ const TRANSLATIONS_VN = {
       undo: 'Hoàn tác'
     }
   }
-}
+};
 
 export default TRANSLATIONS_VN;

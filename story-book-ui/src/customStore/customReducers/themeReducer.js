@@ -1,6 +1,8 @@
 import { CHANGE_THEME } from '../customTypes';
 
-const initialState = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light'
+const initialState = localStorage.getItem('theme')
+  ? localStorage.getItem('theme')
+  : 'light';
 
 const themeReducer = (state = initialState, action) => {
   const { type, payload } = action;

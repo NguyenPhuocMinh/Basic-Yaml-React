@@ -1,6 +1,6 @@
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { initReactI18next } from 'react-i18next';
 // translations
 import TRANSLATIONS_EN from './locales/en/translation';
 import TRANSLATIONS_VN from './locales/vn/translation';
@@ -13,7 +13,7 @@ let lng = defaultLng;
 const storageLanguage = localStorage.getItem('language');
 if (storageLanguage && allowedLanguages.indexOf(storageLanguage) > -1) {
   lng = storageLanguage;
-};
+}
 
 const i18nProvider = i18n
   .use(LanguageDetector)
@@ -24,7 +24,7 @@ const i18nProvider = i18n
     fallbackLng: defaultLng,
     debug: true,
     interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
+      escapeValue: false // not needed for react as it escapes by default
     },
     resources: {
       en: {
@@ -35,7 +35,7 @@ const i18nProvider = i18n
       }
     },
     react: {
-      useSuspense: true,
+      useSuspense: true
     },
     load: 'all'
   });

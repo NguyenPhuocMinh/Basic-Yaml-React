@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 
 import useAuthProvider, { defaultAuthParams } from './useAuthProvider';
 import useLogout from './useLogout';
-import useNotify from '../sideEffect/useNotify';
 import { getErrorMessage } from '../../index';
+import useNotify from '../sideEffect/useNotify';
 
 /**
  * Get a callback for calling the authProvider.checkAuth() method.
@@ -30,25 +30,25 @@ const useCheckAuth = () => {
       redirectTo = defaultAuthParams.loginUrl,
       disableNotification = false
     ) =>
-      authProvider.checkAuth(params).catch(error => {
-        console.log("🚀 ~ file: useCheckAuth.js ~ line 34 ~ authProvider.checkAuth ~ error", error)
+      authProvider.checkAuth(params).catch((error) => {
+        console.log(
+          '🚀 ~ file: useCheckAuth.js ~ line 34 ~ authProvider.checkAuth ~ error',
+          error
+        );
         if (logoutOnFailure) {
-          console.log("🚀 ~ file: useCheckAuth.js ~ line 36 ~ authProvider.checkAuth ~ logoutOnFailure", logoutOnFailure)
-          logout(
-            {},
-            error && error.redirectTo
-              ? error.redirectTo
-              : redirectTo
+          console.log(
+            '🚀 ~ file: useCheckAuth.js ~ line 36 ~ authProvider.checkAuth ~ logoutOnFailure',
+            logoutOnFailure
           );
+          logout({}, error && error.redirectTo ? error.redirectTo : redirectTo);
           const shouldSkipNotify =
-            disableNotification ||
-            (error && error.message === false);
-          console.log("🚀 ~ file: useCheckAuth.js ~ line 44 ~ authProvider.checkAuth ~ shouldSkipNotify", shouldSkipNotify)
+            disableNotification || (error && error.message === false);
+          console.log(
+            '🚀 ~ file: useCheckAuth.js ~ line 44 ~ authProvider.checkAuth ~ shouldSkipNotify',
+            shouldSkipNotify
+          );
           !shouldSkipNotify &&
-            notify(
-              getErrorMessage(error, 'auth.auth_check_error'),
-              'warning'
-            );
+            notify(getErrorMessage(error, 'auth.auth_check_error'), 'warning');
         }
         throw error;
       }),

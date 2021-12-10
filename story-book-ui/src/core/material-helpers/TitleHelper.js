@@ -1,17 +1,11 @@
-import { cloneElement } from 'react';
 import PropTypes from 'prop-types';
+import { cloneElement } from 'react';
 import { createPortal } from 'react-dom';
 // hooks
-import { useTranslate } from '../hooks'
 import { warning } from './utils';
+import { useTranslate } from '../hooks';
 
-const Title = ({
-  className,
-  defaultTitle,
-  record,
-  title,
-  ...rest
-}) => {
+const Title = ({ className, defaultTitle, record, title, ...rest }) => {
   const { translate } = useTranslate();
   const container =
     typeof document !== 'undefined'
@@ -31,21 +25,21 @@ const Title = ({
       {translate(title, { _: title })}
     </span>
   ) : (
-        cloneElement(title, { className, record, ...rest })
-      );
+    cloneElement(title, { className, record, ...rest })
+  );
   return createPortal(titleElement, container);
 };
 
 export const TitlePropType = PropTypes.oneOfType([
   PropTypes.string,
-  PropTypes.element,
+  PropTypes.element
 ]);
 
 Title.propTypes = {
   defaultTitle: PropTypes.string,
   className: PropTypes.string,
   record: PropTypes.any,
-  title: TitlePropType,
+  title: TitlePropType
 };
 
 export default Title;

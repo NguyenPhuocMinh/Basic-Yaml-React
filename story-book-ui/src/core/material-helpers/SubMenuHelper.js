@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 // material ui
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {
   Box,
   Tooltip,
@@ -8,14 +9,13 @@ import {
   Collapse,
   List,
   ListItemButton,
-  ListItemText,
+  ListItemText
 } from '@mui/material';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { createIcon } from '../../dynamic';
 import { makeStyles } from '@mui/styles';
+import PropTypes from 'prop-types';
+import { createIcon } from '../../dynamic';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.common.text,
     '&:hover': {
@@ -23,15 +23,10 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 10
     }
   }
-}))
+}));
 
-const SubMenuHelper = props => {
-  const {
-    primaryText,
-    dense,
-    children,
-    leftIcon
-  } = props;
+const SubMenuHelper = (props) => {
+  const { primaryText, dense, children, leftIcon } = props;
 
   // hooks
   const classes = useStyles();
@@ -41,12 +36,10 @@ const SubMenuHelper = props => {
 
   // func
   const handleToggle = (newToggle) => {
-    setToggle((prevToggle) => {
-      return {
-        ...prevToggle,
-        [newToggle]: !prevToggle[newToggle]
-      }
-    })
+    setToggle((prevToggle) => ({
+      ...prevToggle,
+      [newToggle]: !prevToggle[newToggle]
+    }));
   };
 
   const header = (
@@ -65,20 +58,15 @@ const SubMenuHelper = props => {
           variant: 'subtitle2',
           fontWeight: 'medium',
           lineHeight: '1.5',
-          mb: '2px',
+          mb: '2px'
         }}
         sx={{ my: 0 }}
       />
       {toggle[primaryText] ? (
-        <KeyboardArrowDown
-          sx={{ mr: -1 }}
-        />
+        <KeyboardArrowDown sx={{ mr: -1 }} />
       ) : (
-          <KeyboardArrowRightIcon
-            sx={{ mr: -1 }}
-          />
-        )
-      }
+        <KeyboardArrowRightIcon sx={{ mr: -1 }} />
+      )}
     </ListItemButton>
   );
 
@@ -88,16 +76,12 @@ const SubMenuHelper = props => {
         {header}
       </Tooltip>
       <Collapse in={toggle[primaryText]} timeout="auto" unmountOnExit>
-        <List
-          dense={dense}
-          component="div"
-          disablePadding
-        >
+        <List dense={dense} component="div" disablePadding>
           {children}
         </List>
       </Collapse>
     </Box>
-  )
+  );
 };
 
 SubMenuHelper.propTypes = {

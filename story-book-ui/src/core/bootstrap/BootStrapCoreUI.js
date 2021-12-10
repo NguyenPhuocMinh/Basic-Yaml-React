@@ -14,58 +14,59 @@ const BootStrapCoreUI = (props) => {
     registerPage,
     logout,
     theme,
-    title = 'Demo Basic React',
+    title = 'Demo Basic React'
   } = props;
 
-  const logoutElement = useMemo(() => logout && createElement(logout), [
-    logout,
-  ]);
+  const logoutElement = useMemo(
+    () => logout && createElement(logout),
+    [logout]
+  );
 
   return (
     <Switch>
       <Route
-        path='/login'
-        render={(renderProps) => {
-          return createElement(loginPage, {
+        path="/login"
+        render={(renderProps) =>
+          createElement(loginPage, {
             ...renderProps,
             title,
-            theme,
+            theme
           })
-        }}
+        }
       />
       <Route
-        path='/register'
-        render={(renderProps) => {
-          return createElement(registerPage, {
+        path="/register"
+        render={(renderProps) =>
+          createElement(registerPage, {
             ...renderProps,
             title,
-            theme,
+            theme
           })
-        }}
+        }
       />
       <Route
         path="/"
-        render={renderProps => {
-          return (
-            <BootStrapUIRouter
-              catchAll={catchAll}
-              dashboard={dashboard}
-              layout={layout}
-              loading={loading}
-              logout={logoutElement}
-              theme={theme}
-              title={title}
-              {...renderProps}
-            >
-              {children}
-            </BootStrapUIRouter>
-          )
-        }}
+        render={(renderProps) => (
+          <BootStrapUIRouter
+            catchAll={catchAll}
+            dashboard={dashboard}
+            layout={layout}
+            loading={loading}
+            logout={logoutElement}
+            theme={theme}
+            title={title}
+            {...renderProps}
+          >
+            {children}
+          </BootStrapUIRouter>
+        )}
       />
     </Switch>
   );
 };
 
-const Noop = () => null;
+var Noop = () => {
+  return null;
+};
 
 export default BootStrapCoreUI;

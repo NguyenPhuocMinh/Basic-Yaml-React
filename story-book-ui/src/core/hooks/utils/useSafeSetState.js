@@ -1,9 +1,4 @@
-import {
-  useState,
-  useRef,
-  useEffect,
-  useCallback
-} from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 const useSafeSetState = (initialState) => {
   const [state, setState] = useState(initialState);
@@ -16,9 +11,9 @@ const useSafeSetState = (initialState) => {
       mountedRef.current = false;
     };
   }, []);
-  
+
   const safeSetState = useCallback(
-    args => {
+    (args) => {
       if (mountedRef.current) {
         return setState(args);
       }

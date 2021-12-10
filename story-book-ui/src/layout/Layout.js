@@ -9,7 +9,7 @@ import { lightTheme, darkTheme } from '../themes';
 
 const Layout = (props) => {
   // store
-  const themeStore = useSelector(state => state.theme);
+  const themeStore = useSelector((state) => state.theme);
   const theme = themeStore === 'light' ? lightTheme : darkTheme;
 
   return (
@@ -21,6 +21,6 @@ const Layout = (props) => {
       drawerWidth={300}
     />
   );
-}
+};
 
 export default Layout;

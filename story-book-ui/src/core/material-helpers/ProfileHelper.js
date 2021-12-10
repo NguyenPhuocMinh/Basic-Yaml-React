@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
 // redux
 import { useDispatch } from 'react-redux';
 // action
-import { clearState } from '../store/actions';
 // material ui
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
-import RecentActorsIcon from '@mui/icons-material/RecentActors';
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 // location
 import { useLocation, useHistory } from 'react-router-dom';
 // hooks
@@ -19,13 +19,13 @@ import {
   useNotify,
   defaultAuthParams
 } from '../hooks';
-import { makeStyles } from '@mui/styles';
+import { clearState } from '../store/actions';
 
 const useStyles = makeStyles({
   selected: {
-    background: 'rgb(0 0 0 / 12%) !important',
-  },
-})
+    background: 'rgb(0 0 0 / 12%) !important'
+  }
+});
 
 const ProfileHelper = ({ open, anchorEl, handleClose }) => {
   // hooks
@@ -41,18 +41,16 @@ const ProfileHelper = ({ open, anchorEl, handleClose }) => {
   const nextPathName = locationState && locationState.nextPathname;
   const nextSearch = locationState && locationState.nextSearch;
 
-  const handleShowProfile = () => {
-
-  }
+  const handleShowProfile = () => {};
 
   const handleLogout = useCallback(() => {
     dispatch(clearState());
-    authProvider.logout()
-      .then(() => {
-        notify('users.notification.logout.success', { type: 'success' })
-        const redirectUrl = nextPathName + nextSearch || defaultAuthParams.loginUrl;
-        history.push(redirectUrl)
-      })
+    authProvider.logout().then(() => {
+      notify('users.notification.logout.success', { type: 'success' });
+      const redirectUrl =
+        nextPathName + nextSearch || defaultAuthParams.loginUrl;
+      history.push(redirectUrl);
+    });
   }, [authProvider, dispatch, history, notify, nextPathName, nextSearch]);
 
   return (
@@ -71,7 +69,7 @@ const ProfileHelper = ({ open, anchorEl, handleClose }) => {
             width: 32,
             height: 32,
             ml: -0.5,
-            mr: 1,
+            mr: 1
           },
           '&:before': {
             content: '""',
@@ -83,9 +81,9 @@ const ProfileHelper = ({ open, anchorEl, handleClose }) => {
             height: 10,
             bgcolor: 'background.paper',
             transform: 'translateY(-50%) rotate(45deg)',
-            zIndex: 0,
-          },
-        },
+            zIndex: 0
+          }
+        }
       }}
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
@@ -101,11 +99,11 @@ const ProfileHelper = ({ open, anchorEl, handleClose }) => {
             sx={{
               fontSize: '1.25rem',
               width: '1em',
-              height: '1em',
+              height: '1em'
             }}
           />
         </ListItemIcon>
-        <Typography variant='caption'>
+        <Typography variant="caption">
           {translate('appBar.toolbar.profile.show_profile')}
         </Typography>
       </MenuItem>
@@ -120,16 +118,16 @@ const ProfileHelper = ({ open, anchorEl, handleClose }) => {
             sx={{
               fontSize: '1.25rem',
               width: '1em',
-              height: '1em',
+              height: '1em'
             }}
           />
         </ListItemIcon>
-        <Typography variant='caption'>
+        <Typography variant="caption">
           {translate('appBar.toolbar.profile.logout')}
         </Typography>
       </MenuItem>
     </Menu>
-  )
+  );
 };
 
 export default ProfileHelper;

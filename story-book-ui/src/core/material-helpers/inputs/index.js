@@ -1,5 +1,3 @@
 import TextInputHelper from './TextInputHelper';
 
-export {
-  TextInputHelper
-}
+export { TextInputHelper };

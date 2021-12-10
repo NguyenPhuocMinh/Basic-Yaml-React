@@ -10,7 +10,7 @@ const defaultIdentity = {
 const useGetIdentity = () => {
   const [state, setState] = useSafeSetState({
     loading: true,
-    loaded: false,
+    loaded: false
   });
 
   const authProvider = useAuthProvider();
@@ -22,17 +22,17 @@ const useGetIdentity = () => {
           loading: false,
           loaded: true,
           identity: identity || defaultIdentity
-        })
+        });
       } catch (err) {
         setState({
           loading: false,
           loaded: true,
           error: err
-        })
+        });
       }
-    }
+    };
     callGetIdentity();
-  }, [authProvider, setState])
+  }, [authProvider, setState]);
 
   return state;
 };

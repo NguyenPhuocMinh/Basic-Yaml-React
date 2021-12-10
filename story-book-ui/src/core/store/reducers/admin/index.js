@@ -18,12 +18,12 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         sidebarIsOpen: payload
-      }
+      };
     case SHOW_NOTIFICATION:
       return {
         ...state,
         notification: payload
-      }
+      };
     case HIDE_NOTIFICATION:
       return {
         ...state,
@@ -33,10 +33,10 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         notification: {}
-      }
+      };
     }
     default:
-      return state
+      return state;
   }
 };
 

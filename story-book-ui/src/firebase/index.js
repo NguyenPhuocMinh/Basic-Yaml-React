@@ -1,9 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,7 +7,7 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_ID,
+  appId: process.env.REACT_APP_FIREBASE_ID
 };
 // firebase app
 const firebaseApp = initializeApp(firebaseConfig);
@@ -26,5 +22,5 @@ export {
   firebaseAuth,
   googleProvider,
   GoogleAuthProvider,
-  signInWithPopup,
-}
+  signInWithPopup
+};

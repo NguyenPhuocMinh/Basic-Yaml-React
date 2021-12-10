@@ -1,13 +1,10 @@
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
-// redux
-import { useDispatch } from 'react-redux';
-import { resetNotification } from '../../../core/store/actions';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 // material ui
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import LockIcon from '@mui/icons-material/Lock';
+import MailIcon from '@mui/icons-material/MailOutlineOutlined';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import {
   Box,
   Card,
@@ -18,18 +15,13 @@ import {
   alpha,
   Avatar,
   CircularProgress,
-  InputAdornment,
+  InputAdornment
 } from '@mui/material';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
-import EngineeringIcon from '@mui/icons-material/Engineering';
-import MailIcon from '@mui/icons-material/MailOutlineOutlined';
-import VpnKeyIcon from '@mui/icons-material/VpnKey';
-import LockIcon from '@mui/icons-material/Lock';
 import { ThemeProvider } from '@mui/material/styles';
-import { lightTheme } from '../../../themes';
 import { makeStyles } from '@mui/styles';
-// formik
 import { Formik, Form } from 'formik';
+import { get } from 'lodash';
+import { useDispatch } from 'react-redux';
 // core
 import {
   useAuthProvider,
@@ -37,11 +29,12 @@ import {
   useTranslate,
   useNotify,
   TextInputHelper,
-  NotificationHelper,
+  NotificationHelper
 } from '../../../core';
 // validate
+import { resetNotification } from '../../../core/store/actions';
+import { lightTheme } from '../../../themes';
 import { validateUserRegister } from '../../../validators';
-import { get } from 'lodash';
 
 const useStyles = makeStyles({
   input: {
@@ -75,16 +68,17 @@ const RegisterPage = (props) => {
   const nextPathName = locationState && locationState.nextPathname;
   const nextSearch = locationState && locationState.nextSearch;
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       clearTimeout(timer.current);
-    };
-  }, []);
+    },
+    []
+  );
 
-  const handleRegister = useCallback((params) => {
-    setLoading(true);
-    authProvider.register(params)
-      .then(res => {
+  const handleRegister = useCallback(
+    (params) => {
+      setLoading(true);
+      authProvider.register(params).then((res) => {
         if (res.status < 200 || res.status >= 400) {
           timer.current = window.setTimeout(() => {
             setLoading(false);
@@ -95,17 +89,20 @@ const RegisterPage = (props) => {
           timer.current = window.setTimeout(() => {
             setLoading(false);
             dispatch(resetNotification());
-            const redirectUrl = nextPathName + nextSearch || defaultAuthParams.afterRegisterUrl;
+            const redirectUrl =
+              nextPathName + nextSearch || defaultAuthParams.afterRegisterUrl;
             notify('users.notification.register.success', { type: 'success' });
             !loading && history.push(redirectUrl);
           }, 1000);
           return res;
         }
-      })
-  }, [authProvider, dispatch, loading, notify, history, nextPathName, nextSearch]);
+      });
+    },
+    [authProvider, dispatch, loading, notify, history, nextPathName, nextSearch]
+  );
 
   const handleRedirectLoginPage = () => {
-    history.push('/login')
+    history.push('/login');
   };
 
   return (
@@ -117,9 +114,7 @@ const RegisterPage = (props) => {
       {(formProps) => {
         const { handleSubmit, isValid, dirty } = formProps;
         return (
-          <Form
-            onSubmit={handleSubmit}
-          >
+          <Form onSubmit={handleSubmit}>
             <Box
               sx={{
                 display: 'flex',
@@ -129,7 +124,7 @@ const RegisterPage = (props) => {
                 justifyContent: 'center',
                 background: 'url(https://source.unsplash.com/random/1600x900)',
                 backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
+                backgroundSize: 'cover'
               }}
             >
               <Box
@@ -145,15 +140,16 @@ const RegisterPage = (props) => {
               >
                 <Box
                   sx={{
-                    minWidth: 400,
+                    minWidth: 400
                   }}
                 >
                   <Card>
-                    <Box component="div"
+                    <Box
+                      component="div"
                       sx={{
                         margin: '1em',
                         display: 'flex',
-                        justifyContent: 'center',
+                        justifyContent: 'center'
                       }}
                     >
                       <Avatar alt="" src="https://source.unsplash.com/random" />
@@ -178,9 +174,9 @@ const RegisterPage = (props) => {
                         }}
                       >
                         <TextInputHelper
-                          label='users.labels.first_name'
+                          label="users.labels.first_name"
                           required
-                          name='firstName'
+                          name="firstName"
                           className={classes.input}
                           endAdornment={
                             <InputAdornment position="end">
@@ -198,9 +194,9 @@ const RegisterPage = (props) => {
                         }}
                       >
                         <TextInputHelper
-                          label='users.labels.last_name'
+                          label="users.labels.last_name"
                           required
-                          name='lastName'
+                          name="lastName"
                           endAdornment={
                             <InputAdornment position="end">
                               <EngineeringIcon />
@@ -218,9 +214,9 @@ const RegisterPage = (props) => {
                         }}
                       >
                         <TextInputHelper
-                          label='users.labels.email'
+                          label="users.labels.email"
                           required
-                          name='email'
+                          name="email"
                           endAdornment={
                             <InputAdornment position="end">
                               <MailIcon />
@@ -238,7 +234,7 @@ const RegisterPage = (props) => {
                         }}
                       >
                         <TextInputHelper
-                          label='users.labels.password'
+                          label="users.labels.password"
                           name="password"
                           type="password"
                           required
@@ -259,7 +255,7 @@ const RegisterPage = (props) => {
                         }}
                       >
                         <TextInputHelper
-                          label='users.labels.password_confirm'
+                          label="users.labels.password_confirm"
                           name="passwordConfirm"
                           type="password"
                           required
@@ -277,7 +273,7 @@ const RegisterPage = (props) => {
                       sx={{
                         padding: '0 1em 1em 1em',
                         justifyContent: 'center',
-                        marginTop: '1em',
+                        marginTop: '1em'
                       }}
                     >
                       <Button
@@ -285,7 +281,7 @@ const RegisterPage = (props) => {
                           width: 'auto',
                           minWidth: 256,
                           borderRadius: 12,
-                          textTransform: 'capitalize',
+                          textTransform: 'capitalize'
                         }}
                         variant="contained"
                         type="submit"
@@ -294,7 +290,7 @@ const RegisterPage = (props) => {
                         {loading && (
                           <CircularProgress
                             sx={{ marginRight: '5px' }}
-                            color='primary'
+                            color="primary"
                             size={20}
                             thickness={2}
                           />
@@ -316,7 +312,7 @@ const RegisterPage = (props) => {
                       <Button
                         sx={{
                           textTransform: 'none',
-                          ":hover": {
+                          ':hover': {
                             background: 'none'
                           }
                         }}
@@ -332,7 +328,7 @@ const RegisterPage = (props) => {
                   sx={{
                     display: 'flex',
                     minWidth: { md: 500 },
-                    bgcolor: 'primary.main',
+                    bgcolor: 'primary.main'
                   }}
                 >
                   <Box
@@ -341,7 +337,7 @@ const RegisterPage = (props) => {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      flexDirection: 'column',
+                      flexDirection: 'column'
                     }}
                   >
                     <Box component="span" sx={{ fontSize: 22, mt: 1 }}>
@@ -353,7 +349,8 @@ const RegisterPage = (props) => {
                     <Box
                       sx={{
                         mt: 1.5,
-                        backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
+                        backgroundColor: (theme) =>
+                          alpha(theme.palette.primary.main, 0.1),
                         borderRadius: '5px',
                         fontWeight: 'medium',
                         display: 'flex',
@@ -361,8 +358,8 @@ const RegisterPage = (props) => {
                         alignItems: 'center',
                         '& svg': {
                           fontSize: 21,
-                          mr: 0.5,
-                        },
+                          mr: 0.5
+                        }
                       }}
                     >
                       {translate('users.texts.description')}
@@ -373,16 +370,18 @@ const RegisterPage = (props) => {
             </Box>
             <NotificationHelper />
           </Form>
-        )
+        );
       }}
     </Formik>
   );
 };
 
-const RegisterWithTheme = (props) => (
-  <ThemeProvider theme={lightTheme}>
-    <RegisterPage {...props} />
-  </ThemeProvider>
-);
+const RegisterWithTheme = (props) => {
+  return (
+    <ThemeProvider theme={lightTheme}>
+      <RegisterPage {...props} />
+    </ThemeProvider>
+  );
+};
 
 export default RegisterWithTheme;

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import {
-  changeTheme,
-  changeLanguage
-} from '../customStore/customActions';
+import GithubIcon from '@mui/icons-material/GitHub';
+import MenuIcon from '@mui/icons-material/Menu';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import SettingsIcon from '@mui/icons-material/Settings';
+import TranslateIcon from '@mui/icons-material/Translate';
 import {
   Toolbar,
   IconButton,
@@ -12,12 +13,8 @@ import {
   Tooltip,
   CircularProgress
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import TranslateIcon from '@mui/icons-material/Translate';
-import SettingsIcon from '@mui/icons-material/Settings';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import GithubIcon from '@mui/icons-material/GitHub';
 import { makeStyles } from '@mui/styles';
+import { get } from 'lodash';
 import {
   AppBarHelper,
   PopupHelper,
@@ -26,16 +23,16 @@ import {
   useTranslate,
   useGetIdentity
 } from '../core';
-import { get } from 'lodash';
+import { changeTheme, changeLanguage } from '../customStore/customActions';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   title: {
     flex: 1,
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  },
-}))
+    overflow: 'hidden'
+  }
+}));
 
 const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
   // hooks
@@ -70,13 +67,15 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
   const [openSetting, setOpenSetting] = useState(false);
 
   const handleChangeSetting = (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
       return;
     }
 
     setOpenSetting(!openSetting);
   };
-
 
   return (
     <AppBarHelper position="fixed" open={isOpen}>
@@ -92,38 +91,39 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
         <Typography
           className={classes.title}
           id="demo"
-          variant='body2'
-          color='inherit'
-          fontSize='small'
+          variant="body2"
+          color="inherit"
+          fontSize="small"
           fontWeight={500}
         >
-          {translate(`appBar.toolbar.title`)}
+          {translate('appBar.toolbar.title')}
         </Typography>
         <Box
           sx={{
             display: {
               xs: 'none',
-              md: 'flex',
+              md: 'flex'
             },
-            flexWrap: 'wrap',
+            flexWrap: 'wrap'
           }}
         >
           <Box width="auto" minWidth={50}>
-            <Tooltip
-              title={translate('appBar.toolbar.tooltip.github')}
-            >
+            <Tooltip title={translate('appBar.toolbar.tooltip.github')}>
               <IconButton
                 color="inherit"
-                onClick={() => window.open('https://github.com/NguyenPhuocMinh/story-book', '_blank')}
+                onClick={() =>
+                  window.open(
+                    'https://github.com/NguyenPhuocMinh/story-book',
+                    '_blank'
+                  )
+                }
               >
                 <GithubIcon />
               </IconButton>
             </Tooltip>
           </Box>
           <Box width="auto" minWidth={50}>
-            <IconButton
-              color="inherit"
-            >
+            <IconButton color="inherit">
               <NotificationsNoneIcon />
             </IconButton>
           </Box>
@@ -131,10 +131,7 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
             <Tooltip
               title={translate('appBar.toolbar.tooltip.change_language')}
             >
-              <IconButton
-                color="inherit"
-                onClick={handleClickChangeLng}
-              >
+              <IconButton color="inherit" onClick={handleClickChangeLng}>
                 <TranslateIcon />
               </IconButton>
             </Tooltip>
@@ -146,9 +143,7 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
             />
           </Box>
           <Box width="auto" minWidth={50}>
-            <Tooltip
-              title={translate('appBar.toolbar.tooltip.change_setting')}
-            >
+            <Tooltip title={translate('appBar.toolbar.tooltip.change_setting')}>
               <IconButton
                 edge="end"
                 color="inherit"
@@ -159,19 +154,14 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
             </Tooltip>
             <SettingHelper
               open={openSetting}
-              anchor='right'
+              anchor="right"
               toggleDrawer={handleChangeSetting}
               changeTheme={changeTheme}
             />
           </Box>
           <Box width="auto" minWidth={50}>
-            <Tooltip
-              title={translate('appBar.toolbar.tooltip.change_profile')}
-            >
-              <IconButton
-                color="inherit"
-                onClick={handleClickChangeProfile}
-              >
+            <Tooltip title={translate('appBar.toolbar.tooltip.change_profile')}>
+              <IconButton color="inherit" onClick={handleClickChangeProfile}>
                 <Avatar
                   alt={fullName}
                   src={photoURL}
@@ -181,7 +171,7 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
                   {loading && (
                     <CircularProgress
                       sx={{ marginRight: '5px' }}
-                      color='primary'
+                      color="primary"
                       size={10}
                       thickness={2}
                     />
@@ -199,7 +189,7 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
         </Box>
       </Toolbar>
     </AppBarHelper>
-  )
+  );
 };
 
 export default AppBarLayout;

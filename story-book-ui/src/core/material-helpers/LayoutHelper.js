@@ -1,7 +1,7 @@
 import React, { createElement, Suspense } from 'react';
+import PropTypes from 'prop-types';
 // version
 import packageMeta from '../../../package.json';
-import PropTypes from 'prop-types';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 // actions
@@ -15,20 +15,18 @@ import {
   useMediaQuery,
   CssBaseline
 } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-// components
-import ErrorHelper from './ErrorHelper';
-import LoadingHelper from './LoadingHelper';
 import { ErrorBoundary } from 'react-error-boundary';
 // helpers
 import DrawerHeaderHelper from './DrawerHeaderHelper';
-import NavBarHelper from './NavBarHelper';
+import ErrorHelper from './ErrorHelper';
+import LoadingHelper from './LoadingHelper';
 import MainHelper from './MainHelper';
+import NavBarHelper from './NavBarHelper';
 // hooks
 import { useTranslate } from '../hooks';
+import { ThemeProvider } from '@mui/material/styles';
 
-const LayoutHelper = props => {
-
+const LayoutHelper = (props) => {
   const {
     theme,
     appBar,
@@ -45,7 +43,7 @@ const LayoutHelper = props => {
   const isXSmall = useMediaQuery(theme.breakpoints.down('xs'));
   const dispatch = useDispatch();
   // store
-  const open = useSelector(state => state.admin.sidebarIsOpen);
+  const open = useSelector((state) => state.admin.sidebarIsOpen);
   // func
   const toggleSidebar = () => dispatch(changeSideBar(!open));
 
@@ -67,8 +65,8 @@ const LayoutHelper = props => {
                 flexShrink: 0,
                 '& .MuiDrawer-paper': {
                   width: drawerWidth,
-                  boxSizing: 'border-box',
-                },
+                  boxSizing: 'border-box'
+                }
               }}
               variant={isXSmall ? 'temporary' : 'persistent'}
               anchor="left"
@@ -76,17 +74,17 @@ const LayoutHelper = props => {
             >
               <DrawerHeaderHelper>
                 <Typography
-                  variant='body2'
+                  variant="body2"
                   color="text.primary"
-                  fontSize='small'
+                  fontSize="small"
                   fontWeight={500}
                 >
                   {translate(title)}
                 </Typography>
                 <Typography
-                  variant='body2'
-                  color='text.primary'
-                  fontSize='small'
+                  variant="body2"
+                  color="text.primary"
+                  fontSize="small"
                   fontWeight={500}
                 >
                   {`v${packageMeta.version}`}
@@ -95,7 +93,7 @@ const LayoutHelper = props => {
               <Divider />
               {createElement(menu, {
                 logout,
-                hasDashboard: !!dashboard,
+                hasDashboard: !!dashboard
               })}
             </Drawer>
             <MainHelper open={open} drawerwidth={drawerWidth}>
@@ -106,7 +104,7 @@ const LayoutHelper = props => {
         </ErrorBoundary>
       </ThemeProvider>
     </Suspense>
-  )
+  );
 };
 
 LayoutHelper.propTypes = {
@@ -114,6 +112,6 @@ LayoutHelper.propTypes = {
   theme: PropTypes.object,
   menu: PropTypes.any,
   drawerWidth: PropTypes.number
-}
+};
 
 export default LayoutHelper;

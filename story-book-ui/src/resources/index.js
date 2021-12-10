@@ -21,7 +21,7 @@ const resources = [
   {
     name: 'monster-create',
     component: MonsterCreate
-  },
+  }
 ];
 
 export default resources;

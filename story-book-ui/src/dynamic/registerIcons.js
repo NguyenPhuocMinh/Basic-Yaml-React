@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Home,
   AddPhotoAlternate,
@@ -7,6 +6,7 @@ import {
   MenuBook,
   Dashboard
 } from '@mui/icons-material';
+import React from 'react';
 
 const registerIcons = {
   Dashboard: () => <Dashboard />,

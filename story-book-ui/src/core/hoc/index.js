@@ -1,5 +1,3 @@
 import WithPermissions from './auth/WithPermissions';
 
-export {
-  WithPermissions
-}
+export { WithPermissions };

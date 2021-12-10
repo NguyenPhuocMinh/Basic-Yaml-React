@@ -6,7 +6,7 @@ export const COMPLETE = 'COMPLETE';
 export const UNDO = 'UNDO';
 
 export const clearState = () => ({
-  type: CLEAR_STATE,
+  type: CLEAR_STATE
 });
 
 export const changeSideBar = (isOpen) => ({
@@ -15,11 +15,11 @@ export const changeSideBar = (isOpen) => ({
 });
 
 export const complete = () => ({
-  type: COMPLETE,
+  type: COMPLETE
 });
 
 export const undo = () => ({
-  type: UNDO,
+  type: UNDO
 });
 
 export const undoAbleEventEmitter = new EventEmitter();

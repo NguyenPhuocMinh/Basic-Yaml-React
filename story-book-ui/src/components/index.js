@@ -7,8 +7,4 @@ import Dashboard from './Dashboard/Dashboard';
 export * from './Ancients/Vampires';
 export * from './Ancients/Monsters';
 
-export {
-  LoginPage,
-  RegisterPage,
-  Dashboard,
-}
+export { LoginPage, RegisterPage, Dashboard };

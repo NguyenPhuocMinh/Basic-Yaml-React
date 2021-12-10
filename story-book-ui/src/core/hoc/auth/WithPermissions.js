@@ -1,22 +1,9 @@
-import {
-  createElement,
-  useEffect,
-  useState
-} from 'react';
-import {
-  useAuthenticated,
-  useGetPermissions
-} from '../../hooks';
+import { createElement, useEffect, useState } from 'react';
+import { useAuthenticated, useGetPermissions } from '../../hooks';
 import { isEmpty } from 'lodash';
 
 const WithPermissions = (props) => {
-  const {
-    authParams,
-    children,
-    render,
-    component,
-    ...rest
-  } = props;
+  const { authParams, children, render, component, ...rest } = props;
 
   const [permissions, setPermissions] = useState(null);
 
@@ -27,19 +14,17 @@ const WithPermissions = (props) => {
     const getPermissionsUser = async () => {
       const permissions = await getPermissions();
       if (!isEmpty(permissions)) {
-        setPermissions(permissions)
+        setPermissions(permissions);
       }
-    }
+    };
     getPermissionsUser();
-  }, [getPermissions])
+  }, [getPermissions]);
 
   if (component) {
-    return createElement(component,
-      {
-        permissions,
-        ...rest
-      }
-    );
+    return createElement(component, {
+      permissions,
+      ...rest
+    });
   }
 };
 

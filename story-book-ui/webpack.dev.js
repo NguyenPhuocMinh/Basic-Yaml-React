@@ -1,8 +1,8 @@
-const packageMeta = require('./package.json');
-const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
+const webpack = require('webpack');
+const packageMeta = require('./package.json');
 
 module.exports = {
   mode: 'development',
@@ -11,11 +11,8 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
+        use: ['style-loader', 'css-loader']
+      }
     ]
   },
   plugins: [
@@ -36,8 +33,8 @@ module.exports = {
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true,
-      },
+        minifyURLs: true
+      }
     }),
     new Dotenv(),
     new InterpolateHtmlPlugin({

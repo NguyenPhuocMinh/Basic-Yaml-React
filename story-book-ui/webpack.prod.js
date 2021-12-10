@@ -1,10 +1,10 @@
-const packageMeta = require('./package.json');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
+const packageMeta = require('./package.json');
 
 module.exports = {
   mode: 'production',
@@ -13,11 +13,8 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
-      },
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      }
     ]
   },
   plugins: [
@@ -26,15 +23,11 @@ module.exports = {
     new CleanWebpackPlugin({
       dry: true,
       verbose: true,
-      cleanOnceBeforeBuildPatterns: [
-        '**/*',
-        'build/js',
-        'build/css'
-      ],
+      cleanOnceBeforeBuildPatterns: ['**/*', 'build/js', 'build/css']
     }),
     new MiniCssExtractPlugin({
       filename: './css/index.css',
-      linkType: false,
+      linkType: false
     }),
     new HtmlWebpackPlugin({
       title: packageMeta.name,
@@ -51,12 +44,12 @@ module.exports = {
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true,
-      },
+        minifyURLs: true
+      }
     }),
     new Dotenv(),
     new InterpolateHtmlPlugin({
       PUBLIC_URL: 'public' // can modify `static` to another name or get it from `process`
     })
   ]
-}
+};

@@ -1,34 +1,18 @@
 import React from 'react';
-// material ui
-import {
-  Box,
-  Drawer,
-  Divider,
-  Typography
-} from '@mui/material';
-import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { Box, Drawer, Divider, Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import ButtonGroupHelper from './ButtonGroupHelper';
 // hooks
 import { useTranslate } from '../hooks';
 
-const SettingHelper = ({
-  open,
-  anchor,
-  toggleDrawer,
-  changeTheme
-}) => {
-
+const SettingHelper = ({ open, anchor, toggleDrawer, changeTheme }) => {
   // hooks
   const { translate } = useTranslate();
 
   return (
     <Box>
-      <Drawer
-        anchor={anchor}
-        open={open}
-        onClose={toggleDrawer}
-      >
+      <Drawer anchor={anchor} open={open} onClose={toggleDrawer}>
         <Box
           sx={{
             width: 300,
@@ -38,7 +22,7 @@ const SettingHelper = ({
             padding: 2
           }}
         >
-          <Typography variant='h6'>
+          <Typography variant="h6">
             {translate('appBar.toolbar.setting.title')}
           </Typography>
           <IconButton
@@ -57,7 +41,7 @@ const SettingHelper = ({
         <Box sx={{ padding: '0 16px' }}>
           <Typography
             sx={{ margin: '20px 0px 10px' }}
-            variant='body1'
+            variant="body1"
             gutterBottom
           >
             {translate('appBar.toolbar.setting.mode')}

@@ -4,7 +4,7 @@ const useTimeout = (ms = 0) => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    let timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       setReady(true);
     }, ms);
 

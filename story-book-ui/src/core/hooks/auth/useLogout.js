@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { useHistory } from 'react-router-dom';
 import useAuthProvider, { defaultAuthParams } from './useAuthProvider';
 import { clearState } from '../../store/actions';
-import { useHistory } from 'react-router-dom';
 
 /**
  * Get a callback for calling the authProvider.logout() method,
@@ -27,7 +27,7 @@ const useLogout = () => {
       redirectTo = defaultAuthParams.afterLogout,
       redirectToCurrentLocationAfterLogin = true
     ) =>
-      authProvider.logout(params).then(redirectToFromProvider => {
+      authProvider.logout(params).then((redirectToFromProvider) => {
         dispatch(clearState());
         history.push(redirectTo);
         return redirectToFromProvider;

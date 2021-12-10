@@ -1,22 +1,18 @@
+import { get, isEmpty } from 'lodash';
 import { httpClientAuthProvider } from '../services';
-import constants from '../constants';
-// auth handler
 import {
   refreshTokenHandler,
   removeLogin,
   prepareResponse,
   getProfile
 } from './authHandler';
-// firebase
 import {
   firebaseAuth,
   googleProvider,
   GoogleAuthProvider,
   signInWithPopup
 } from '../firebase';
-// lodash
-import { get, isEmpty } from 'lodash';
-
+import constants from '../constants';
 
 const authProvider = {
   register: async (params) => {
@@ -37,12 +33,16 @@ const authProvider = {
     }
   },
   login: async (params) => {
+    console.log(
+      '🚀 ~ file: AuthProvider.js ~ line 40 ~ login: ~ params',
+      params
+    );
     const { email, password } = params;
 
     try {
       const response = await httpClientAuthProvider.post('/login', {
-        email: email,
-        password: password,
+        email,
+        password
       });
       const data = !isEmpty(response) && response.data;
 
@@ -55,11 +55,11 @@ const authProvider = {
     }
   },
   logout: () => {
-    removeLogin()
+    removeLogin();
     return Promise.resolve();
   },
   checkError: (params) => {
-    const status = params.status;
+    const { status } = params;
     switch (status) {
       case constants.STATUS.UNAUTHORIZED:
         removeLogin();
@@ -105,13 +105,14 @@ const authProvider = {
       return response;
     } catch (err) {
       const credential = GoogleAuthProvider.credentialFromError(err);
-      console.log("🚀 ~ file: AuthProvider.js ~ line 100 ~ loginWithGoogle: ~ credential", credential)
+      console.log(
+        '🚀 ~ file: AuthProvider.js ~ line 100 ~ loginWithGoogle: ~ credential',
+        credential
+      );
       return err.message;
     }
   },
-  getIdentity: () => {
-    return Promise.resolve(getProfile())
-  }
+  getIdentity: () => Promise.resolve(getProfile())
 };
 
 export default authProvider;

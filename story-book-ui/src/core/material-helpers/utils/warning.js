@@ -6,4 +6,3 @@ const warning = (condition, message) => {
 };
 
 export default warning;
-

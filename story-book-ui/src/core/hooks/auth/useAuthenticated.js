@@ -6,7 +6,7 @@ const emptyParams = {};
 const useAuthenticated = (params = emptyParams) => {
   const checkAuth = useCheckAuth();
   useEffect(() => {
-    checkAuth(params).catch(() => { });
+    checkAuth(params).catch(() => {});
   }, [checkAuth, params]);
 };
 

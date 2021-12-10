@@ -10,13 +10,17 @@ export const RESET_NOTIFICATION = 'RESET_NOTIFICATION';
  * @see {@link https://material-ui.com/api/snackbar/|Material ui snackbar component}
  * @see {@link https://material.io/guidelines/components/snackbars-toasts.html|Material ui reference document on snackbar}
  */
-export const showNotification = (message, type = 'info', notificationOptions) => ({
+export const showNotification = (
+  message,
+  type = 'info',
+  notificationOptions
+) => ({
   type: SHOW_NOTIFICATION,
   payload: {
     ...notificationOptions,
     type,
-    message,
-  },
+    message
+  }
 });
 
 showNotification.propTypes = {
@@ -33,9 +37,9 @@ showNotification.propTypes = {
 };
 
 export const hideNotification = () => ({
-  type: HIDE_NOTIFICATION,
+  type: HIDE_NOTIFICATION
 });
 
 export const resetNotification = () => ({
-  type: RESET_NOTIFICATION,
+  type: RESET_NOTIFICATION
 });

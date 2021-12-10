@@ -1,57 +1,50 @@
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import History from '@mui/icons-material/History';
+import HotTub from '@mui/icons-material/HotTub';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
-import HotTub from '@mui/icons-material/HotTub';
-import History from '@mui/icons-material/History';
-import classnames from 'classnames';
 import Title from './TitleHelper';
 // hooks
 import { useTranslate } from '../hooks';
 
-const useStyles = makeStyles(
-  theme => ({
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      [theme.breakpoints.up('md')]: {
-        height: '100%',
-      },
-      [theme.breakpoints.down('sm')]: {
-        height: '100vh',
-        marginTop: '-3em',
-      },
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    [theme.breakpoints.up('md')]: {
+      height: '100%'
     },
-    icon: {
-      width: '9em',
-      height: '9em',
-    },
-    message: {
-      textAlign: 'center',
-      fontFamily: 'Roboto, sans-serif',
-      opacity: 0.5,
-      margin: '0 1em',
-    },
-    toolbar: {
-      textAlign: 'center',
-      marginTop: '2em',
-    },
-  }),
-);
+    [theme.breakpoints.down('sm')]: {
+      height: '100vh',
+      marginTop: '-3em'
+    }
+  },
+  icon: {
+    width: '9em',
+    height: '9em'
+  },
+  message: {
+    textAlign: 'center',
+    fontFamily: 'Roboto, sans-serif',
+    opacity: 0.5,
+    margin: '0 1em'
+  },
+  toolbar: {
+    textAlign: 'center',
+    marginTop: '2em'
+  }
+}));
 
-const NotFoundHelper = props => {
-  const {
-    className,
-    classes: classesOverride,
-    title,
-    ...rest
-  } = props;
+const NotFoundHelper = (props) => {
+  const { className, classes: classesOverride, title, ...rest } = props;
 
   // hooks
   const classes = useStyles(props);
   const { translate } = useTranslate();
 
-  const history = props.history;
+  const { history } = props;
 
   return (
     <div
@@ -89,7 +82,7 @@ NotFoundHelper.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.object,
   title: PropTypes.string,
-  location: PropTypes.object,
+  location: PropTypes.object
 };
 
 export default NotFoundHelper;

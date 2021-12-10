@@ -1,27 +1,27 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import PropTypes from 'prop-types';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 // material ui
 import { Snackbar, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 // hooks
+import { isEmpty } from 'lodash';
+import PropTypes from 'prop-types';
 import { useTranslate } from '../hooks';
 import {
   hideNotification,
   complete,
   undo,
-  undoAbleEventEmitter,
+  undoAbleEventEmitter
 } from '../store/actions';
-import { isEmpty } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   undo: (props) => ({
     color:
       props.type === 'success'
         ? theme.palette.success.contrastText
-        : theme.palette.primary.light,
-  }),
+        : theme.palette.primary.light
+  })
 }));
 
 const TYPES = {
@@ -39,7 +39,7 @@ const createBackgroundSnackBarContent = (theme, type) => {
     case TYPES.ERROR:
       return theme.palette.error.dark;
     default:
-      return 'inherit'
+      return 'inherit';
   }
 };
 
@@ -52,9 +52,9 @@ const createColorSnackBarContent = (theme, type) => {
     case TYPES.ERROR:
       return theme.palette.error.contrastText;
     default:
-      return 'inherit'
+      return 'inherit';
   }
-}
+};
 
 const NotificationHelper = (props) => {
   const {
@@ -70,7 +70,7 @@ const NotificationHelper = (props) => {
   // state
   const [open, setOpen] = useState(false);
   // store
-  const notification = useSelector(state => state.admin.notification);
+  const notification = useSelector((state) => state.admin.notification);
   // hooks
   const dispatch = useDispatch();
   const { translate } = useTranslate();
@@ -115,15 +115,15 @@ const NotificationHelper = (props) => {
         translate(notification.message, notification.messageArgs)
       }
       autoHideDuration={
-        (notification && notification.autoHideDuration) ||
-        autoHideDuration
+        (notification && notification.autoHideDuration) || autoHideDuration
       }
       disableWindowBlurListener={notification && notification.undoable}
       TransitionProps={{ onExited: handleExited }}
       onClose={handleRequestClose}
       ContentProps={{
         sx: {
-          background: (theme) => createBackgroundSnackBarContent(theme, colorType),
+          background: (theme) =>
+            createBackgroundSnackBarContent(theme, colorType),
           color: (theme) => createColorSnackBarContent(theme, colorType),
           whiteSpace: multiLine && 'pre-wrap'
         }

@@ -1,4 +1,4 @@
-import linkToRecord  from './linkToRecord';
+import linkToRecord from './linkToRecord';
 
 const resolveRedirectTo = (redirectTo, basePath, id, data) => {
   if (typeof redirectTo === 'function') {

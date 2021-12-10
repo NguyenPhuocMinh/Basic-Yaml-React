@@ -1,4 +1,5 @@
-## Build UI with react-hooks and latest version material ui, authProvider with google and facebook using firebase v9
+## Build UI
+
 ## Create .env file
 
 ```
@@ -33,6 +34,8 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
+### `npm run test:watch`
+
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
@@ -49,3 +52,18 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `npm run clean`
 
 Remove folder build.\
+Remove folder coverage.
+
+### `npm run lint`
+
+### `npm run lint:fix`
+
+Fix eslint syntax
+
+### `npm run format`
+
+For check prettier for vscode setting.
+
+### `npm run format:fix
+
+For fix prettier for vscode setting.

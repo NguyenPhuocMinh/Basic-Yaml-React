@@ -1,14 +1,14 @@
 // bootstrap
+import AuthContext from './auth/AuthContext';
 import BootStrapContext from './bootstrap/BootStrapContext';
 import BootStrapCoreContext from './bootstrap/BootStrapCoreContext';
 // ui
+import ResourceContext from './resources/ResourceContext';
 import BootStrapCoreUI from '../bootstrap/BootStrapCoreUI';
 import BootStrapUI from '../bootstrap/BootStrapUI';
 import BootStrapUIRouter from '../bootstrap/BootStrapUIRouter';
 // resources
-import ResourceContext from './resources/ResourceContext';
 // auth
-import AuthContext from './auth/AuthContext';
 // hoc
 import WithPermissions from '../hoc/auth/WithPermissions';
 
@@ -20,5 +20,5 @@ export {
   BootStrapUIRouter,
   AuthContext,
   ResourceContext,
-  WithPermissions,
-}
+  WithPermissions
+};

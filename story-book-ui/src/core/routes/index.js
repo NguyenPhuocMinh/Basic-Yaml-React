@@ -1,5 +1,3 @@
 import RoutesWithLayout from './RoutesWithLayout';
 
-export {
-  RoutesWithLayout
-}
+export { RoutesWithLayout };

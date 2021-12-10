@@ -1,8 +1,8 @@
-import { httpClientAuthProvider } from '../services';
 import { get, isEmpty } from 'lodash';
+import { httpClientAuthProvider } from '../services';
 
 export const refreshTokenHandler = () => {
-  var refreshTokenHandlerInterval = setInterval(function () {
+  var refreshTokenHandlerInterval = setInterval(() => {
     if (localStorage.getItem('refresh_token')) {
       if (checkExpiredTime()) {
         refreshToken();
@@ -16,7 +16,8 @@ export const refreshTokenHandler = () => {
 
 const refreshToken = async () => {
   try {
-    const response = await httpClientAuthProvider.post('/refreshToken',
+    const response = await httpClientAuthProvider.post(
+      '/refreshToken',
       {
         refreshToken: localStorage.getItem('refresh_token')
       },
@@ -52,10 +53,11 @@ export const removeLogin = () => {
 };
 
 const checkExpiredTime = () => {
-  let timeFromGetLastToken = Math.floor(
+  const timeFromGetLastToken = Math.floor(
     (Date.now() - localStorage.getItem('expire_at')) / 1000
   );
-  const callRefresh = localStorage.getItem('expires_in') - timeFromGetLastToken < 30;
+  const callRefresh =
+    localStorage.getItem('expires_in') - timeFromGetLastToken < 30;
   return callRefresh;
 };
 
@@ -88,5 +90,5 @@ export const getProfile = () => {
   return {
     fullName,
     photoURL
-  }
+  };
 };

@@ -1,11 +1,5 @@
-import React, {
-  Children,
-  useEffect,
-  cloneElement,
-  createElement,
-} from 'react';
+import React, { Children, useEffect, cloneElement, createElement } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import RoutesWithLayout from '../routes/RoutesWithLayout';
 // hooks
 import {
   useLogout,
@@ -14,9 +8,9 @@ import {
   useSafeSetState,
   useTimeout
 } from '../hooks';
+import RoutesWithLayout from '../routes/RoutesWithLayout';
 
 const BootStrapUIRouter = (props) => {
-
   const getPermissions = useGetPermissions();
   const doLogout = useLogout();
   const { authenticated } = useAuthState();
@@ -35,27 +29,22 @@ const BootStrapUIRouter = (props) => {
       const resolveChildren = props.children;
 
       const childrenFuncResult = resolveChildren(permissions);
-      if ((childrenFuncResult).then) {
-        (childrenFuncResult).then(
-          resolvedChildren =>
-            setComputedChildren(
-              resolvedChildren
-                .filter(child => child)
-                .map(child => ({
-                  ...child,
-                  props: {
-                    ...child.props,
-                    key: child.props.name,
-                  },
-                }))
-            )
-        );
-      } else {
-        setComputedChildren(
-          (childrenFuncResult).filter(
-            child => child
+      if (childrenFuncResult.then) {
+        childrenFuncResult.then((resolvedChildren) =>
+          setComputedChildren(
+            resolvedChildren
+              .filter((child) => child)
+              .map((child) => ({
+                ...child,
+                props: {
+                  ...child.props,
+                  key: child.props.name
+                }
+              }))
           )
         );
+      } else {
+        setComputedChildren(childrenFuncResult.filter((child) => child));
       }
     } catch (error) {
       console.error(error);
@@ -71,7 +60,7 @@ const BootStrapUIRouter = (props) => {
     loading: LoadingPage,
     logout,
     theme,
-    title,
+    title
   } = props;
 
   if (
@@ -82,27 +71,22 @@ const BootStrapUIRouter = (props) => {
     return (
       <Switch>
         {oneSecondHasPassed && (
-          <Route
-            key="loading"
-            render={() => <LoadingPage theme={theme} />}
-          />
+          <Route key="loading" render={() => <LoadingPage theme={theme} />} />
         )}
       </Switch>
     );
   }
 
-  const childrenToRender = (typeof children === 'function'
-    ? computedChildren
-    : children
-  )
+  const childrenToRender =
+    typeof children === 'function' ? computedChildren : children;
 
   return (
     <div>
       <Switch>
         <Route
           path="/"
-          render={(renderProps) => {
-            return createElement(
+          render={(renderProps) =>
+            createElement(
               layout,
               {
                 dashboard,
@@ -116,19 +100,15 @@ const BootStrapUIRouter = (props) => {
                 dashboard={dashboard}
                 title={title}
               >
-                {Children.map(
-                  childrenToRender,
-                  (
-                    child
-                  ) =>
-                    cloneElement(child, {
-                      key: child.props.name,
-                      intent: 'route',
-                    })
+                {Children.map(childrenToRender, (child) =>
+                  cloneElement(child, {
+                    key: child.props.name,
+                    intent: 'route'
+                  })
                 )}
               </RoutesWithLayout>
             )
-          }}
+          }
         />
       </Switch>
     </div>

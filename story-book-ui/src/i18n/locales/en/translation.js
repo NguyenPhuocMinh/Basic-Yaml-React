@@ -7,7 +7,7 @@ const TRANSLATIONS_EN = {
     password: 'Password',
     sign_in: 'Sign in',
     sign_in_error: 'Authentication failed, please retry',
-    logout: 'Logout',
+    logout: 'Logout'
   },
   users: {
     title: 'Story Book React',
@@ -22,7 +22,7 @@ const TRANSLATIONS_EN = {
     texts: {
       or: 'OR',
       not_account: "Don't have an account?",
-      has_account: "You have an account?",
+      has_account: 'You have an account?',
       welcome: 'Welcome To',
       subtitle: 'The Story Book React!',
       description: 'Demo page admin template for Web Applications.'
@@ -32,13 +32,14 @@ const TRANSLATIONS_EN = {
       login: 'Login',
       login_google: 'Login with Google',
       login_facebook: 'Login with Facebook',
-      register_account: 'Create an account',
+      register_account: 'Create an account'
     },
     notification: {
       register: {
         success: 'Register user successfully!',
         duplicate_email: 'Duplicate email',
-        password_confirm_not_match: 'Password confirm not match current password'
+        password_confirm_not_match:
+          'Password confirm not match current password'
       },
       login: {
         success: 'Login successfully!',
@@ -57,7 +58,7 @@ const TRANSLATIONS_EN = {
         github: 'Github of page',
         change_language: 'Change language',
         change_setting: 'Change setting',
-        change_profile: 'Change profile',
+        change_profile: 'Change profile'
       },
       language: {
         en: 'English',
@@ -88,20 +89,21 @@ const TRANSLATIONS_EN = {
       },
       monsters: {
         name: 'Monster'
-      },
+      }
     },
     animes: {
       name: 'Anime'
-    },
+    }
   },
   page: {
     error: {
       name: 'Something went wrong',
-      message: "A client error occurred and your request couldn't be completed.",
+      message:
+        "A client error occurred and your request couldn't be completed.",
       message_text: 'Need help with this error? Try the following',
       message_help: 'Get help from the core team via',
       search_on: 'Search on',
-      community_answers: 'for community answers',
+      community_answers: 'for community answers'
     },
     not_found: {
       name: 'Not found',
@@ -121,7 +123,8 @@ const TRANSLATIONS_EN = {
     maxValue: 'Must be {{max}} or less',
     users: {
       email: 'Email does not match format',
-      password: 'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character',
+      password:
+        'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character',
       password_confirm: 'Password confirm does not match password'
     }
   },
@@ -129,7 +132,7 @@ const TRANSLATIONS_EN = {
     action: {
       undo: 'Undo'
     }
-  },
-}
+  }
+};
 
 export default TRANSLATIONS_EN;

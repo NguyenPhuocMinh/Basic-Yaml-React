@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import BootStrapCoreUI from './BootStrapCoreUI';
 import { NotFoundHelper, LoadingHelper } from '../material-helpers';
 
-const BootStrapUI = props => <BootStrapCoreUI {...props} />;
+const BootStrapUI = (props) => {
+  return <BootStrapCoreUI {...props} />;
+};
 
 BootStrapUI.defaultProps = {
   catchAll: NotFoundHelper,
@@ -16,7 +18,7 @@ BootStrapUI.propTypes = {
   loading: PropTypes.any,
   loginPage: PropTypes.any,
   registerPage: PropTypes.any,
-  logout: PropTypes.any,
+  logout: PropTypes.any
 };
 
 export default BootStrapUI;

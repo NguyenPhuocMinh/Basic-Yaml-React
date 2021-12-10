@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
 // material ui
-import {
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography
-} from '@mui/material'
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import NightsStayIcon from '@mui/icons-material/NightsStay';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import { ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
+// redux
+import { useDispatch } from 'react-redux';
 // hooks
 import { useTranslate } from '../hooks';
 // styles
 import { makeStyles } from '@mui/styles';
-// redux
-import { useDispatch } from 'react-redux';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   selected: {
     color: `${theme.palette.text.primary} !important`,
     borderColor: `${theme.palette.text.primary} !important`
@@ -22,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   rootIcon: {
     marginRight: '8px'
   }
-}))
+}));
 
 const ButtonGroupHelper = ({ changeTheme }) => {
   // hooks
@@ -33,12 +29,12 @@ const ButtonGroupHelper = ({ changeTheme }) => {
   const handleChange = (event, newTheme) => {
     if (newTheme !== null) {
       setTheme(newTheme);
-      localStorage.setItem('theme', newTheme)
+      localStorage.setItem('theme', newTheme);
     }
   };
   // render
   useEffect(() => {
-    dispatch(changeTheme(theme))
+    dispatch(changeTheme(theme));
   }, [theme, dispatch, changeTheme]);
 
   const classes = useStyles({ theme });
@@ -56,7 +52,7 @@ const ButtonGroupHelper = ({ changeTheme }) => {
           borderRadius: '10px',
           textTransform: 'none',
           fontWeight: 700,
-          justifyContent: 'center',
+          justifyContent: 'center'
         }}
         classes={{
           selected: classes.selected
@@ -73,7 +69,7 @@ const ButtonGroupHelper = ({ changeTheme }) => {
           borderRadius: '10px',
           textTransform: 'none',
           fontWeight: 700,
-          justifyContent: 'center',
+          justifyContent: 'center'
         }}
         value="dark"
         classes={{

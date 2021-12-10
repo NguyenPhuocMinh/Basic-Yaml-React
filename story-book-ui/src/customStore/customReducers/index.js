@@ -1,9 +1,9 @@
-import themeReducer from './themeReducer';
 import languageReducer from './languageReducer';
+import themeReducer from './themeReducer';
 
 const customReducers = {
   theme: themeReducer,
-  language: languageReducer,
+  language: languageReducer
 };
 
 export default customReducers;

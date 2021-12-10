@@ -1,8 +1,8 @@
+import { isEmpty } from 'lodash';
 import { useEffect } from 'react';
 
 import useGetPermissions from './useGetPermissions';
 import useSafeSetState from '../utils/useSafeSetState';
-import { isEmpty } from 'lodash';
 
 const emptyParams = {};
 
@@ -28,7 +28,7 @@ const emptyParams = {};
 const usePermissions = (params = emptyParams) => {
   const [state, setState] = useSafeSetState({
     loading: true,
-    loaded: false,
+    loaded: false
   });
   const getPermissions = useGetPermissions();
   useEffect(() => {
@@ -42,10 +42,10 @@ const usePermissions = (params = emptyParams) => {
         setState({
           loading: false,
           loaded: true,
-          error: err,
+          error: err
         });
       }
-    }
+    };
     getPermissionAccess();
   }, [getPermissions, params, setState]);
   return state;

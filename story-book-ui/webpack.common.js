@@ -16,43 +16,48 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader'
-        ]
+        use: ['babel-loader']
       },
       {
         test: /\.html$/i,
-        loader: "html-loader",
+        loader: 'html-loader',
         options: {
           sources: {
             list: [
               {
-                tag: "link",
-                attribute: "href",
-                type: "src",
+                tag: 'link',
+                attribute: 'href',
+                type: 'src'
               }
-            ],
+            ]
           }
         }
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
         exclude: /node_modules/,
-        use: ['file-loader?name=[name].[ext]'] // ?name=[name].[ext] is only necessary to preserve the original file name
+        use: ['file-loader?name=[name].[ext]']
       }
     ]
   },
   resolve: {
-    extensions: [
-      '.js',
-      '.css'
-    ],
+    extensions: ['*', '.js', '.jsx', '.css'],
+    alias: {
+      // for jest test
+      config$: 'jest.config.js'
+    },
+    modules: [
+      'node_modules',
+      'bower_components',
+      'shared',
+      '/shared/vendor/modules'
+    ]
   },
   performance: {
     // This option allows you to whitelist services that are allowed to access the dev server.
     hints: 'error',
     maxAssetSize: 20000000000,
-    maxEntrypointSize: 40000000000,
+    maxEntrypointSize: 40000000000
   },
   stats: {
     env: true,
@@ -99,7 +104,7 @@ module.exports = {
     // show build timing in summary
     version: true,
     // show webpack version in summary
-    hash: true,
+    hash: true
     // show build hash in summary
   },
   devServer: {
@@ -117,22 +122,22 @@ module.exports = {
     historyApiFallback: true,
     // With a backend on localhost:7979, you can use this to enable proxying:
     proxy: {
-      '/rest/api': 'http://0.0.0.0:7979',
+      '/rest/api': 'http://0.0.0.0:7979'
     },
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.join(__dirname, 'public')
     },
     client: {
       logging: 'info',
       // Shows a full-screen overlay in the browser when there are compiler errors or warnings.
       overlay: {
         errors: true,
-        warnings: false,
+        warnings: false
       },
       // Prints compilation progress in percentage in the browser.
       progress: true,
       // Tells dev-server the number of times it should try to reconnect the client. When true it will try to reconnect unlimited times.
-      reconnect: 3,
-    },
-  },
-}
+      reconnect: 3
+    }
+  }
+};

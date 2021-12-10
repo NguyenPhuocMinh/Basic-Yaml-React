@@ -5,13 +5,12 @@ import auth from './auth';
 /**
  * @param {Object} dataProvider A Data Provider function
  */
-const bootstrapSaga = ( authProvider = null) => {
-  return function* admin() {
+const bootstrapSaga = (authProvider = null) =>
+  function* admin() {
     yield all([
-      auth(authProvider)(),
+      auth(authProvider)()
       // redirection(),
     ]);
   };
-}
 
 export default bootstrapSaga;

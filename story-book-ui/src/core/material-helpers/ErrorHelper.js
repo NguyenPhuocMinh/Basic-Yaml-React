@@ -2,67 +2,59 @@ import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 // material ui
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import History from '@mui/icons-material/History';
+import ErrorIcon from '@mui/icons-material/Report';
 import {
   Button,
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Typography,
+  Typography
 } from '@mui/material';
-import ErrorIcon from '@mui/icons-material/Report';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import History from '@mui/icons-material/History';
+import { makeStyles } from '@mui/styles';
 import TitleHelper from './TitleHelper';
 // hooks
 import { useTranslate } from '../hooks';
-import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles(
-  theme => ({
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      [theme.breakpoints.down('sm')]: {
-        padding: '1em',
-      },
-      fontFamily: 'Roboto, sans-serif',
-      opacity: 0.5,
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      padding: '1em'
     },
-    title: {
-      display: 'flex',
-      alignItems: 'center',
-    },
-    icon: {
-      width: '2em',
-      height: '2em',
-      marginRight: '0.5em',
-    },
-    panel: {
-      marginTop: '1em',
-      maxWidth: '60em',
-    },
-    panelDetails: {
-      whiteSpace: 'pre-wrap',
-    },
-    toolbar: {
-      marginTop: '2em',
-    },
-    advice: {
-      marginTop: '2em',
-    },
-  }),
-);
+    fontFamily: 'Roboto, sans-serif',
+    opacity: 0.5
+  },
+  title: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  icon: {
+    width: '2em',
+    height: '2em',
+    marginRight: '0.5em'
+  },
+  panel: {
+    marginTop: '1em',
+    maxWidth: '60em'
+  },
+  panelDetails: {
+    whiteSpace: 'pre-wrap'
+  },
+  toolbar: {
+    marginTop: '2em'
+  },
+  advice: {
+    marginTop: '2em'
+  }
+}));
 
 const ErrorHelper = (props) => {
-  const {
-    error,
-    resetErrorBoundary,
-    className,
-    title,
-    ...rest
-  } = props;
+  const { error, resetErrorBoundary, className, title, ...rest } = props;
 
   // hooks
   const classes = useStyles(props);
@@ -82,13 +74,11 @@ const ErrorHelper = (props) => {
             <Accordion className={classes.panel}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 {translate(error.toString(), {
-                  _: error.toString(),
+                  _: error.toString()
                 })}
               </AccordionSummary>
               {error && (
-                <AccordionDetails
-                  className={classes.panelDetails}
-                >
+                <AccordionDetails className={classes.panelDetails}>
                   {error.stack}
                 </AccordionDetails>
               )}
@@ -103,7 +93,8 @@ const ErrorHelper = (props) => {
                     {translate('page.error.search_on')}{' '}
                     <a href="https://stackoverflow.com/questions/tagged/react">
                       StackOverflow
-                    </a>{' '} {translate('page.error.community_answers')}
+                    </a>{' '}
+                    {translate('page.error.community_answers')}
                   </li>
                   <li>
                     {translate('page.error.message_help')}{' '}
@@ -132,7 +123,7 @@ const ErrorHelper = (props) => {
 
 ErrorHelper.propTypes = {
   error: PropTypes.object.isRequired,
-  title: PropTypes.any,
+  title: PropTypes.any
 };
 
 export default ErrorHelper;

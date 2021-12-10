@@ -5,7 +5,7 @@ const NavBarHelper = styled('div')(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
+  ...theme.mixins.toolbar
 }));
 
 export default NavBarHelper;

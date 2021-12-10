@@ -1,34 +1,32 @@
-import React, { forwardRef, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { createIcon } from '../../dynamic';
-import NavLinkRef from './NavLinkRef';
-import { useLocation } from 'react-router-dom';
-// material ui
 import {
   Tooltip,
   ListItemButton,
   ListItemIcon,
   ListItemText
-} from "@mui/material";
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { forwardRef, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
+// material ui
+import NavLinkRef from './NavLinkRef';
+import { createIcon } from '../../dynamic';
 
-const useStyles = makeStyles(
-  theme => ({
-    root: {
-      color: theme.palette.common.text,
-      '&:hover': {
-        color: theme.palette.text.primary,
-        borderRadius: 10
-      }
-    },
-    selected: {
-      background: `${theme.palette.common.selected} !important`,
+const useStyles = makeStyles((theme) => ({
+  root: {
+    color: theme.palette.common.text,
+    '&:hover': {
       color: theme.palette.text.primary,
       borderRadius: 10
     }
-  }),
-);
+  },
+  selected: {
+    background: `${theme.palette.common.selected} !important`,
+    color: theme.palette.text.primary,
+    borderRadius: 10
+  }
+}));
 
 const MenuItemSingleHelper = forwardRef((props, ref) => {
   const {
@@ -45,10 +43,7 @@ const MenuItemSingleHelper = forwardRef((props, ref) => {
   const classes = useStyles(props);
   const location = useLocation();
   // func
-  const handleMenuTap = useCallback(
-    e => onClick && onClick(e),
-    [onClick]
-  );
+  const handleMenuTap = useCallback((e) => onClick && onClick(e), [onClick]);
 
   return (
     <Tooltip title={primaryText} placement="right" {...tooltipProps}>
@@ -61,7 +56,7 @@ const MenuItemSingleHelper = forwardRef((props, ref) => {
         onClick={handleMenuTap}
         sx={{ px: 3 }}
         classes={{
-          selected: classes.selected,
+          selected: classes.selected
         }}
         selected={props.to.pathname === location.pathname}
       >
@@ -74,13 +69,13 @@ const MenuItemSingleHelper = forwardRef((props, ref) => {
             variant: 'subtitle2',
             fontWeight: 'medium',
             lineHeight: '1.5',
-            mb: '2px',
+            mb: '2px'
           }}
           sx={{ my: 0 }}
         />
       </ListItemButton>
     </Tooltip>
-  )
+  );
 });
 
 MenuItemSingleHelper.propTypes = {
@@ -90,7 +85,7 @@ MenuItemSingleHelper.propTypes = {
   onClick: PropTypes.func,
   primaryText: PropTypes.node,
   staticContext: PropTypes.object,
-  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
 };
 
 export default MenuItemSingleHelper;

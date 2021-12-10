@@ -4,10 +4,6 @@ const vampires = [
   'ADMIN_VAMPIRE_EDIT'
 ];
 
-const ancients = [
-  ...vampires
-];
+const ancients = [...vampires];
 
-export {
-  ancients
-}
+export { ancients, vampires };

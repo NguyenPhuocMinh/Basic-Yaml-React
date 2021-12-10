@@ -1,20 +1,16 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router } from 'react-router-dom';
+// history
+import { createHashHistory } from 'history';
 // redux
 import { Provider, ReactReduxContext } from 'react-redux';
 // i18n
 import { I18nextProvider } from 'react-i18next';
-// history
-import { createHashHistory } from 'history';
-// context
-import AuthContext from '../auth/AuthContext';
 // convert
-import {
-  convertLegacyAuthProvider,
-} from '../../convert';
-// store
+import { convertLegacyAuthProvider } from '../../convert';
 import rootStore from '../../store/rootStore';
-import { BrowserRouter as Router } from 'react-router-dom';
+import AuthContext from '../auth/AuthContext';
 
 const BootStrapCoreContext = (props) => {
   const {
@@ -24,7 +20,7 @@ const BootStrapCoreContext = (props) => {
     history,
     customReducers,
     customSagas,
-    initialState,
+    initialState
   } = props;
 
   const reduxIsAlreadyInitialized = !!useContext(ReactReduxContext);
@@ -36,38 +32,33 @@ const BootStrapCoreContext = (props) => {
 
   const finalHistory = history || createHashHistory();
 
-  const renderCore = () => {
-    return (
-      <AuthContext.Provider value={finalAuthProvider}>
-        <I18nextProvider i18nProvider={i18nProvider}>
-          <Router history={finalHistory}>
-            {children}
-          </Router>
-        </I18nextProvider>
-      </AuthContext.Provider>
-    );
-  };
+  const renderCore = () => (
+    <AuthContext.Provider value={finalAuthProvider}>
+      <I18nextProvider i18nProvider={i18nProvider}>
+        <Router history={finalHistory}>{children}</Router>
+      </I18nextProvider>
+    </AuthContext.Provider>
+  );
 
   const [store] = useState(() =>
     !reduxIsAlreadyInitialized
       ? rootStore({
-        authProvider: finalAuthProvider,
-        customReducers,
-        customSagas,
-        initialState,
-        history: finalHistory,
-      })
+          authProvider: finalAuthProvider,
+          customReducers,
+          customSagas,
+          initialState,
+          history: finalHistory
+        })
       : undefined
   );
 
   if (reduxIsAlreadyInitialized) {
     if (!history) {
-      throw new Error(`Missing history prop`);
+      throw new Error('Missing history prop');
     }
     return renderCore();
-  } else {
-    return <Provider store={store}>{renderCore()}</Provider>;
   }
+  return <Provider store={store}>{renderCore()}</Provider>;
 };
 
 BootStrapCoreContext.propTypes = {
@@ -75,7 +66,7 @@ BootStrapCoreContext.propTypes = {
   history: PropTypes.any,
   customReducers: PropTypes.any,
   customSagas: PropTypes.any,
-  initialState: PropTypes.object,
-}
+  initialState: PropTypes.object
+};
 
 export default BootStrapCoreContext;

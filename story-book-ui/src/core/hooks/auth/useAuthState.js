@@ -33,13 +33,18 @@ const useAuthState = (params = emptyParams) => {
     loading: true,
     loaded: false,
     authenticated: true, // optimistic
-    token: null,
+    token: null
   });
   const checkAuth = useCheckAuth();
   useEffect(() => {
     checkAuth(params, false)
       .then(({ accessToken }) => {
-        setState({ loading: false, loaded: true, authenticated: true, token: accessToken })
+        setState({
+          loading: false,
+          loaded: true,
+          authenticated: true,
+          token: accessToken
+        });
       })
       .catch(() =>
         setState({ loading: false, loaded: true, authenticated: false })

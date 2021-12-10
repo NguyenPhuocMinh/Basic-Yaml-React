@@ -2,22 +2,22 @@ import React from 'react';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 // material ui
+import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import Typography from '@mui/material/Typography';
 // country flag
+import { makeStyles } from '@mui/styles';
 import ReactCountryFlag from 'react-country-flag';
 // hooks
-import { useTranslate } from '../hooks';
 import { languages } from './utils';
-import { makeStyles } from '@mui/styles';
+import { useTranslate } from '../hooks';
 
 const useStyles = makeStyles({
   selected: {
-    background: 'rgb(0 0 0 / 12%) !important',
-  },
-})
+    background: 'rgb(0 0 0 / 12%) !important'
+  }
+});
 
 const PopupHelper = ({ open, anchorEl, handleClose, changeLanguage }) => {
   // hooks
@@ -31,7 +31,7 @@ const PopupHelper = ({ open, anchorEl, handleClose, changeLanguage }) => {
     dispatch(changeLanguage(language));
   };
   // store
-  const language = useSelector(state => state.language);
+  const language = useSelector((state) => state.language);
 
   return (
     <Menu
@@ -49,7 +49,7 @@ const PopupHelper = ({ open, anchorEl, handleClose, changeLanguage }) => {
             width: 32,
             height: 32,
             ml: -0.5,
-            mr: 1,
+            mr: 1
           },
           '&:before': {
             content: '""',
@@ -61,43 +61,41 @@ const PopupHelper = ({ open, anchorEl, handleClose, changeLanguage }) => {
             height: 10,
             bgcolor: 'background.paper',
             transform: 'translateY(-50%) rotate(45deg)',
-            zIndex: 0,
-          },
-        },
+            zIndex: 0
+          }
+        }
       }}
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-      {languages.map((item, index) => {
-        return (
-          <MenuItem
-            key={index}
-            onClick={() => handleChangeLanguage(item.name)}
-            selected={language === item.name}
-            classes={{
-              selected: classes.selected
-            }}
-            disabled={language === item.name}
-          >
-            <ListItemIcon>
-              <ReactCountryFlag
-                svg
-                countryCode={item.countryCode}
-                style={{
-                  fontSize: '1.25rem',
-                  width: '1em',
-                  height: '1em',
-                }}
-              />
-            </ListItemIcon>
-            <Typography variant='caption'>
-              {translate(`appBar.toolbar.language.${item.name}`)}
-            </Typography>
-          </MenuItem>
-        )
-      })}
+      {languages.map((item, index) => (
+        <MenuItem
+          key={index}
+          onClick={() => handleChangeLanguage(item.name)}
+          selected={language === item.name}
+          classes={{
+            selected: classes.selected
+          }}
+          disabled={language === item.name}
+        >
+          <ListItemIcon>
+            <ReactCountryFlag
+              svg
+              countryCode={item.countryCode}
+              style={{
+                fontSize: '1.25rem',
+                width: '1em',
+                height: '1em'
+              }}
+            />
+          </ListItemIcon>
+          <Typography variant="caption">
+            {translate(`appBar.toolbar.language.${item.name}`)}
+          </Typography>
+        </MenuItem>
+      ))}
     </Menu>
-  )
+  );
 };
 
 export default PopupHelper;

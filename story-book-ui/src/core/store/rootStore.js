@@ -1,18 +1,14 @@
-import {
-  createStore,
-  compose,
-  applyMiddleware
-} from 'redux';
-// middleware
-import thunkMiddleware from 'redux-thunk';
-import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
-import { all, fork } from 'redux-saga/effects';
-// reducers
-import rootReducer from './reducers';
-import { CLEAR_STATE } from './actions';
-import { bootStrapSaga } from '../sideEffect';
+import { createStore, compose, applyMiddleware } from 'redux';
+// middleware
 import { createLogger } from 'redux-logger';
+import createSagaMiddleware from 'redux-saga';
+import { all, fork } from 'redux-saga/effects';
+import thunkMiddleware from 'redux-thunk';
+// reducers
+import { CLEAR_STATE } from './actions';
+import rootReducer from './reducers';
+import { bootStrapSaga } from '../sideEffect';
 
 const loggerMiddleware = createLogger();
 
@@ -22,20 +18,21 @@ const rootStore = ({
   history,
   customReducers = {},
   customSagas = [],
-  initialState,
+  initialState
 }) => {
   const appReducer = rootReducer(customReducers, history);
 
   const resettableAppReducer = (state, action) =>
     appReducer(
       action.type !== CLEAR_STATE
-        ? state : {
-          ...state,
-          admin: {
-            ...state.admin,
-            resources: {},
+        ? state
+        : {
+            ...state,
+            admin: {
+              ...state.admin,
+              resources: {}
+            }
           },
-        },
       action
     );
   // const saga = function* rootSaga() {
@@ -44,7 +41,7 @@ const rootStore = ({
   //   );
   // };
   // const sagaMiddleware = createSagaMiddleware();
-  const typedWindow = typeof window !== 'undefined' && (window);
+  const typedWindow = typeof window !== 'undefined' && window;
 
   const composeEnhancers =
     (process.env.NODE_ENV === 'development' &&
@@ -52,7 +49,7 @@ const rootStore = ({
       typedWindow.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
       typedWindow.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         trace: true,
-        traceLimit: 25,
+        traceLimit: 25
       })) ||
     compose;
 

@@ -1,5 +1,3 @@
 import TextFieldHelper from './TextFieldHelper';
 
-export {
-  TextFieldHelper
-}
+export { TextFieldHelper };

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TextField } from '@mui/material';
+
 // hooks
 import { useTranslate } from '../../hooks';
 // material ui
-import { TextField } from '@mui/material';
 
-const TextInputHelper = props => {
+const TextInputHelper = (props) => {
   const {
     label,
     name,
@@ -39,17 +40,17 @@ const TextInputHelper = props => {
       value={values[name]}
       required={required}
       error={errors[name] && touched[name]}
-      helperText={(errors[name] && touched[name]) && errors[name]}
+      helperText={errors[name] && touched[name] && errors[name]}
       multiline={multiline}
       rows={rows}
       className={className}
       InputProps={{
-        autoComplete: "off",
-        startAdornment: startAdornment,
-        endAdornment: endAdornment
+        autoComplete: 'off',
+        startAdornment,
+        endAdornment
       }}
     />
-  )
+  );
 };
 
 TextInputHelper.propTypes = {
