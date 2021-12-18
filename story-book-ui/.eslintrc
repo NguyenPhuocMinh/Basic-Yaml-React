@@ -26,7 +26,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 13,
+    "ecmaVersion": 2021,
     "sourceType": "module"
   },
   "plugins": [
@@ -188,6 +188,7 @@
     "standard/array-bracket-even-spacing": "off",
     "yoda": "error",
     "implicit-arrow-linebreak": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "no-use-before-define": "off"
   }
 }

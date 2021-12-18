@@ -1,8 +1,17 @@
 import { get, isEmpty } from 'lodash';
 import { httpClientAuthProvider } from '../services';
 
+const checkExpiredTime = () => {
+  const timeFromGetLastToken = Math.floor(
+    (Date.now() - localStorage.getItem('expire_at')) / 1000
+  );
+  const callRefresh =
+    localStorage.getItem('expires_in') - timeFromGetLastToken < 30;
+  return callRefresh;
+};
+
 export const refreshTokenHandler = () => {
-  var refreshTokenHandlerInterval = setInterval(() => {
+  const refreshTokenHandlerInterval = setInterval(() => {
     if (localStorage.getItem('refresh_token')) {
       if (checkExpiredTime()) {
         refreshToken();
@@ -50,15 +59,6 @@ export const removeLogin = () => {
   localStorage.removeItem('emailUser');
   localStorage.removeItem('fullName');
   localStorage.removeItem('photoURL');
-};
-
-const checkExpiredTime = () => {
-  const timeFromGetLastToken = Math.floor(
-    (Date.now() - localStorage.getItem('expire_at')) / 1000
-  );
-  const callRefresh =
-    localStorage.getItem('expires_in') - timeFromGetLastToken < 30;
-  return callRefresh;
 };
 
 export const prepareResponse = (data = {}) => {

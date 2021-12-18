@@ -27,9 +27,9 @@ const App = () => {
       layout={Layout}
       history={history}
     >
-      {resources.map((resource, index) => (
+      {resources.map((resource) => (
         <ResourceCore
-          key={index}
+          key={resource.name}
           name={resource.name}
           component={resource.component}
         />

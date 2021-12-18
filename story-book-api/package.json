@@ -18,6 +18,7 @@
   ],
   "author": "Minh Nguyễn",
   "license": "ISC",
+  "homepage": "https://github.com/NguyenPhuocMinh/story-book",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "winext": "git+https://github.com/NguyenPhuocMinh/winext.git#25185ce0c1a07e66849526446c0bc4361a3e0085",

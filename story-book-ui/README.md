@@ -64,6 +64,6 @@ Fix eslint syntax
 
 For check prettier for vscode setting.
 
-### `npm run format:fix
+### `npm run format:fix`
 
 For fix prettier for vscode setting.
