@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField } from '@mui/material';
+import defaultProps from '../utils'
 
 // hooks
 import { useTranslate } from '../../hooks';
@@ -51,6 +52,12 @@ const TextInputHelper = (props) => {
       }}
     />
   );
+};
+
+TextInputHelper.defaultProps = {
+  label: 'TextInput',
+  name: 'TextInput',
+  margin: 'none'
 };
 
 TextInputHelper.propTypes = {

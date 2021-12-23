@@ -38,7 +38,7 @@ module.exports = {
   projects: [
     {
       displayName: 'tests',
-      testMatch: ['<rootDir>/src/tests/**/*.js']
+      testMatch: ['<rootDir>/src/test/**/*.js']
     },
     {
       runner: 'jest-runner-eslint',

@@ -20,7 +20,9 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
     "plugin:testing-library/react",
-    "plugin:promise/recommended"
+    "plugin:promise/recommended",
+    "plugin:import/typescript",
+    "plugin:import/recommended"
   ],
   "parserOptions": {
     "ecmaFeatures": {

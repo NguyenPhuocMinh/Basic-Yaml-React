@@ -10,19 +10,6 @@ const checkExpiredTime = () => {
   return callRefresh;
 };
 
-export const refreshTokenHandler = () => {
-  const refreshTokenHandlerInterval = setInterval(() => {
-    if (localStorage.getItem('refresh_token')) {
-      if (checkExpiredTime()) {
-        refreshToken();
-      }
-    } else {
-      removeLogin();
-      clearInterval(refreshTokenHandlerInterval);
-    }
-  }, 1000);
-};
-
 const refreshToken = async () => {
   try {
     const response = await httpClientAuthProvider.post(
@@ -46,6 +33,19 @@ const refreshToken = async () => {
     await removeLogin();
     return Promise.reject(err);
   }
+};
+
+export const refreshTokenHandler = () => {
+  const refreshTokenHandlerInterval = setInterval(() => {
+    if (localStorage.getItem('refresh_token')) {
+      if (checkExpiredTime()) {
+        refreshToken();
+      }
+    } else {
+      removeLogin();
+      clearInterval(refreshTokenHandlerInterval);
+    }
+  }, 1000);
 };
 
 export const removeLogin = () => {
