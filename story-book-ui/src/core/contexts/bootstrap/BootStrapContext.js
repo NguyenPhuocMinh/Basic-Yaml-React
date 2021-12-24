@@ -1,3 +1,4 @@
+import React from 'react';
 import BootStrapCoreContext from './BootStrapCoreContext';
 
 const BootStrapContext = (props) => {

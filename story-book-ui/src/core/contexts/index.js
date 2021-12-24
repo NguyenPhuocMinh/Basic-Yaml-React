@@ -1,6 +1,6 @@
 // bootstrap
 import AuthContext from './auth/AuthContext';
-// import BootStrapContext from './bootstrap/BootStrapContext';
+import BootStrapContext from './bootstrap/BootStrapContext';
 import BootStrapCoreContext from './bootstrap/BootStrapCoreContext';
 // ui
 import BootStrapCoreUI from '../bootstrap/BootStrapCoreUI';
@@ -12,7 +12,7 @@ import ResourceContext from './resources/ResourceContext';
 import WithPermissions from '../hoc/auth/WithPermissions';
 
 export {
-  // BootStrapContext,
+  BootStrapContext,
   BootStrapCoreContext,
   BootStrapCoreUI,
   BootStrapUI,

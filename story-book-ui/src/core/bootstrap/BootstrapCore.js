@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BootStrapCoreContext, BootStrapUI } from '../contexts';
+import {BootStrapContext,  BootStrapCoreContext, BootStrapUI } from '../contexts';
 
 const BootStrapCore = (props) => {
   const {
@@ -23,7 +23,7 @@ const BootStrapCore = (props) => {
   } = props;
 
   return (
-    <BootStrapCoreContext
+    <BootStrapContext
       authProvider={authProvider}
       i18nProvider={i18nProvider}
       history={history}
@@ -44,7 +44,7 @@ const BootStrapCore = (props) => {
       >
         {children}
       </BootStrapUI>
-    </BootStrapCoreContext>
+    </BootStrapContext>
   );
 };
 
