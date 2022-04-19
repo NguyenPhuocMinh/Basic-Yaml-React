@@ -4,7 +4,7 @@ const HomeService = require('../../services/web-admin-home');
 
 module.exports = [
   {
-    pathName: '/',
+    pathName: '/home',
     method: 'GET',
     methodName: 'home',
     serviceName: HomeService

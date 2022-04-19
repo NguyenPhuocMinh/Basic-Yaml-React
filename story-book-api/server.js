@@ -7,12 +7,13 @@ const app = winext.initializer(sandbox,
   [
     'winext-logger',
     'winext-error-manager',
-    'winext-repository',
     'winext-authorization',
-    'winext-runserver',
+    'winext-repo-store',
+    'winext-redis-store',
     'winext-mapping-store',
     'winext-service-registry',
-    'winext-api-gateway'
+    'winext-api-gateway',
+    'winext-runserver',
   ],
   {
     mongo: 'story-book-model',
@@ -22,7 +23,7 @@ const app = winext.initializer(sandbox,
 if (require.main === module) {
   app.server.start();
   const stopped = function () {
-    app.server.close();
+    app.server.stop();
   };
   process.on('SIGINT', stopped);
   process.on('SIGQUIT', stopped);

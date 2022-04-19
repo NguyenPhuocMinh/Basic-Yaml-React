@@ -3,16 +3,10 @@
 function HomeService(params = {}) {
   /**
    * @swagger
-   * /rest/api/:
+   * /rest/api/v1/home:
    *   get:
    *      summary: Home Page
    *      description: Welcome to home admin
-   *      parameters:
-   *        - in: header
-   *          name: X-Access-Token
-   *          schema:
-   *            type: string
-   *          required: true
    *      responses:
    *        200:
    *         description: Success
@@ -24,7 +18,7 @@ function HomeService(params = {}) {
    * @param {*} opts
    */
   this.home = function (args, opts = {}) {
-    return { message: 'Welcome to home user admin page' };
+    return { message: 'HomeMessage' };
   };
 }
 

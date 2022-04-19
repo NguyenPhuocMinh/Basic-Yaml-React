@@ -1,9 +1,6 @@
 'use strict';
 
-const winext = require('winext');
-const lodash = winext.require('lodash');
 const UserService = require('../../services/web-admin-user');
-const { get } = lodash;
 
 module.exports = [
   // user register
@@ -20,17 +17,18 @@ module.exports = [
           email: req.body.email,
           password: req.body.password,
           passwordConfirm: req.body.passwordConfirm,
-          permissions: req.body.permissions
+          permissions: req.body.permissions,
         };
-      }
+      },
     },
     output: {
       transform: function (response) {
         return {
-          body: response
+          body: response,
+          message: response.message,
         };
-      }
-    }
+      },
+    },
   },
   // user login
   {
@@ -43,20 +41,18 @@ module.exports = [
         return {
           email: req.body.email,
           password: req.body.password,
-          rememberMe: req.body.rememberMe
+          rememberMe: req.body.rememberMe,
         };
-      }
+      },
     },
     output: {
       transform: function (response) {
         return {
-          headers: {
-            'X-AccessToken': get(response, 'token')
-          },
-          body: response
+          body: response,
+          message: response.message,
         };
-      }
-    }
+      },
+    },
   },
   // refreshTokens
   {
@@ -67,19 +63,17 @@ module.exports = [
     input: {
       transform: function (req) {
         return {
-          refreshToken: req.body.refreshToken
+          refreshToken: req.body.refreshToken,
         };
-      }
+      },
     },
     output: {
       transform: function (response) {
         return {
-          headers: {
-            'X-AccessToken': get(response, 'token')
-          },
-          body: response
+          body: response,
+          message: response.message,
         };
-      }
-    }
-  }
+      },
+    },
+  },
 ];

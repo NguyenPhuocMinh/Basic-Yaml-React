@@ -9,7 +9,7 @@ const dataSecret = require('../../config/data/secret');
 const { isEmpty, get, isEqual } = lodash;
 
 function UserService(params = {}) {
-  const { dataStore, errorManager } = params;
+  const { dataMongoStore, errorManager } = params;
 
   /**
    * @swagger
@@ -64,11 +64,11 @@ function UserService(params = {}) {
     try {
       loggerFactory.debug(`function registerUser begin`, {
         requestId: `${requestId}`,
-        args: args
+        args: args,
       });
 
       // check duplicate email
-      const isDuplicateEmail = await checkDuplicateEmail(args.email, dataStore);
+      const isDuplicateEmail = await checkDuplicateEmail(args.email, dataMongoStore);
 
       if (isDuplicateEmail) {
         throw errorManager.errorBuilder('DuplicateEmailRegister');
@@ -91,18 +91,18 @@ function UserService(params = {}) {
 
       if (!isEqual(password, passwordConfirm)) {
         throw errorManager.errorBuilder('PasswordConfirmNotMatch');
-      };
+      }
 
       const salt = await bcrypt.genSalt(10);
       args.password = await bcrypt.hash(password, salt);
       args.passwordConfirm = await bcrypt.hash(passwordConfirm, salt);
 
-      await dataStore.create({
+      await dataMongoStore.create({
         type: 'UserModel',
-        data: args
+        data: args,
       });
 
-      return { message: 'Register user successfully!' };
+      return { message: 'RegisterUserMessage' };
     } catch (err) {
       loggerFactory.error(`function registerUsers has error : ${err}`, { requestId: `${requestId}` });
       return Promise.reject(err);
@@ -142,18 +142,25 @@ function UserService(params = {}) {
     const { loggerFactory, requestId } = opts;
 
     try {
-      loggerFactory.debug('function loginUser', {
+      loggerFactory.debug('function loginUser start', {
         requestId: `${requestId}`,
-        args: args
+        args: args,
       });
 
+      if (isEmpty(args.email)) {
+        throw errorManager.errorBuilder('PasswordRequired');
+      }
+
+      if (isEmpty(args.password)) {
+        throw errorManager.errorBuilder('EmailRequired');
+      }
       /**
        * get user login
        */
-      const userLogin = await dataStore.findOne({
+      const userLogin = await dataMongoStore.findOne({
         type: 'UserModel',
         filter: {
-          email: args.email
+          email: args.email,
         },
       });
 
@@ -171,40 +178,49 @@ function UserService(params = {}) {
        * create token
        */
       const accessToken = jwt.sign({ userLogin }, dataSecret.tokenSecret, {
-        expiresIn: dataSecret.tokenLife
+        expiresIn: dataSecret.tokenLife,
       });
       /**
        * create refresh token
        */
       const refreshToken = jwt.sign({ userLogin }, dataSecret.refreshTokenSecret, {
-        expiresIn: dataSecret.refreshTokenLife
+        expiresIn: dataSecret.refreshTokenLife,
       });
 
       loggerFactory.debug('function loginUser end', {
         requestId: `${requestId}`,
         args: {
           accessToken,
-          refreshToken
-        }
+          refreshToken,
+        },
       });
       // authentication
       const auth = {
         access_token: accessToken,
         refresh_token: refreshToken,
         expires_in: dataSecret.tokenLife,
-        permissions: userLogin.permissions
+        permissions: userLogin.permissions,
       };
       // user info
       const user = {
         emailUser: userLogin.email,
         fullName: `${userLogin.lastName} ${userLogin.firstName}`,
-        photoURL: userLogin.photoURL
+        photoURL: userLogin.photoURL,
       };
-      return { auth, user };
+
+      const res = {
+        result: {
+          auth: auth,
+          user: user,
+        },
+        message: 'LoginUserMessage',
+      };
+
+      return res;
     } catch (err) {
       loggerFactory.error(`function loginUser has error`, {
         requestId: `${requestId}`,
-        args: { err }
+        args: err,
       });
       return Promise.reject(err);
     }
@@ -245,7 +261,7 @@ function UserService(params = {}) {
     try {
       loggerFactory.debug(`function refreshTokenHandler start with args`, {
         requestId: `${requestId}`,
-        args: { refreshToken }
+        args: { refreshToken },
       });
 
       if (isEmpty(refreshToken)) {
@@ -263,13 +279,13 @@ function UserService(params = {}) {
            * post new token
            */
           newAccessToken = jwt.sign({ userLogin }, dataSecret.tokenSecret, {
-            expiresIn: dataSecret.tokenLife
+            expiresIn: dataSecret.tokenLife,
           });
           /**
            * post new refresh token
            */
           newRefreshToken = jwt.sign({ userLogin }, dataSecret.refreshTokenSecret, {
-            expiresIn: dataSecret.refreshTokenLife
+            expiresIn: dataSecret.refreshTokenLife,
           });
         } else {
           throw new Error(err.message);
@@ -280,8 +296,8 @@ function UserService(params = {}) {
         requestId: `${requestId}`,
         args: {
           newAccessToken,
-          refreshToken
-        }
+          refreshToken,
+        },
       });
       // authentication
       const auth = {
@@ -294,34 +310,43 @@ function UserService(params = {}) {
       const user = {
         emailUser: userLogin.email,
         fullName: `${userLogin.lastName} ${userLogin.firstName}`,
-        photoURL: userLogin.pictureURL
+        photoURL: userLogin.pictureURL,
       };
-      return { auth, user };
+
+      const res = {
+        result: {
+          auth: auth,
+          user: user,
+        },
+        message: 'RefreshTokenMessage',
+      };
+
+      return res;
     } catch (err) {
       loggerFactory.error(`function refreshToken has error`, {
         requestId: `${requestId}`,
-        args: { err }
+        args: { err },
       });
       return Promise.reject(err);
     }
   };
 }
 
-async function checkDuplicateEmail(email, dataStore) {
-  const isDuplicate = await dataStore.count({
+async function checkDuplicateEmail(email, dataMongoStore) {
+  const isDuplicate = await dataMongoStore.count({
     type: 'UserModel',
     filter: {
-      email: email
-    }
+      email: email,
+    },
   });
 
   return isDuplicate >= 1 ? true : false;
 }
 
 UserService.reference = {
-  dataStore: 'app-repository/dataStore',
-  dataSequelize: 'app-repository/dataSequelize',
-  errorManager: 'app-error-manager/errorManager'
+  dataMongoStore: 'app-repo-store/dataMongoStore',
+  dataSequelizeStore: 'app-repo-store/dataSequelizeStore',
+  errorManager: 'app-error-manager/errorManager',
 };
 
 exports = module.exports = new UserService();

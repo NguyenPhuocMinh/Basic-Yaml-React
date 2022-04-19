@@ -7,12 +7,6 @@ function ContactService(params = {}) {
    *   get:
    *      summary: Get Contact
    *      description: Welcome to contact
-   *      parameters:
-   *        - in: header
-   *          name: X-Access-Token
-   *          schema:
-   *            type: string
-   *          required: true
    *      responses:
    *        200:
    *         description: Success
@@ -24,7 +18,7 @@ function ContactService(params = {}) {
    * @param {*} opts
    */
   this.contact = async function (args, opts = {}) {
-    return { message: 'Hello NodeJs' };
+    return { message: 'ContactMessage' };
   };
 }
 

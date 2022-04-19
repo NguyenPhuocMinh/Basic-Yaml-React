@@ -1,0 +1,404 @@
+openapi: 3.0.1
+info:
+  title: REST API Standard Template
+  summary: REST API docs
+  description: This is a sample REST API has been produced to allow for easy access to a standard method for documenting a REST API
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: API Docs
+    url: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.1.md
+    email: support@example.com
+  version: 1.0.0
+servers:
+  - url: "{protocol}://{host}:{port}{basePath}"
+    description: The deployment API Server
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: http
+      host:
+        default: localhost
+      port:
+        default: "7979"
+      basePath:
+        default: /rest/api/v1
+## paths
+paths:
+  /auth/register:
+    post:
+      tags:
+        - user
+      summary: User register
+      description: Register new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userRegister"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonResponse"
+        400:
+          $ref: "#/components/responses/NotFound"
+        404:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/ServerError"
+  /auth/login:
+    post:
+      tags:
+        - user
+      summary: User login
+      description: Login with user on db
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userLogin"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonResponse"
+        400:
+          $ref: "#/components/responses/NotFound"
+        404:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/ServerError"
+  /auth/refreshToken:
+    post:
+      tags:
+        - user
+      summary: User refresh token
+      description: Refresh token when token expired
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userRefreshToken"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonResponse"
+        400:
+          $ref: "#/components/responses/NotFound"
+        404:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/ServerError"
+  /home:
+    get:
+      summary: Home page
+      description: Welcome to home admin
+      parameters:
+        - name: x-access-token
+          in: header
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonResponse"
+        400:
+          $ref: "#/components/responses/NotFound"
+        401:
+          $ref: "#/components/responses/UnAuthorization"
+        404:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/ServerError"
+  /contacts:
+    get:
+      get:
+      summary: Contact page
+      description: Welcome to contact page
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonResponse"
+        400:
+          $ref: "#/components/responses/NotFound"
+        401:
+          $ref: "#/components/responses/UnAuthorization"
+        404:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/ServerError"
+  /boards:
+    get:
+      tags:
+        - board
+      summary: Get all boards
+      description: Return list boards
+      parameters:
+        - name: _start
+          in: query
+          schema:
+            type: integer
+            default: 0
+          description: The number of items to skip before starting to collect the result
+        - name: _end
+          in: query
+          schema:
+            type: integer
+            default: 1000
+          description: The numbers of items to return
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonResponse"
+        400:
+          $ref: "#/components/responses/NotFound"
+        401:
+          $ref: "#/components/responses/UnAuthorization"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        404:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/ServerError"
+    post:
+      tags:
+        - board
+      summary: Create board
+      description: Create new board
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/board"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonResponse"
+        400:
+          $ref: "#/components/responses/NotFound"
+        401:
+          $ref: "#/components/responses/UnAuthorization"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        404:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/ServerError"
+  /boards/{id}:
+    get:
+      tags:
+        - board
+      summary: Get board by id
+      description: Return item board
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Id of board
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonResponse"
+        400:
+          $ref: "#/components/responses/NotFound"
+        401:
+          $ref: "#/components/responses/UnAuthorization"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        404:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/ServerError"
+    put:
+      tags:
+        - board
+      summary: Update board by id
+      description: Return result update board
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Id of board
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/commonResponse"
+        400:
+          $ref: "#/components/responses/NotFound"
+        401:
+          $ref: "#/components/responses/UnAuthorization"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        404:
+          $ref: "#/components/responses/BadRequest"
+        500:
+          $ref: "#/components/responses/ServerError"
+## components
+components:
+  # security
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      name: Authorization
+      in: header
+  # responses   
+  responses:
+    ServerError:
+      description: ServerError
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/commonResponse"
+    BadRequest:
+      description: BadRequest
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/commonResponse"
+    NotFound:
+      description: NotFound
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/commonResponse"
+    UnAuthorization:
+      description: UnAuthorization
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/commonResponse"
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/commonResponse"
+  # schemas
+  schemas:
+    commonResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties: {}
+        method:
+          type: string
+          example: GET/POST/PUT/DELETE/...
+        endpoint:
+          type: string
+          example: /api/v1/...
+        name:
+          type: string
+          example: Return name message
+        message:
+          type: string
+          example: Return message
+        returnCode:
+          type: integer
+          example: 200/400/500/...
+        statusCode:
+          type: integer
+          example: 200/400/500/...
+
+    userRegister:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - password
+        - passwordConfirm
+      properties:
+        firstName:
+          type: string
+          default: John
+        lastName:
+          type: string
+          default: Doe
+        email:
+          type: string
+          example: email@gmail.com
+        password:
+          type: string
+          default: 123
+        passwordConfirm:
+          type: string
+          default: 123
+        permissions:
+          type: array
+          item:
+            type: string
+            default: ["USER"]
+            example: ["USER"]
+
+    userLogin:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          example: email@gmail.com
+        password:
+          type: string
+          example: 123
+
+    userRefreshToken:
+      type: object
+      required:
+        - refreshToken
+      properties:
+        refreshToken:
+          type: string
+          example: token
+
+    board:
+      type: object
+      required:
+        - name
+        - description
+        - title
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        title:
+          type: string
+        registerDate:
+          type: date

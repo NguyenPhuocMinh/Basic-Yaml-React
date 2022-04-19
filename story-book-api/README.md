@@ -36,12 +36,16 @@
 #Server
 HOST=0.0.0.0
 PORT=7979
-CONTEXT_PATH=/rest/api
+CONTEXT_PATH=/rest/api/v1
 
 #Mongoose
 MONGO_HOST=localhost if use docker then change localhost to YourIpAddress
 MONGO_PORT=27017
 MONGO_DATABASE=DATABASE_NAME
+
+#REDIS
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
 
 #CONSUL_INIT
 CONSUL_HOST=IP adress
