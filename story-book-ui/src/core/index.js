@@ -1,5 +1,5 @@
 export * from './bootstrap';
-export * from './resource';
+export * from './material-helpers/resource';
 export * from './contexts';
 export * from './material-helpers';
 export * from './utils';

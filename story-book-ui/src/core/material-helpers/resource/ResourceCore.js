@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // router dom
 import { Route, Switch } from 'react-router-dom';
-import { ResourceContext } from '../contexts';
-import { WithPermissions } from '../hoc';
+import { ResourceContext } from '../../contexts';
+import { WithPermissions } from '../../hoc';
 
 const ResourceCore = (props) => {
   const { name, component, match } = props;

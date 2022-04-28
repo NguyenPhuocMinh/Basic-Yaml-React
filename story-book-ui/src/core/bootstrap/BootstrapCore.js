@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BootStrapContext,  BootStrapCoreContext, BootStrapUI } from '../contexts';
+import {
+  BootStrapContext,
+  BootStrapCoreContext,
+  BootStrapUI
+} from '../contexts';
 
 const BootStrapCore = (props) => {
   const {

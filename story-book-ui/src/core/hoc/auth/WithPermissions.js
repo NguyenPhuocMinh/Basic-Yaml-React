@@ -3,6 +3,7 @@ import { useAuthenticated, useGetPermissions } from '../../hooks';
 import { isEmpty } from 'lodash';
 
 const WithPermissions = (props) => {
+console.log("🚀 ~ file: WithPermissions.js ~ line 6 ~ WithPermissions ~ props", props)
   const { authParams, children, render, component, ...rest } = props;
 
   const [permissions, setPermissions] = useState(null);

@@ -33,12 +33,7 @@ const authProvider = {
     }
   },
   login: async (params) => {
-    console.log(
-      '🚀 ~ file: AuthProvider.js ~ line 40 ~ login: ~ params',
-      params
-    );
     const { email, password } = params;
-
     try {
       const response = await httpClientAuthProvider.post('/login', {
         email,
@@ -105,10 +100,6 @@ const authProvider = {
       return response;
     } catch (err) {
       const credential = GoogleAuthProvider.credentialFromError(err);
-      console.log(
-        '🚀 ~ file: AuthProvider.js ~ line 100 ~ loginWithGoogle: ~ credential',
-        credential
-      );
       return err.message;
     }
   },

@@ -8,6 +8,7 @@ import { LayoutHelper } from '../core';
 import { lightTheme, darkTheme } from '../themes';
 
 const Layout = (props) => {
+  console.log('🚀 ~ file: Layout.js ~ line 11 ~ Layout ~ props', props);
   // store
   const themeStore = useSelector((state) => state.theme);
   const theme = themeStore === 'light' ? lightTheme : darkTheme;

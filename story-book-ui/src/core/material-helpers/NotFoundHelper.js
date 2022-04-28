@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NotFoundHelper = (props) => {
+console.log("🚀 ~ file: NotFoundHelper.js ~ line 42 ~ NotFoundHelper ~ props", props)
   const { className, classes: classesOverride, title, ...rest } = props;
 
   // hooks

@@ -11,6 +11,10 @@ import {
 import RoutesWithLayout from '../routes/RoutesWithLayout';
 
 const BootStrapUIRouter = (props) => {
+  console.log(
+    '🚀 ~ file: BootStrapUIRouter.js ~ line 14 ~ BootStrapUIRouter ~ props',
+    props
+  );
   const getPermissions = useGetPermissions();
   const doLogout = useLogout();
   const { authenticated } = useAuthState();
@@ -19,6 +23,7 @@ const BootStrapUIRouter = (props) => {
 
   useEffect(() => {
     if (typeof props.children === 'function') {
+      console.log("XXXX")
       initializeResources();
     }
   }, [authenticated]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -26,6 +31,10 @@ const BootStrapUIRouter = (props) => {
   const initializeResources = async () => {
     try {
       const permissions = await getPermissions();
+      console.log(
+        '🚀 ~ file: BootStrapUIRouter.js ~ line 30 ~ initializeResources ~ permissions',
+        permissions
+      );
       const resolveChildren = props.children;
 
       const childrenFuncResult = resolveChildren(permissions);
@@ -47,6 +56,7 @@ const BootStrapUIRouter = (props) => {
         setComputedChildren(childrenFuncResult.filter((child) => child));
       }
     } catch (error) {
+      console.log("🚀 ~ file: BootStrapUIRouter.js ~ line 59 ~ initializeResources ~ error", error)
       console.error(error);
       doLogout();
     }
@@ -85,8 +95,9 @@ const BootStrapUIRouter = (props) => {
       <Switch>
         <Route
           path="/"
-          render={(renderProps) =>
-            createElement(
+          render={(renderProps) => {
+          console.log("🚀 ~ file: BootStrapUIRouter.js ~ line 120 ~ BootStrapUIRouter ~ renderProps", renderProps)
+            return createElement(
               layout,
               {
                 dashboard,
@@ -107,8 +118,8 @@ const BootStrapUIRouter = (props) => {
                   })
                 )}
               </RoutesWithLayout>
-            )
-          }
+            );
+          }}
         />
       </Switch>
     </div>

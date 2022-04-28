@@ -28,6 +28,8 @@ const useLogout = () => {
       redirectToCurrentLocationAfterLogin = true
     ) =>
       authProvider.logout(params).then((redirectToFromProvider) => {
+        console.log("🚀 ~ file: useLogout.js ~ line 31 ~ authProvider.logout ~ redirectToFromProvider", redirectToFromProvider)
+      console.log("🚀 ~ file: useLogout.js ~ line 28 ~ useLogout ~ redirectTo", redirectTo)
         dispatch(clearState());
         history.push(redirectTo);
         return redirectToFromProvider;

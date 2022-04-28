@@ -7,12 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "mongoose"
+    "mongoose",
+    "winext-repo-store"
   ],
   "author": "Minh Nguyễn",
   "license": "ISC",
   "dependencies": {
-    "winext-repository": "git+https://github.com/NguyenPhuocMinh/winext-repository.git#724270c3d7908d0c854790caa96f3153ab2c6996"
+    "winext-repo-store": "git+https://github.com/NguyenPhuocMinh/winext-repo-store.git#ff9787de1d707e35b5f8318d254ea4f142935c47"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

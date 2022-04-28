@@ -65,6 +65,7 @@ const rootStore = ({
       )
     )
   );
+  console.log("🚀 ~ file: rootStore.js ~ line 68 ~ store", store)
   // sagaMiddleware.run(saga);
   return store;
 };

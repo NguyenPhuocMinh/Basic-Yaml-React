@@ -1,5 +1,8 @@
 'use strict';
 
+const mongoose = require('winext-repo-store').mongoose;
+const Schema = mongoose.Schema;
+
 module.exports = {
   name: 'UserModel',
   attributes: {
@@ -9,6 +12,7 @@ module.exports = {
     password: { type: String },
     passwordConfirm: { type: String },
     permissions: [String],
+    roles: { type: Schema.Types.ObjectId, ref: 'RoleModel' },
     rememberMe: { type: Boolean, default: false },
     photoURL: { type: String },
     //filter
@@ -20,6 +24,6 @@ module.exports = {
     updatedBy: { type: String },
   },
   options: {
-    collection: 'users'
-  }
+    collection: 'users',
+  },
 };

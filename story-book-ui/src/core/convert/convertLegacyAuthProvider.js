@@ -1,7 +1,14 @@
 import { AUTH_TYPES } from '../store/constants';
 
 const convertLegacyAuthProvider = (legacyAuthProvider) => {
-  const authProvider = (...args) => legacyAuthProvider.apply(null, args);
+  console.log(
+    '🚀 ~ file: convertLegacyAuthProvider.js ~ line 4 ~ convertLegacyAuthProvider ~ legacyAuthProvider',
+    legacyAuthProvider
+  );
+  const authProvider = (...args) => {
+  console.log("🚀 ~ file: convertLegacyAuthProvider.js ~ line 9 ~ authProvider ~ args", ...args)
+    return legacyAuthProvider.apply(null, args);
+  };
 
   authProvider.register = (params) =>
     legacyAuthProvider(AUTH_TYPES.AUTH_REGISTER, params);

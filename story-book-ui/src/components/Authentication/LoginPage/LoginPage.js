@@ -43,6 +43,7 @@ const useStyles = makeStyles({
 });
 
 const LoginPage = (props) => {
+console.log("🚀 ~ file: LoginPage.js ~ line 46 ~ LoginPage ~ props", props)
   const { history, location } = props;
 
   // state
@@ -64,6 +65,7 @@ const LoginPage = (props) => {
   };
 
   const locationState = location.state;
+  console.log("🚀 ~ file: LoginPage.js ~ line 68 ~ LoginPage ~ locationState", locationState)
   const nextPathName = locationState && locationState.nextPathname;
   const nextSearch = locationState && locationState.nextSearch;
 
