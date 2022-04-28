@@ -17,6 +17,7 @@ const app = winext.initializer(sandbox,
   ],
   {
     mongo: 'story-book-model',
+    graphql: 'story-book-model-graphql'
   }
 );
 

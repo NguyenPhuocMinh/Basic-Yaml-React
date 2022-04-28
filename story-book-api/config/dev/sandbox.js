@@ -112,6 +112,12 @@ module.exports = {
           password: process.env.MONGO_PASSWORD,
           name: process.env.MONGO_DATABASE,
         },
+        graphql: {
+          enable: true, // enable true for start
+          path: process.env.GRAPHQL_PATH,
+          enableGraphiql: true,
+          mocks: false, // true for default mocking || see https://www.apollographql.com/docs/apollo-server/testing/mocking
+        },
       },
       winext_authorization: {
         enable: true, // enable false for disable check token
@@ -124,6 +130,7 @@ module.exports = {
       winext_runserver: {
         enable: false, // enable false for local
         contextPath: contextPath,
+        pathDocs: process.env.DOCS_PATH,
         port: process.env.SERVER_PORT,
         host: process.env.SERVER_HOST,
         dialectSwagger: 'YAML', // OPTIONS || YAML

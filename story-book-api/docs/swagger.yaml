@@ -127,7 +127,6 @@ paths:
           $ref: "#/components/responses/ServerError"
   /contacts:
     get:
-      get:
       summary: Contact page
       description: Welcome to contact page
       responses:

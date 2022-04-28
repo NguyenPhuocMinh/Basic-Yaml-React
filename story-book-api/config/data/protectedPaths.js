@@ -16,7 +16,7 @@ module.exports = [
     enable: true,
     method: 'GET',
     pathName: '/boards/:id',
-    permission: permissions.ADMIN.BOARDS.EDIT,
+    permission: permissions.ADMIN.BOARDS.GET_ID,
   },
   {
     enable: true,

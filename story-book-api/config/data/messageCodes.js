@@ -17,12 +17,12 @@ const messageCodes = {
     statusCode: 200,
   },
   RegisterUserMessage: {
-    message: 'User Login Success',
+    message: 'User register successfully!',
     returnCode: 1004,
     statusCode: 200,
   },
   LoginUserMessage: {
-    message: 'User Login Success',
+    message: 'User login successfully!',
     returnCode: 1005,
     statusCode: 200,
   },

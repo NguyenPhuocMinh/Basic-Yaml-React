@@ -22,17 +22,18 @@
   "homepage": "https://github.com/NguyenPhuocMinh/story-book",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "story-book-model": "git+https://github.com/NguyenPhuocMinh/story-book-model.git#a647de0bfb44e8b72613cde512339de510a2f36b",
-    "winext": "git+https://github.com/NguyenPhuocMinh/winext.git#022d27cb301f3b0d8c9c5b0ee0943202af1f5871",
-    "winext-api-gateway": "git+https://github.com/NguyenPhuocMinh/winext-api-gateway.git#5a0f9b2130dcb016f2072a52957a873690c6cd05",
-    "winext-authorization": "git+https://github.com/NguyenPhuocMinh/winext-authorization.git#1bf2ca08c0b3e2532b8714df162237ea61f8c19b",
-    "winext-error-manager": "git+https://github.com/NguyenPhuocMinh/winext-error-manager.git#d4fccddd86e28bfc508cf05868331d7d2cae861a",
+    "winext": "git+https://github.com/NguyenPhuocMinh/winext.git#9d51f82ec0b867cbd072ec2a05031653d2c25ba3",
+    "winext-api-gateway": "git+https://github.com/NguyenPhuocMinh/winext-api-gateway.git#4e9c8323a924cc121eb95dbc41ac91861fbab130",
+    "winext-authorization": "git+https://github.com/NguyenPhuocMinh/winext-authorization.git#9ca589754336d656d246e7ec6167fe17d078fad5",
+    "winext-error-manager": "git+https://github.com/NguyenPhuocMinh/winext-error-manager.git#d45ced24449366fc763e481bb30dd8a93f5ad559",
     "winext-logger": "git+https://github.com/NguyenPhuocMinh/winext-logger.git#cb06dedeff6a94ab58f7aec48205e0f05acf1fe9",
-    "winext-mapping-store": "git+https://github.com/NguyenPhuocMinh/winext-mapping-store.git#3d48649de58f23c4607da132ed82fe9cd2f79646",
-    "winext-redis-store": "git+https://github.com/NguyenPhuocMinh/winext-redis-store.git#85497c70b750ece0b96750bec6fa4012f82f93fd",
-    "winext-repo-store": "git+https://github.com/NguyenPhuocMinh/winext-repo-store.git#041530704ca61180aa51aeb6fde8c4d6e1204c1e",
-    "winext-runserver": "git+https://github.com/NguyenPhuocMinh/winext-runserver.git#8f22389c9d574878881d1d55d69d41bc0f96a2ab",
-    "winext-service-registry": "git+https://github.com/NguyenPhuocMinh/winext-service-registry.git#da0fb5206bc7bc28fd85681303464b179c854bbf"
+    "winext-mapping-store": "git+https://github.com/NguyenPhuocMinh/winext-mapping-store.git#7436d09ab7fbbf6505aba214908da1a467a86cc2",
+    "winext-redis-store": "git+https://github.com/NguyenPhuocMinh/winext-redis-store.git#1dc388c9ce8c81d1fbaeab40cf88b9838de224df",
+    "winext-repo-store": "git+https://github.com/NguyenPhuocMinh/winext-repo-store.git#ff9787de1d707e35b5f8318d254ea4f142935c47",
+    "winext-runserver": "git+https://github.com/NguyenPhuocMinh/winext-runserver.git#14c291899ae8d505fc1522a3a6db73d81345821a",
+    "winext-service-registry": "git+https://github.com/NguyenPhuocMinh/winext-service-registry.git#f4e5cec6da0dfa3173638e6a94a97a9b0ba35057",
+    "story-book-model": "git+https://github.com/NguyenPhuocMinh/story-book-model.git#dab8e112244f96be237617fc88bc88a53c68fa93",
+    "story-book-model-graphql": "git+https://github.com/NguyenPhuocMinh/story-book-model-graphql.git#28adb8e98a6330a61759111ec36b49fb1e783294"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
