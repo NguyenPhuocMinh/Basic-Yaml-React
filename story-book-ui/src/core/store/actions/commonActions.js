@@ -4,6 +4,7 @@ export const CLEAR_STATE = 'CLEAR_STATE';
 export const CHANGE_SIDE_BAR = 'CHANGE_SIDE_BAR';
 export const COMPLETE = 'COMPLETE';
 export const UNDO = 'UNDO';
+export const BREAD_CRUMB = 'BREAD_CRUMB';
 
 export const clearState = () => ({
   type: CLEAR_STATE
@@ -20,6 +21,11 @@ export const complete = () => ({
 
 export const undo = () => ({
   type: UNDO
+});
+
+export const changeBreadCrumbs = (breadcrumb) => ({
+  type: BREAD_CRUMB,
+  payload: breadcrumb
 });
 
 export const undoAbleEventEmitter = new EventEmitter();

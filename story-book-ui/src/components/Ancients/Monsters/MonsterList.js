@@ -96,16 +96,16 @@ const MonsterList = (props) => {
   const isWorkflow = tabName === 'Workflow';
   const isTicket = tabName === 'Ticket';
 
-  useEffect(() => {
-    switch (true) {
-      case isWorkflow:
-        dispatch(getWorkflowRelatedAction());
-        break;
-      case isTicket:
-        dispatch(getTicketRelatedAction());
-        break;
-    }
-  }, [tabName]);
+  // useEffect(() => {
+  //   switch (true) {
+  //     case isWorkflow:
+  //       dispatch(getWorkflowRelatedAction());
+  //       break;
+  //     case isTicket:
+  //       dispatch(getTicketRelatedAction());
+  //       break;
+  //   }
+  // }, [tabName]);
 
   // stores
   const { ticketsRelated, workflowsRelated } = useSelector((state) => {
@@ -115,22 +115,22 @@ const MonsterList = (props) => {
     };
   });
 
-  useEffect(() => {
-    switch (true) {
-      case isWorkflow:
-        if (!isEmpty(workflows)) {
-          setRows(dataWorkflow);
-          setLoading(isLoadingWorkflows);
-        }
-        break;
-      case isTicket:
-        if (!isEmpty(tickets)) {
-          setRows(dataTicket);
-          setLoading(isLoadingTicket);
-        }
-        break;
-    }
-  }, [tabName]);
+  // useEffect(() => {
+  //   switch (true) {
+  //     case isWorkflow:
+  //       if (!isEmpty(workflows)) {
+  //         setRows(dataWorkflow);
+  //         setLoading(isLoadingWorkflows);
+  //       }
+  //       break;
+  //     case isTicket:
+  //       if (!isEmpty(tickets)) {
+  //         setRows(dataTicket);
+  //         setLoading(isLoadingTicket);
+  //       }
+  //       break;
+  //   }
+  // }, [tabName]);
 
   const columns = renderColumns({ tabName, classes });
 
@@ -170,7 +170,7 @@ const MonsterList = (props) => {
         return (
           <TabPanel value={tabName} index={tab} key={index.toString()}>
             <div style={{ height: '500px', width: '100%' }}>
-              <DataGridPro
+              {/* <DataGridPro
                 loading={loading}
                 rows={handleDataRow(rows)}
                 columns={columns}
@@ -201,7 +201,7 @@ const MonsterList = (props) => {
                     : []
                 }
                 onSelectionModelChange={handleSelectionModelChange}
-              />
+              /> */}
             </div>
           </TabPanel>
         );

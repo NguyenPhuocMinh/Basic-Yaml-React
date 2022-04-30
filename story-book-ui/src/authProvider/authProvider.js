@@ -39,9 +39,10 @@ const authProvider = {
         email,
         password
       });
-      const data = !isEmpty(response) && response.data;
+      console.log("🚀 ~ file: authProvider.js ~ line 42 ~ login: ~ response", response)
+      const result = !isEmpty(response) && get(response, 'data.data.result');
 
-      await prepareResponse(data);
+      await prepareResponse(result);
       await refreshTokenHandler();
 
       return response;

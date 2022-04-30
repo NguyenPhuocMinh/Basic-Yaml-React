@@ -22,6 +22,7 @@ import ErrorHelper from './ErrorHelper';
 import LoadingHelper from './LoadingHelper';
 import MainHelper from './MainHelper';
 import NavBarHelper from './NavBarHelper';
+import BreadCrumbHelper from './BreadCrumbHelper';
 // hooks
 import { useTranslate } from '../hooks';
 import { ThemeProvider } from '@mui/material/styles';
@@ -35,7 +36,8 @@ const LayoutHelper = (props) => {
     menu,
     title,
     drawerWidth,
-    children
+    children,
+    routes
   } = props;
 
   // hooks
@@ -98,6 +100,7 @@ const LayoutHelper = (props) => {
             </Drawer>
             <MainHelper open={open} drawerwidth={drawerWidth}>
               <NavBarHelper style={{ display: 'flex' }} />
+              <BreadCrumbHelper routes={routes} />
               {children}
             </MainHelper>
           </Box>

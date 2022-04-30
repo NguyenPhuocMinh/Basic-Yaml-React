@@ -132,7 +132,23 @@ const TRANSLATIONS_EN = {
     action: {
       undo: 'Undo'
     }
-  }
+  },
+  routes: {
+    dashBoard: {
+      label: 'DashBoard'
+    },
+    ancient: {
+      label: 'Ancient',
+      child: {
+        vampire: {
+          label: 'Vampire',
+        },
+        monster: {
+          label: 'Monster',
+        },
+      },
+    },
+  },
 };
 
 export default TRANSLATIONS_EN;

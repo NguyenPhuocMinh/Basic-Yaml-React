@@ -93,41 +93,41 @@ const MonsterDialog = (props) => {
   }, [tabName]);
 
   // check data has in list view
-  useEffect(() => {
-    if (isWorkflow) {
-      setSelectionModels((prev) => {
-        if (!isEmpty(practiceContextsByRelated)) {
-          const filterDataSelections = rows.filter((r) => {
-            return some(practiceContextsByRelated, (s) => s.id === r.id);
-          });
-          const selectionWF = selectionModels.workflows;
-          const idsSelectionWf = !isEmpty(selectionWF)
-            ? selectionWF
-            : filterDataSelections.map((e) => e.id);
-          prev.workflows = [...idsSelectionWf];
-        }
-        return { ...prev };
-      });
-    }
-    if (isTicket) {
-      setSelectionModels((prev) => {
-        if (!isEmpty(dataTicket)) {
-          const filterDataSelections = rows.filter((r) => {
-            return some(dataTicket, (s) => s.id === r.id);
-          });
-          const selectionTK = selectionModels.tickets;
-          const idsSelectionTk = !isEmpty(selectionTK)
-            ? selectionTK
-            : filterDataSelections.map((e) => e.id);
-          prev.tickets = [...idsSelectionTk];
-        }
-        return { ...prev };
-      });
-    }
-  }, [
-    tabName,
-    rows,
-  ]);
+  // useEffect(() => {
+  //   if (isWorkflow) {
+  //     setSelectionModels((prev) => {
+  //       if (!isEmpty(practiceContextsByRelated)) {
+  //         const filterDataSelections = rows.filter((r) => {
+  //           return some(practiceContextsByRelated, (s) => s.id === r.id);
+  //         });
+  //         const selectionWF = selectionModels.workflows;
+  //         const idsSelectionWf = !isEmpty(selectionWF)
+  //           ? selectionWF
+  //           : filterDataSelections.map((e) => e.id);
+  //         prev.workflows = [...idsSelectionWf];
+  //       }
+  //       return { ...prev };
+  //     });
+  //   }
+  //   if (isTicket) {
+  //     setSelectionModels((prev) => {
+  //       if (!isEmpty(dataTicket)) {
+  //         const filterDataSelections = rows.filter((r) => {
+  //           return some(dataTicket, (s) => s.id === r.id);
+  //         });
+  //         const selectionTK = selectionModels.tickets;
+  //         const idsSelectionTk = !isEmpty(selectionTK)
+  //           ? selectionTK
+  //           : filterDataSelections.map((e) => e.id);
+  //         prev.tickets = [...idsSelectionTk];
+  //       }
+  //       return { ...prev };
+  //     });
+  //   }
+  // }, [
+  //   tabName,
+  //   rows,
+  // ]);
 
   const columns = renderColumns({ tabName, classes });
 
@@ -180,24 +180,24 @@ const MonsterDialog = (props) => {
     }
   };
 
-  const handleSelections = () => {
-    switch (true) {
-      case isWorkflow:
-        if (!isEmpty(selectionModelsTemp.workflows)) {
-          return selectionModelsTemp.workflows;
-        } else {
-          return selectionModels.workflows;
-        }
-      case isTicket:
-        if (!isEmpty(selectionModelsTemp.tickets)) {
-          return selectionModelsTemp.tickets;
-        } else {
-          return selectionModels.tickets;
-        }
-      default:
-        return [];
-    }
-  };
+  // const handleSelections = () => {
+  //   switch (true) {
+  //     case isWorkflow:
+  //       if (!isEmpty(selectionModelsTemp.workflows)) {
+  //         return selectionModelsTemp.workflows;
+  //       } else {
+  //         return selectionModels.workflows;
+  //       }
+  //     case isTicket:
+  //       if (!isEmpty(selectionModelsTemp.tickets)) {
+  //         return selectionModelsTemp.tickets;
+  //       } else {
+  //         return selectionModels.tickets;
+  //       }
+  //     default:
+  //       return [];
+  //   }
+  // };
 
   return (
     <BootstrapDialog
@@ -225,7 +225,7 @@ const MonsterDialog = (props) => {
             components={{
               Toolbar: GridToolbar
             }}
-            selectionModel={handleSelections()}
+            // selectionModel={handleSelections()}
             onSelectionModelChange={handleSelectionModelChange}
             isRowSelectable={handleRowSelectable}
           />

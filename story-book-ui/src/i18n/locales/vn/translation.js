@@ -133,7 +133,23 @@ const TRANSLATIONS_VN = {
     action: {
       undo: 'Hoàn tác'
     }
-  }
+  },
+  routes: {
+    dashBoard: {
+      label: 'Bảng điều khiển',
+    },
+    ancient: {
+      label: 'Cổ đại',
+      child: {
+        vampire: {
+          label: 'Ma cà rồng',
+        },
+        monster: {
+          label: 'Quái vật',
+        },
+      },
+    },
+  },
 };
 
 export default TRANSLATIONS_VN;

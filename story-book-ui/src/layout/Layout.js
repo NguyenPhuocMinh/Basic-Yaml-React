@@ -6,9 +6,9 @@ import Menu from './Menu';
 import { LayoutHelper } from '../core';
 // themes
 import { lightTheme, darkTheme } from '../themes';
+import routes from '../routes';
 
 const Layout = (props) => {
-  console.log('🚀 ~ file: Layout.js ~ line 11 ~ Layout ~ props', props);
   // store
   const themeStore = useSelector((state) => state.theme);
   const theme = themeStore === 'light' ? lightTheme : darkTheme;
@@ -20,6 +20,7 @@ const Layout = (props) => {
       menu={Menu}
       theme={theme}
       drawerWidth={300}
+      routes={routes}
     />
   );
 };

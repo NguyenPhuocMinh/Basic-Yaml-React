@@ -5,17 +5,9 @@ import WithPermissions from '../hoc/auth/WithPermissions';
 const defaultAuthParams = { route: 'dashboard' };
 
 const RoutesWithLayout = (props) => {
-  console.log(
-    '🚀 ~ file: RoutesWithLayout.js ~ line 8 ~ RoutesWithLayout ~ props',
-    props
-  );
   const { catchAll, children, dashboard, title } = props;
   const childrenAsArray = Children.toArray(children);
   const firstChild = childrenAsArray.length > 0 ? childrenAsArray[0] : null;
-  console.log(
-    '🚀 ~ file: RoutesWithLayout.js ~ line 15 ~ RoutesWithLayout ~ firstChild',
-    firstChild
-  );
 
   return (
     <Switch>
@@ -36,10 +28,6 @@ const RoutesWithLayout = (props) => {
           exact
           path="/"
           render={(routeProps) => {
-            console.log(
-              '🚀 ~ file: RoutesWithLayout.js ~ line 43 ~ RoutesWithLayout ~ routeProps',
-              routeProps
-            );
             return (
               <WithPermissions
                 authParams={defaultAuthParams}
@@ -58,10 +46,6 @@ const RoutesWithLayout = (props) => {
       ) : null}
       <Route
         render={(routeProps) => {
-          console.log(
-            '🚀 ~ file: RoutesWithLayout.js ~ line 66 ~ RoutesWithLayout ~ routeProps',
-            routeProps
-          );
           return createElement(catchAll, {
             ...routeProps,
             title

@@ -22,16 +22,8 @@ const BootStrapCoreContext = (props) => {
     customSagas,
     initialState
   } = props;
-  console.log(
-    '🚀 ~ file: BootStrapCoreContext.js ~ line 25 ~ BootStrapCoreContext ~ props',
-    props
-  );
 
   const reduxIsAlreadyInitialized = !!useContext(ReactReduxContext);
-  console.log(
-    '🚀 ~ file: BootStrapCoreContext.js ~ line 28 ~ BootStrapCoreContext ~ reduxIsAlreadyInitialized',
-    reduxIsAlreadyInitialized
-  );
 
   const finalAuthProvider =
     authProvider instanceof Function

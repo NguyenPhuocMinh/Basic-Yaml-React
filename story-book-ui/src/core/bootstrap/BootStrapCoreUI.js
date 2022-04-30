@@ -16,18 +16,10 @@ const BootStrapCoreUI = (props) => {
     theme,
     title = 'Demo Basic React'
   } = props;
-  console.log(
-    '🚀 ~ file: BootStrapCoreUI.js ~ line 19 ~ BootStrapCoreUI ~ props',
-    props
-  );
 
   const logoutElement = useMemo(
     () => logout && createElement(logout),
     [logout]
-  );
-  console.log(
-    '🚀 ~ file: BootStrapCoreUI.js ~ line 24 ~ BootStrapCoreUI ~ logoutElement',
-    logoutElement
   );
 
   return (
@@ -35,10 +27,6 @@ const BootStrapCoreUI = (props) => {
       <Route
         path="/login"
         render={(renderProps) => {
-          console.log(
-            '🚀 ~ file: BootStrapCoreUI.js ~ line 44 ~ BootStrapCoreUI ~ renderProps login',
-            renderProps
-          );
           return createElement(loginPage, {
             ...renderProps,
             title,
@@ -59,10 +47,6 @@ const BootStrapCoreUI = (props) => {
       <Route
         path="/"
         render={(renderProps) => {
-          console.log(
-            '🚀 ~ file: BootStrapCoreUI.js ~ line 73 ~ BootStrapCoreUI ~ renderProps /',
-            renderProps
-          );
           return (
             <BootStrapUIRouter
               catchAll={catchAll}

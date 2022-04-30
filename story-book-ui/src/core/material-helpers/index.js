@@ -16,6 +16,7 @@ import PopupHelper from './PopupHelper';
 import ProfileHelper from './ProfileHelper';
 import SettingHelper from './SettingHelper';
 import SubMenuHelper from './SubMenuHelper';
+import BreadcrumbHelper from './BreadCrumbHelper';
 
 export * from './inputs';
 export * from './fields';
@@ -38,5 +39,6 @@ export {
   NotFoundHelper,
   ProfileHelper,
   LoadingHelper,
-  NotificationHelper
+  NotificationHelper,
+  BreadcrumbHelper
 };

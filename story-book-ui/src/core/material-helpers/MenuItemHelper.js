@@ -28,9 +28,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     borderRadius: 10
   }
-  // leftIcon: {
-  //   minWidth: theme.spacing(5)
-  // },
 }));
 
 const MenuItemHelper = forwardRef((props, ref) => {
@@ -48,7 +45,12 @@ const MenuItemHelper = forwardRef((props, ref) => {
   const classes = useStyles(props);
   const location = useLocation();
   // func
-  const handleMenuTap = useCallback((e) => onClick && onClick(e), [onClick]);
+  const handleMenuTap = useCallback(
+    (e) => {
+      return onClick && onClick(e);
+    },
+    [onClick]
+  );
 
   const renderMenuItem = () => (
     <ListItemButton

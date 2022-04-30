@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   Tooltip,
   ListItemButton,
@@ -43,7 +44,12 @@ const MenuItemSingleHelper = forwardRef((props, ref) => {
   const classes = useStyles(props);
   const location = useLocation();
   // func
-  const handleMenuTap = useCallback((e) => onClick && onClick(e), [onClick]);
+  const handleMenuTap = useCallback(
+    (e) => {
+      return onClick && onClick(e);
+    },
+    [onClick]
+  );
 
   return (
     <Tooltip title={primaryText} placement="right" {...tooltipProps}>

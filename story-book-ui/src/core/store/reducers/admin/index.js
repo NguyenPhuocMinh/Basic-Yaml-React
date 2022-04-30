@@ -2,12 +2,14 @@ import {
   CHANGE_SIDE_BAR,
   SHOW_NOTIFICATION,
   HIDE_NOTIFICATION,
-  RESET_NOTIFICATION
+  RESET_NOTIFICATION,
+  BREAD_CRUMB
 } from '../../actions';
 
 const initialState = {
   sidebarIsOpen: true,
-  notification: {}
+  notification: {},
+  breadcrumbs: []
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -33,6 +35,12 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         notification: {}
+      };
+    }
+    case BREAD_CRUMB: {
+      return {
+        ...state,
+        breadcrumbs: payload
       };
     }
     default:
