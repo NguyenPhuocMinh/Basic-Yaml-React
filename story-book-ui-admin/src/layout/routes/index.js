@@ -3,32 +3,32 @@ const routes = [
     parent: null,
     pathName: '/',
     routerName: 'routes.dashBoard.label',
-    leftIcon: 'Dashboard',
+    leftIcon: 'Dashboard'
   },
   {
     parent: null,
     pathName: '/ancients',
     routerName: 'routes.ancient.label',
-    leftIcon: 'AutoAwesomeMotion',
+    leftIcon: 'AutoAwesomeMotion'
   },
   {
     parent: {
       pathName: '/ancients',
-      routerName: 'routes.ancient.label',
+      routerName: 'routes.ancient.label'
     },
     pathName: '/vampire-list',
     routerName: 'routes.ancient.child.vampire.label',
-    leftIcon: 'Home',
+    leftIcon: 'Home'
   },
   {
     parent: {
       pathName: '/ancients',
-      routerName: 'routes.ancient.label',
+      routerName: 'routes.ancient.label'
     },
     pathName: '/monster-list',
     routerName: 'routes.ancient.child.monster.label',
-    leftIcon: 'Home',
-  },
+    leftIcon: 'Home'
+  }
 ];
 
 export default routes;

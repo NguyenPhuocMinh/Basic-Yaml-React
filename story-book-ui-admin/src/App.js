@@ -7,7 +7,7 @@ import resources from './resources';
 import { Dashboard, LoginPage, RegisterPage } from './components';
 import { Layout } from './layout';
 
-function App() {
+const App = () => {
   return (
     <BootStrapStory
       title="title" // see translate title
@@ -19,7 +19,7 @@ function App() {
       registerPage={RegisterPage}
       layout={Layout}
     >
-      {resources.map(resource => (
+      {resources.map((resource) => (
         <BootStrapStoryResource
           key={resource.name}
           name={resource.name}
@@ -28,6 +28,6 @@ function App() {
       ))}
     </BootStrapStory>
   );
-}
+};
 
 export default App;

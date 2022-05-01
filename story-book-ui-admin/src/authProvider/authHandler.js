@@ -2,22 +2,25 @@ import { get, isEmpty } from 'lodash';
 import { httpClientAuthProvider } from '../services';
 
 const checkExpiredTime = () => {
-  const timeFromGetLastToken = Math.floor((Date.now() - localStorage.getItem('expire_at')) / 1000);
-  const callRefresh = localStorage.getItem('expires_in') - timeFromGetLastToken < 30;
+  const timeFromGetLastToken = Math.floor(
+    (Date.now() - localStorage.getItem('expire_at')) / 1000
+  );
+  const callRefresh =
+    localStorage.getItem('expires_in') - timeFromGetLastToken < 30;
   return callRefresh;
 };
 
-const refreshToken = async () => {
+const handleRefreshToken = async () => {
   try {
     const response = await httpClientAuthProvider.post(
       '/refreshToken',
       {
-        refreshToken: localStorage.getItem('refresh_token'),
+        refreshToken: localStorage.getItem('refresh_token')
       },
       {
         headers: {
-          'X-Access-Token': localStorage.getItem('access_token'),
-        },
+          'X-Access-Token': localStorage.getItem('access_token')
+        }
       }
     );
 
@@ -36,8 +39,7 @@ export const refreshTokenHandler = () => {
   const refreshTokenHandlerInterval = setInterval(() => {
     if (localStorage.getItem('refresh_token')) {
       if (checkExpiredTime()) {
-        console.log('checkExpiredTime', checkExpiredTime());
-        refreshToken();
+        handleRefreshToken();
       }
     } else {
       removeLogin();
@@ -87,7 +89,7 @@ export const getProfile = () => {
 
   return {
     fullName,
-    photoURL,
+    photoURL
   };
 };
 
@@ -97,6 +99,6 @@ export const getExpires = () => {
 
   return {
     expiresIn,
-    expireAt,
+    expireAt
   };
 };

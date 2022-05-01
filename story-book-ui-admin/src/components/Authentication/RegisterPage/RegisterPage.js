@@ -46,7 +46,7 @@ const useStyles = makeStyles({
   }
 });
 
-const RegisterPage = props => {
+const RegisterPage = (props) => {
   const { navigate, location } = props;
 
   // state
@@ -80,27 +80,34 @@ const RegisterPage = props => {
   );
 
   const handleRegister = useCallback(
-    params => {
+    (params) => {
       setLoading(true);
-      authProvider.register(params).then(res => {
-        if (res.status < 200 || res.status >= 400) {
-          timer.current = window.setTimeout(() => {
-            setLoading(false);
-            const errorMessage = get(res, 'data.message');
-            notify(`${errorMessage}`, { type: 'warning' });
-          }, 1000);
-        } else {
-          timer.current = window.setTimeout(() => {
-            setLoading(false);
-            dispatch(resetNotification());
-            const redirectUrl =
-              nextPathName + nextSearch || defaultAuthParams.afterRegisterUrl;
-            notify('users.notification.register.success', { type: 'success' });
-            !loading && navigate(redirectUrl);
-          }, 1000);
+      authProvider
+        .register(params)
+        .then((res) => {
+          if (res.status < 200 || res.status >= 400) {
+            timer.current = window.setTimeout(() => {
+              setLoading(false);
+              const errorMessage = get(res, 'data.message');
+              notify(`${errorMessage}`, { type: 'warning' });
+            }, 1000);
+          } else {
+            timer.current = window.setTimeout(() => {
+              setLoading(false);
+              dispatch(resetNotification());
+              const redirectUrl =
+                nextPathName + nextSearch || defaultAuthParams.afterRegisterUrl;
+              notify('users.notification.register.success', {
+                type: 'success'
+              });
+              !loading && navigate(redirectUrl);
+            }, 1000);
+          }
           return res;
-        }
-      });
+        })
+        .catch((err) => {
+          throw err;
+        });
     },
     [
       authProvider,
@@ -122,7 +129,7 @@ const RegisterPage = props => {
       initialValues={initialValues}
       onSubmit={handleRegister}
       validationSchema={validateUserRegister(translate)}
-      formContent={formProps =>
+      formContent={(formProps) =>
         FormRegister(formProps, {
           classes,
           translate,
@@ -376,7 +383,7 @@ const FormRegister = (formProps, options = {}) => {
               <Box
                 sx={{
                   mt: 1.5,
-                  backgroundColor: theme =>
+                  backgroundColor: (theme) =>
                     alpha(theme.palette.primary.main, 0.1),
                   borderRadius: '5px',
                   fontWeight: 'medium',
@@ -400,7 +407,7 @@ const FormRegister = (formProps, options = {}) => {
   );
 };
 
-const RegisterWithTheme = props => {
+const RegisterWithTheme = (props) => {
   return (
     <ThemeProvider theme={lightTheme}>
       <RegisterPage {...props} />

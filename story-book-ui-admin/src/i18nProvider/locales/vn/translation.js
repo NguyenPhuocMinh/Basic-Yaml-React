@@ -8,7 +8,7 @@ const TRANSLATIONS_VN = {
     password: 'Mật khẩu',
     sign_in: 'Sign in',
     sign_in_error: 'Xác thực không thành công, vui lòng thử lại',
-    logout: 'Đăng xuất',
+    logout: 'Đăng xuất'
   },
   users: {
     title: 'Câu Truyện React',
@@ -18,7 +18,7 @@ const TRANSLATIONS_VN = {
       email: 'Email',
       password: 'Mật khẩu',
       password_confirm: 'Xác nhận mật khẩu',
-      remember_me: 'Ghi nhớ tôi',
+      remember_me: 'Ghi nhớ tôi'
     },
     texts: {
       or: 'Hoặc',
@@ -26,7 +26,7 @@ const TRANSLATIONS_VN = {
       has_account: 'Bạn đã có tài khoản?',
       welcome: 'Chào mừng bạn đến',
       subtitle: 'Câu Truyện React!',
-      description: 'Mẫu quản trị trang demo cho Ứng dụng web.',
+      description: 'Mẫu quản trị trang demo cho Ứng dụng web.'
     },
     forgotPass: 'Quên mật khẩu?',
     actions: {
@@ -34,23 +34,24 @@ const TRANSLATIONS_VN = {
       login_google: 'Đăng nhập with Google',
       login_facebook: 'Đăng nhập with Facebook',
       register_account: 'Tạo tài khoản',
-      register: 'Đăng ký',
+      register: 'Đăng ký'
     },
     notification: {
       register: {
         success: 'Đăng ký người dùng thành công!',
         duplicate_email: 'Email trùng lặp',
-        password_confirm_not_match: 'Mật khẩu xác nhận không khớp với mật khẩu hiện tại',
+        password_confirm_not_match:
+          'Mật khẩu xác nhận không khớp với mật khẩu hiện tại'
       },
       login: {
         success: 'Đăng nhập thành công!',
         email_not_found: 'Không tìm thấy email',
-        incorrect_password: 'Mật khẩu không đúng',
+        incorrect_password: 'Mật khẩu không đúng'
       },
       logout: {
-        success: 'Đăng xuất thành công!',
-      },
-    },
+        success: 'Đăng xuất thành công!'
+      }
+    }
   },
   appBar: {
     toolbar: {
@@ -61,25 +62,25 @@ const TRANSLATIONS_VN = {
         change_setting: 'Thay đổi cài đặt',
         change_profile: 'Thay đổi thông tin',
         notification: 'Thông báo',
-        refresh: 'Làm mới',
+        refresh: 'Làm mới'
       },
       language: {
         en: 'English',
-        vn: 'VietNam',
+        vn: 'VietNam'
       },
       setting: {
         title: 'Cài đặt',
         mode: 'Chế độ',
         themes: {
           light: 'Sáng',
-          dark: 'Tối',
-        },
+          dark: 'Tối'
+        }
       },
       profile: {
         show_profile: 'Thông tin cá nhân',
-        logout: 'Đăng xuất',
-      },
-    },
+        logout: 'Đăng xuất'
+      }
+    }
   },
   resources: {
     dashboard: {
@@ -98,49 +99,50 @@ const TRANSLATIONS_VN = {
           sep: 'Tháng 9',
           oct: 'Tháng 10',
           nov: 'Tháng 11',
-          dec: 'Tháng 12',
+          dec: 'Tháng 12'
         },
         datasets: {
           labels: {
             newVisitor: 'Khách mới',
             repeatedUser: 'Khách lặp lại',
             subscriber: 'Khách đăng ký',
-            share: 'Khách chia sẻ',
-          },
-        },
-      },
+            share: 'Khách chia sẻ'
+          }
+        }
+      }
     },
     ancients: {
       name: 'Cổ đại',
       vampires: {
-        name: 'Ma ca rồng',
+        name: 'Ma ca rồng'
       },
       monsters: {
-        name: 'Quái vật',
-      },
+        name: 'Quái vật'
+      }
     },
     animes: {
-      name: 'Hoạt hình',
-    },
+      name: 'Hoạt hình'
+    }
   },
   page: {
     error: {
       name: 'Đã xảy ra sự cố',
-      message: 'Đã xảy ra lỗi máy khách và không thể hoàn thành yêu cầu của bạn.',
+      message:
+        'Đã xảy ra lỗi máy khách và không thể hoàn thành yêu cầu của bạn.',
       message_text: 'Cần giúp đỡ với lỗi này? Hãy thử những cách sau',
       message_help: 'Nhận trợ giúp từ nhóm cốt lõi qua',
       search_on: 'Tìm kiếm trên',
-      community_answers: 'cho câu trả lời của cộng đồng',
+      community_answers: 'cho câu trả lời của cộng đồng'
     },
     not_found: {
       name: 'Không tìm thấy',
-      message: 'Bạn đã nhập sai URL hoặc bạn đã theo một liên kết không hợp lệ.',
-    },
+      message: 'Bạn đã nhập sai URL hoặc bạn đã theo một liên kết không hợp lệ.'
+    }
   },
   actions: {
     button: {
-      back: 'Quay lại',
-    },
+      back: 'Quay lại'
+    }
   },
   validation: {
     required: 'Bắt buộc',
@@ -150,31 +152,32 @@ const TRANSLATIONS_VN = {
     maxValue: 'Phải từ {{max}} trở xuống',
     users: {
       email: 'Email không khớp với định dạng',
-      password: 'Phải chứa 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự chữ hoa đặc biệt',
-      password_confirm: 'Mật khẩu xác nhận không khớp với mật khẩu',
-    },
+      password:
+        'Phải chứa 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự chữ hoa đặc biệt',
+      password_confirm: 'Mật khẩu xác nhận không khớp với mật khẩu'
+    }
   },
   common: {
     action: {
-      undo: 'Hoàn tác',
-    },
+      undo: 'Hoàn tác'
+    }
   },
   routes: {
     dashBoard: {
-      label: 'Bảng điều khiển',
+      label: 'Bảng điều khiển'
     },
     ancient: {
       label: 'Cổ đại',
       child: {
         vampire: {
-          label: 'Ma cà rồng',
+          label: 'Ma cà rồng'
         },
         monster: {
-          label: 'Quái vật',
-        },
-      },
-    },
-  },
+          label: 'Quái vật'
+        }
+      }
+    }
+  }
 };
 
 export default TRANSLATIONS_VN;

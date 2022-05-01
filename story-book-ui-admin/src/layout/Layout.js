@@ -1,4 +1,3 @@
-import packageMeta from '../../package.json';
 import { LayoutBootStrap } from 'story-bootstrap';
 // redux
 import { useSelector } from 'react-redux';
@@ -9,6 +8,7 @@ import Menu from './Menu';
 import { lightTheme, darkTheme } from '../themes';
 import routes from './routes';
 import registerIcons from '../registerIcons';
+import packageMeta from '../../package.json';
 
 const Layout = (props) => {
   // store

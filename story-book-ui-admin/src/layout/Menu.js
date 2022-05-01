@@ -8,7 +8,7 @@ import {} from 'react-router-dom';
 import { NavBar, NavDivider } from './NavLayout';
 import registerIcons from '../registerIcons';
 
-const Menu = ({ hasDashboard, ...props }) => {
+const Menu = ({ hasDashboard }) => {
   // hooks
   const { translate } = useTranslate();
 

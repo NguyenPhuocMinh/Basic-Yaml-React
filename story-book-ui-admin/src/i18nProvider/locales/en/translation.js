@@ -8,7 +8,7 @@ const TRANSLATIONS_EN = {
     password: 'Password',
     sign_in: 'Sign in',
     sign_in_error: 'Authentication failed, please retry',
-    logout: 'Logout',
+    logout: 'Logout'
   },
   users: {
     title: 'Story Book React',
@@ -18,7 +18,7 @@ const TRANSLATIONS_EN = {
       email: 'Email',
       password: 'Password',
       password_confirm: 'Password Confirm',
-      remember_me: 'Remember me',
+      remember_me: 'Remember me'
     },
     texts: {
       or: 'OR',
@@ -26,30 +26,31 @@ const TRANSLATIONS_EN = {
       has_account: 'You have an account?',
       welcome: 'Welcome To',
       subtitle: 'The Story Book React!',
-      description: 'Demo page admin template for Web Applications.',
+      description: 'Demo page admin template for Web Applications.'
     },
     forgotPass: 'Forgot Password?',
     actions: {
       login: 'Login',
       login_google: 'Login with Google',
       login_facebook: 'Login with Facebook',
-      register_account: 'Create an account',
+      register_account: 'Create an account'
     },
     notification: {
       register: {
         success: 'Register user successfully!',
         duplicate_email: 'Duplicate email',
-        password_confirm_not_match: 'Password confirm not match current password',
+        password_confirm_not_match:
+          'Password confirm not match current password'
       },
       login: {
         success: 'Login successfully!',
         email_not_found: 'Email not found',
-        incorrect_password: 'Incorrect Password',
+        incorrect_password: 'Incorrect Password'
       },
       logout: {
-        success: 'Logout successfully!',
-      },
-    },
+        success: 'Logout successfully!'
+      }
+    }
   },
   appBar: {
     toolbar: {
@@ -60,25 +61,25 @@ const TRANSLATIONS_EN = {
         change_setting: 'Change setting',
         change_profile: 'Change profile',
         notification: 'Notification',
-        refresh: 'Refresh',
+        refresh: 'Refresh'
       },
       language: {
         en: 'English',
-        vn: 'VietNam',
+        vn: 'VietNam'
       },
       setting: {
         title: 'Settings',
         mode: 'Mode',
         themes: {
           light: 'Light',
-          dark: 'Dark',
-        },
+          dark: 'Dark'
+        }
       },
       profile: {
         show_profile: 'My Profile',
-        logout: 'Logout',
-      },
-    },
+        logout: 'Logout'
+      }
+    }
   },
   resources: {
     dashboard: {
@@ -97,49 +98,50 @@ const TRANSLATIONS_EN = {
           sep: 'Sep',
           oct: 'Oct',
           nov: 'Nov',
-          dec: 'Dec',
+          dec: 'Dec'
         },
         datasets: {
           labels: {
             newVisitor: 'New Visitor',
             repeatedUser: 'Repeated User',
             subscriber: 'Subscriber',
-            share: 'Share',
-          },
-        },
-      },
+            share: 'Share'
+          }
+        }
+      }
     },
     ancients: {
       name: 'Ancient',
       vampires: {
-        name: 'Vampire',
+        name: 'Vampire'
       },
       monsters: {
-        name: 'Monster',
-      },
+        name: 'Monster'
+      }
     },
     animes: {
-      name: 'Anime',
-    },
+      name: 'Anime'
+    }
   },
   page: {
     error: {
       name: 'Something went wrong',
-      message: "A client error occurred and your request couldn't be completed.",
+      message:
+        "A client error occurred and your request couldn't be completed.",
       message_text: 'Need help with this error? Try the following',
       message_help: 'Get help from the core team via',
       search_on: 'Search on',
-      community_answers: 'for community answers',
+      community_answers: 'for community answers'
     },
     not_found: {
       name: 'Not found',
-      message: 'Either you typed a wrong URL, or you followed a bad link.',
-    },
+      message: 'Either you typed a wrong URL, or you followed a bad link.'
+    }
   },
   actions: {
     button: {
-      back: 'Back',
-    },
+      back: 'Back'
+    }
   },
   validation: {
     required: 'Required',
@@ -149,14 +151,15 @@ const TRANSLATIONS_EN = {
     maxValue: 'Must be {{max}} or less',
     users: {
       email: 'Email does not match format',
-      password: 'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character',
-      password_confirm: 'Password confirm does not match password',
-    },
+      password:
+        'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character',
+      password_confirm: 'Password confirm does not match password'
+    }
   },
   common: {
     action: {
-      undo: 'Undo',
-    },
+      undo: 'Undo'
+    }
   },
   routes: {
     dashBoard: {
@@ -166,14 +169,14 @@ const TRANSLATIONS_EN = {
       label: 'Ancient',
       child: {
         vampire: {
-          label: 'Vampire',
+          label: 'Vampire'
         },
         monster: {
-          label: 'Monster',
-        },
-      },
-    },
-  },
+          label: 'Monster'
+        }
+      }
+    }
+  }
 };
 
 export default TRANSLATIONS_EN;

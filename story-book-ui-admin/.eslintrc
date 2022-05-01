@@ -106,6 +106,9 @@
         "exceptions": ["img"]
       }
     ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-wrap-multilines": "off",
     // prettier
     "prettier/prettier": [
       "warn",
@@ -131,7 +134,7 @@
     "max-len": [
       "error",
       {
-        "code": 80,
+        "code": 120,
         "tabWidth": 2,
         "comments": 65,
         "ignoreComments": true,
@@ -191,6 +194,20 @@
     "yoda": "error",
     "implicit-arrow-linebreak": "off",
     "arrow-body-style": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "default-param-last": "off",
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": true,
+        "object": false
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "object-curly-newline": "off",
+    "consistent-return": "off",
+    "no-unused-expressions": "off"
   }
 }

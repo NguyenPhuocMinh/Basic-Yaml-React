@@ -1,6 +1,6 @@
 import { objectYup, stringYup, refYup } from 'story-bootstrap';
 
-export const validateUserLogin = translate => {
+export const validateUserLogin = (translate) => {
   return objectYup().shape({
     email: stringYup()
       .required(translate('validation.required'))
@@ -13,7 +13,7 @@ export const validateUserLogin = translate => {
   });
 };
 
-export const validateUserRegister = translate => {
+export const validateUserRegister = (translate) => {
   return objectYup().shape({
     firstName: stringYup()
       .required(translate('validation.required'))

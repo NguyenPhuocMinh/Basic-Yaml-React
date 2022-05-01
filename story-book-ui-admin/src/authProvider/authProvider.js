@@ -1,6 +1,12 @@
 import { get, isEmpty } from 'lodash';
 import { httpClientAuthProvider } from '../services';
-import { refreshTokenHandler, removeLogin, prepareResponse, getProfile, getExpires } from './authHandler';
+import {
+  refreshTokenHandler,
+  removeLogin,
+  prepareResponse,
+  getProfile,
+  getExpires
+} from './authHandler';
 import { firebaseAuth, googleProvider, signInWithPopup } from '../firebase';
 import constants from '../constants';
 
@@ -14,7 +20,7 @@ const authProvider = {
         lastName,
         email,
         password,
-        passwordConfirm,
+        passwordConfirm
       });
 
       return response;
@@ -28,7 +34,7 @@ const authProvider = {
     try {
       const response = await httpClientAuthProvider.post('/login', {
         email,
-        password,
+        password
       });
       const data = !isEmpty(response) && get(response, 'data.data.result', {});
 
@@ -58,7 +64,9 @@ const authProvider = {
   },
   checkAuth: () => {
     const accessToken = localStorage.getItem('access_token');
-    return !isEmpty(accessToken) ? Promise.resolve({ accessToken }) : Promise.reject();
+    return !isEmpty(accessToken)
+      ? Promise.resolve({ accessToken })
+      : Promise.reject();
   },
   getPermissions: () => {
     const permissions = localStorage.getItem('permissions');
@@ -74,17 +82,17 @@ const authProvider = {
         access_token: get(stsTokenManager, 'accessToken'),
         refresh_token: get(userLogin, 'refreshToken'),
         expires_in: get(stsTokenManager, 'expirationTime'),
-        permissions: ['USER'],
+        permissions: ['USER']
       };
       // user info
       const user = {
         emailUser: get(response, 'user.email'),
         fullName: get(response, 'user.displayName'),
-        photoURL: get(response, 'user.photoURL'),
+        photoURL: get(response, 'user.photoURL')
       };
 
-      await prepareResponse({ auth, user });
-      await refreshTokenHandler();
+      prepareResponse({ auth, user });
+      refreshTokenHandler();
 
       return response;
     } catch (err) {
@@ -92,7 +100,7 @@ const authProvider = {
     }
   },
   getIdentity: () => Promise.resolve(getProfile()),
-  checkExpiredToken: () => Promise.resolve(getExpires()),
+  checkExpiredToken: () => Promise.resolve(getExpires())
 };
 
 export default authProvider;

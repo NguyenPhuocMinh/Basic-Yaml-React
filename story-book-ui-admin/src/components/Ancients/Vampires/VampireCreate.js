@@ -1,4 +1,4 @@
-const VampireCreate = props => {
+const VampireCreate = () => {
   return <h1>VamipreCreate</h1>;
 };
 

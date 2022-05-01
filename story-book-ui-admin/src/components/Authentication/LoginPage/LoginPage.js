@@ -47,7 +47,7 @@ const useStyles = makeStyles({
   }
 });
 
-const LoginPage = props => {
+const LoginPage = (props) => {
   const { location, navigate } = props;
   // state
   const [loading, setLoading] = useState(false);
@@ -78,26 +78,31 @@ const LoginPage = props => {
   );
 
   const handleLogin = useCallback(
-    params => {
+    (params) => {
       setLoading(true);
-      authProvider.login(params).then(res => {
-        if (res.status < 200 || res.status >= 400) {
-          timer.current = window.setTimeout(() => {
-            setLoading(false);
-            const errorMessage = get(res, 'data.message');
-            notify(`${errorMessage}`, { type: 'warning' });
-          }, 500);
-        } else {
-          timer.current = window.setTimeout(() => {
-            setLoading(false);
-            const redirectUrl =
-              nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
-            notify('users.notification.login.success', { type: 'success' });
-            navigate(redirectUrl);
-          }, 500);
+      authProvider
+        .login(params)
+        .then((res) => {
+          if (res.status < 200 || res.status >= 400) {
+            timer.current = window.setTimeout(() => {
+              setLoading(false);
+              const errorMessage = get(res, 'data.message');
+              notify(`${errorMessage}`, { type: 'warning' });
+            }, 500);
+          } else {
+            timer.current = window.setTimeout(() => {
+              setLoading(false);
+              const redirectUrl =
+                nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
+              notify('users.notification.login.success', { type: 'success' });
+              navigate(redirectUrl);
+            }, 500);
+          }
           return res;
-        }
-      });
+        })
+        .catch((err) => {
+          throw err;
+        });
     },
     [authProvider, notify, navigate, nextPathName, nextSearch]
   );
@@ -108,30 +113,34 @@ const LoginPage = props => {
 
   const handleClickLoginWithGoogle = useCallback(() => {
     setLoading(true);
-    authProvider.loginWithGoogle().then(res => {
-      if (!isEmpty(res)) {
-        timer.current = window.setTimeout(() => {
-          setLoading(false);
-          const redirectUrl =
-            nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
-          notify('users.notification.login.success', { type: 'success' });
-          navigate(redirectUrl);
-        }, 500);
+    authProvider
+      .loginWithGoogle()
+      .then((res) => {
+        if (!isEmpty(res)) {
+          timer.current = window.setTimeout(() => {
+            setLoading(false);
+            const redirectUrl =
+              nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
+            notify('users.notification.login.success', { type: 'success' });
+            navigate(redirectUrl);
+          }, 500);
+          return res;
+        }
         return res;
-      }
-    });
+      })
+      .catch((err) => {
+        throw err;
+      });
   }, [authProvider, notify, navigate, nextPathName, nextSearch]);
 
-  const handleClickLoginWithFacebook = useCallback(() => {
-    console.log('handleClickLoginWithFacebook');
-  }, []);
+  const handleClickLoginWithFacebook = useCallback(() => {}, []);
 
   return (
     <SimpleFormBootStrap
       initialValues={initialValues}
-      onSubmit={values => handleLogin(values)}
+      onSubmit={(values) => handleLogin(values)}
       validationSchema={validateUserLogin(translate)}
-      formContent={formProps =>
+      formContent={(formProps) =>
         FormLogin(formProps, {
           classes,
           translate,
@@ -261,7 +270,7 @@ const FormLogin = (formProps, options = {}) => {
                             marginRight: '-8px !important'
                           }}
                           onClick={() => setShowPassword(!showPassword)}
-                          onMouseDown={event => event.preventDefault()}
+                          onMouseDown={(event) => event.preventDefault()}
                           edge="end"
                         >
                           {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -459,7 +468,7 @@ const FormLogin = (formProps, options = {}) => {
               <Box
                 sx={{
                   mt: 1.5,
-                  backgroundColor: theme =>
+                  backgroundColor: (theme) =>
                     alpha(theme.palette.primary.main, 0.1),
                   borderRadius: '5px',
                   fontWeight: 'medium',
@@ -483,7 +492,7 @@ const FormLogin = (formProps, options = {}) => {
   );
 };
 
-const LoginWithTheme = props => {
+const LoginWithTheme = (props) => {
   return (
     <ThemeProvider theme={lightTheme}>
       <LoginPage {...props} />

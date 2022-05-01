@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 
-const TabPanel = props => {
+const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -26,7 +26,6 @@ const TabPanel = props => {
 };
 
 TabPanel.propTypes = {
-  children: PropTypes.node,
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired
 };
@@ -38,7 +37,7 @@ function a11yProps(index) {
   };
 }
 
-const VampireList = props => {
+const VampireList = () => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {

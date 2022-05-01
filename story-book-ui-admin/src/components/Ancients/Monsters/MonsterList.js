@@ -1,6 +1,4 @@
-const MonsterList = props => {
-  console.log('🚀 ~ file: MonsterList.js ~ line 4 ~ props', props);
-
+const MonsterList = () => {
   return <h1>MonsterList</h1>;
 };
 

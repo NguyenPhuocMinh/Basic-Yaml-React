@@ -40,7 +40,7 @@ const languages = [
   }
 ];
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   title: {
     flex: 1,
     textOverflow: 'ellipsis',
@@ -65,7 +65,7 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
   const openPopupLanguage = Boolean(anchorLanguage);
   const openPopupProfile = Boolean(anchorProfile);
   // func
-  const handleClickChangeLng = event => {
+  const handleClickChangeLng = (event) => {
     setAnchorLanguage(event.currentTarget);
   };
 
@@ -73,7 +73,7 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
     setAnchorLanguage(null);
   };
 
-  const handleClickChangeProfile = event => {
+  const handleClickChangeProfile = (event) => {
     setAnchorProfile(event.currentTarget);
   };
 
@@ -83,7 +83,7 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
 
   const [openSetting, setOpenSetting] = useState(false);
 
-  const handleChangeSetting = event => {
+  const handleChangeSetting = (event) => {
     if (
       event.type === 'keydown' &&
       (event.key === 'Tab' || event.key === 'Shift')

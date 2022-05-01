@@ -64,6 +64,7 @@
     "i18next": "^21.6.16",
     "i18next-browser-languagedetector": "^6.1.4",
     "lodash": "^4.17.21",
+    "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^18.1.0",
@@ -93,6 +94,12 @@
       "react-app/jest"
     ]
   },
+  "lint-staged": {
+    "src/**/*.{js,ts,jsx,tsx}": [
+      "eslint --ext .js,.ts,.tsx \"./src/**/*.{js,ts,tsx}\"",
+      "prettier --write"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -104,14 +111,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "lint-staged": {
-    "src/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix"
-    ]
-  },
-  "hooks": {
-    "pre-commit": "lint-staged"
   },
   "engines": {
     "node": ">=14.15.3"
