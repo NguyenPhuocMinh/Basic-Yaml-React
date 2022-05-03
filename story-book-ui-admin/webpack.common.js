@@ -139,5 +139,5 @@ module.exports = {
       // Tells dev-server the number of times it should try to reconnect the client. When true it will try to reconnect unlimited times.
       reconnect: 3
     }
-  }
+  },
 };

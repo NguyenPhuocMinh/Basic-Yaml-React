@@ -85,30 +85,71 @@ const TRANSLATIONS_VN = {
   resources: {
     dashboard: {
       name: 'Trang chủ',
+      welcome: {
+        title:
+          'Chào mừng bạn đến với bản demo thương mại điện tử của trang quản trị',
+        subtitle: 'Đây là quản trị viên của cửa hàng sách truyện'
+      },
+      report: {
+        weeklySales: 'Doanh số hàng tuần',
+        newCustomers: 'Khách hàng mới',
+        itemOrders: 'Đơn đặt hàng',
+        pendingOrders: 'Hàng đang chờ xử lý'
+      },
       chart: {
-        title: 'Biểu đồ thống kê bán hàng',
-        labels: {
-          jan: 'Tháng 1',
-          feb: 'Tháng 2',
-          mar: 'Tháng 3',
-          apr: 'Tháng 4',
-          may: 'Tháng 5',
-          jun: 'Tháng 6',
-          july: 'Tháng 7',
-          aug: 'Tháng 8',
-          sep: 'Tháng 9',
-          oct: 'Tháng 10',
-          nov: 'Tháng 11',
-          dec: 'Tháng 12'
-        },
-        datasets: {
+        line: {
+          title: 'Biểu đồ thống kê bán hàng',
           labels: {
-            newVisitor: 'Khách mới',
-            repeatedUser: 'Khách lặp lại',
-            subscriber: 'Khách đăng ký',
-            share: 'Khách chia sẻ'
+            jan: 'Tháng 1',
+            feb: 'Tháng 2',
+            mar: 'Tháng 3',
+            apr: 'Tháng 4',
+            may: 'Tháng 5',
+            jun: 'Tháng 6',
+            july: 'Tháng 7',
+            aug: 'Tháng 8',
+            sep: 'Tháng 9',
+            oct: 'Tháng 10',
+            nov: 'Tháng 11',
+            dec: 'Tháng 12'
+          },
+          datasets: {
+            labels: {
+              newVisitor: 'Khách mới',
+              repeatedUser: 'Khách lặp lại',
+              subscriber: 'Khách đăng ký',
+              share: 'Khách chia sẻ'
+            }
+          }
+        },
+        pie: {
+          title: 'Biểu đồ lượt truy cập hiện tại',
+          labels: {
+            america: 'Châu mỹ',
+            asia: 'Châu Á',
+            europe: 'Châu Âu',
+            africa: 'Châu phi'
+          },
+          datasets: {
+            labels: {
+              newVisitor: 'New Visitor',
+              repeatedUser: 'Repeated User',
+              subscriber: 'Subscriber',
+              share: 'Share'
+            }
           }
         }
+      },
+      quickReport: {
+        newCustomers: 'Khách hàng mới',
+        pendingOrders: 'Hàng đang chờ xử lý',
+        bestSalesman: 'Nhân viên bán hàng tốt nhất',
+        top5: 'Top 5',
+        seller: 'Người bán',
+        product: 'Sản phẩm',
+        country: 'Quốc gia',
+        total: 'Tổng cộng',
+        rank: 'Cấp hạng'
       }
     },
     ancients: {
@@ -160,6 +201,9 @@ const TRANSLATIONS_VN = {
   common: {
     action: {
       undo: 'Hoàn tác'
+    },
+    button: {
+      viewAll: 'Xem tất cả'
     }
   },
   routes: {

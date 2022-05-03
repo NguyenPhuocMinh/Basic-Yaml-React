@@ -20,6 +20,9 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      React: 'react'
+    }),
     new CleanWebpackPlugin({
       dry: true,
       verbose: true,

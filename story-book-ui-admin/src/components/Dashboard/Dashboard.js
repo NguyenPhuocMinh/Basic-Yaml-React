@@ -1,14 +1,19 @@
+import { Fragment } from 'react';
 import { NotificationBootStrap } from 'story-bootstrap';
-import { Box } from '@mui/material';
+import Welcome from './Welcome';
+import Report from './Report';
 import Chart from './Chart';
+import QuickReport from './QuickReport';
 
 const DashBoard = () => {
   return (
-    <Box>
-      <h1>DashBoard</h1>
+    <Fragment>
+      <Welcome />
+      <Report />
       <Chart />
+      <QuickReport />
       <NotificationBootStrap />
-    </Box>
+    </Fragment>
   );
 };
 

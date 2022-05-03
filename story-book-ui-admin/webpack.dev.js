@@ -18,6 +18,9 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      React: 'react'
+    }),
     new HtmlWebpackPlugin({
       title: packageMeta.name,
       template: './public/index.html',

@@ -4,7 +4,15 @@ import {
   AddShoppingCart,
   AutoAwesomeMotion,
   MenuBook,
-  Dashboard
+  Dashboard,
+  Android,
+  Apple,
+  LocalGroceryStore,
+  BugReport,
+  PersonAdd,
+  Assessment,
+  Add,
+  PendingActions
 } from '@mui/icons-material';
 
 const registerIcons = {
@@ -13,7 +21,15 @@ const registerIcons = {
   AddPhotoAlternate: () => <AddPhotoAlternate />,
   AddShoppingCart: () => <AddShoppingCart />,
   MenuBook: () => <MenuBook />,
-  AutoAwesomeMotion: () => <AutoAwesomeMotion />
+  AutoAwesomeMotion: () => <AutoAwesomeMotion />,
+  Android: () => <Android />,
+  Apple: () => <Apple />,
+  LocalGroceryStore: () => <LocalGroceryStore />,
+  BugReport: () => <BugReport />,
+  PersonAdd: () => <PersonAdd />,
+  Assessment: () => <Assessment />,
+  Add: () => <Add sx={{ width: 36, height: 36 }} />,
+  PendingActions: () => <PendingActions sx={{ width: 36, height: 36 }} />
 };
 
 export default registerIcons;

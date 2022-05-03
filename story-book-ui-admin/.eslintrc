@@ -109,6 +109,7 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-wrap-multilines": "off",
+    "react/jsx-fragments": "off",
     // prettier
     "prettier/prettier": [
       "warn",
@@ -119,7 +120,10 @@
     ],
     "quote-props": "off",
     "no-undef": "error",
-    "no-unused-vars": "error",
+    "no-unused-vars": [
+      "error",
+      { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
+    ],
     "no-inner-declarations": ["error"],
     "camelcase": "warn",
     "curly": "warn",
@@ -208,6 +212,11 @@
     ],
     "object-curly-newline": "off",
     "consistent-return": "off",
-    "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+    "no-confusing-arrow": "off",
+    "no-plusplus": "off",
+    "no-restricted-properties": "off",
+    "prefer-template": "off",
+    "prefer-exponentiation-operator": "off"
   }
 }

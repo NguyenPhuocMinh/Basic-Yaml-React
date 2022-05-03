@@ -84,30 +84,70 @@ const TRANSLATIONS_EN = {
   resources: {
     dashboard: {
       name: 'Dash board',
+      welcome: {
+        title: 'Welcome to the admin page e-commerce demo',
+        subtitle: 'This is the admin of poster story book shop'
+      },
+      report: {
+        weeklySales: 'Weekly Sales',
+        newCustomers: 'New Customers',
+        itemOrders: 'Item Orders',
+        pendingOrders: 'Pending Orders'
+      },
       chart: {
-        title: 'Sales Statistic Chart',
-        labels: {
-          jan: 'Jan',
-          feb: 'Feb',
-          mar: 'Mar',
-          apr: 'Apr',
-          may: 'May',
-          jun: 'Jun',
-          july: 'July',
-          aug: 'Aug',
-          sep: 'Sep',
-          oct: 'Oct',
-          nov: 'Nov',
-          dec: 'Dec'
-        },
-        datasets: {
+        line: {
+          title: 'Sales Statistic Chart',
           labels: {
-            newVisitor: 'New Visitor',
-            repeatedUser: 'Repeated User',
-            subscriber: 'Subscriber',
-            share: 'Share'
+            jan: 'Jan',
+            feb: 'Feb',
+            mar: 'Mar',
+            apr: 'Apr',
+            may: 'May',
+            jun: 'Jun',
+            july: 'July',
+            aug: 'Aug',
+            sep: 'Sep',
+            oct: 'Oct',
+            nov: 'Nov',
+            dec: 'Dec'
+          },
+          datasets: {
+            labels: {
+              newVisitor: 'New Visitor',
+              repeatedUser: 'Repeated User',
+              subscriber: 'Subscriber',
+              share: 'Share'
+            }
+          }
+        },
+        pie: {
+          title: 'Current Visits Chart',
+          labels: {
+            america: 'America',
+            asia: 'Asia',
+            europe: 'Europe',
+            africa: 'Africa'
+          },
+          datasets: {
+            labels: {
+              newVisitor: 'New Visitor',
+              repeatedUser: 'Repeated User',
+              subscriber: 'Subscriber',
+              share: 'Share'
+            }
           }
         }
+      },
+      quickReport: {
+        newCustomers: 'New Customers',
+        pendingOrders: 'Pending Orders',
+        bestSalesman: 'Best Salesman',
+        top5: 'Top 5',
+        seller: 'Seller',
+        product: 'Product',
+        country: 'Country',
+        total: 'Total',
+        rank: 'Rank'
       }
     },
     ancients: {
@@ -159,6 +199,9 @@ const TRANSLATIONS_EN = {
   common: {
     action: {
       undo: 'Undo'
+    },
+    button: {
+      viewAll: 'View All'
     }
   },
   routes: {

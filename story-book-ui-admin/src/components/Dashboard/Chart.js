@@ -8,11 +8,13 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Line, Pie } from 'react-chartjs-2';
 import { handleDataChart } from './Utils';
 
 ChartJS.register(
@@ -20,21 +22,26 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  ArcElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartDataLabels
 );
 
 const Chart = () => {
   const { translate } = useTranslate();
 
-  const store = useSelector((state) => {
-    return state;
+  const { theme } = useSelector((state) => {
+    return {
+      theme: state.theme
+    };
   });
 
-  console.log(store)
-
-  const { data, options } = handleDataChart(translate);
+  const { dataLine, optionsLine, dataPie, optionsPie } = handleDataChart(
+    translate,
+    theme
+  );
 
   return (
     <Grid container spacing={2}>
@@ -43,16 +50,22 @@ const Chart = () => {
           <Card>
             <CardContent>
               <Box width="100%">
-                <Line data={data} options={options} />
+                <Line data={dataLine} options={optionsLine} />
               </Box>
             </CardContent>
           </Card>
         </Paper>
       </Grid>
       <Grid item xs={4}>
-        <Box width="100%">
-          <Line data={data} options={options} />
-        </Box>
+        <Paper elevation={3}>
+          <Card>
+            <CardContent>
+              <Box width="100%">
+                <Pie data={dataPie} options={optionsPie} />
+              </Box>
+            </CardContent>
+          </Card>
+        </Paper>
       </Grid>
     </Grid>
   );
