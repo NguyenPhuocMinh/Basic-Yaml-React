@@ -3,13 +3,16 @@
 const winext = require('winext');
 const Promise = winext.require('bluebird');
 const lodash = winext.require('lodash');
-const jwt = require('winext-authorization').jwt;
-const bcrypt = require('bcryptjs');
-const dataSecret = require('../../config/data/secret');
-const { isEmpty, get, isEqual } = lodash;
+const tokenGenerator = require('winext-authorization').tokenGenerator;
+const bcrypt = winext.require('bcryptjs');
+const options = require('../../conf/options');
+const { isEmpty, isEqual } = lodash;
 
 function UserService(params = {}) {
   const { dataMongoStore, errorManager } = params;
+
+  const uuidUtils = winext.uuidUtils;
+  const slugUtils = winext.slugUtils;
 
   /**
    * @swagger
@@ -59,11 +62,12 @@ function UserService(params = {}) {
    * @param {*} opts
    */
   this.registerUser = async function (args, opts) {
-    const { loggerFactory, requestId } = opts;
+    const { logUtils } = opts;
+
+    const loggerFactory = logUtils.createLogger('story-book-api', 'registerUser');
 
     try {
-      loggerFactory.debug(`function registerUser begin`, {
-        requestId: `${requestId}`,
+      loggerFactory.debug(`Function registerUser has been start`, {
         args: args,
       });
 
@@ -73,6 +77,17 @@ function UserService(params = {}) {
       if (isDuplicateEmail) {
         throw errorManager.errorBuilder('DuplicateEmailRegister');
       }
+
+      const fullName = `${args.lastName} ${args.firstName}`;
+      const slugName = slugUtils.parseSlug(fullName);
+
+      const isDuplicateSlug = await checkDuplicateSlug(slugName, dataMongoStore);
+
+      if (isDuplicateSlug) {
+        throw errorManager.errorBuilder('DuplicateSlugRegister');
+      }
+
+      args.slug = slugName;
 
       // Hash Password
       let password = '';
@@ -102,9 +117,13 @@ function UserService(params = {}) {
         data: args,
       });
 
+      loggerFactory.info(`Function registerUsers has been end`);
+
       return { message: 'RegisterUserMessage' };
     } catch (err) {
-      loggerFactory.error(`function registerUsers has error : ${err}`, { requestId: `${requestId}` });
+      loggerFactory.error(`Function registerUsers has error`, {
+        args: err,
+      });
       return Promise.reject(err);
     }
   };
@@ -139,20 +158,21 @@ function UserService(params = {}) {
    * @param {*} opts
    */
   this.loginUser = async function (args, opts) {
-    const { loggerFactory, requestId } = opts;
+    const { logUtils } = opts;
+
+    const loggerFactory = logUtils.createLogger('story-book-api', 'loginUser');
 
     try {
-      loggerFactory.debug('function loginUser start', {
-        requestId: `${requestId}`,
+      loggerFactory.info(`Function loginUser has been start`, {
         args: args,
       });
 
       if (isEmpty(args.email)) {
-        throw errorManager.errorBuilder('PasswordRequired');
+        throw errorManager.errorBuilder('EmailRequired');
       }
 
       if (isEmpty(args.password)) {
-        throw errorManager.errorBuilder('EmailRequired');
+        throw errorManager.errorBuilder('PasswordRequired');
       }
       /**
        * get user login
@@ -161,6 +181,16 @@ function UserService(params = {}) {
         type: 'UserModel',
         filter: {
           email: args.email,
+          deleted: false,
+        },
+        projection: {
+          _id: 1,
+          email: 1,
+          firstName: 1,
+          lastName: 1,
+          permissions: 1,
+          password: 1,
+          photoURL: 1,
         },
       });
 
@@ -174,53 +204,45 @@ function UserService(params = {}) {
       if (!validPass) {
         throw errorManager.errorBuilder('IncorrectPassword');
       }
+
+      const userData = convertUserResponse(userLogin);
+
       /**
        * create token
        */
-      const accessToken = jwt.sign({ userLogin }, dataSecret.tokenSecret, {
-        expiresIn: dataSecret.tokenLife,
-      });
-      /**
-       * create refresh token
-       */
-      const refreshToken = jwt.sign({ userLogin }, dataSecret.refreshTokenSecret, {
-        expiresIn: dataSecret.refreshTokenLife,
-      });
-
-      loggerFactory.debug('function loginUser end', {
-        requestId: `${requestId}`,
-        args: {
-          accessToken,
-          refreshToken,
+      const accessToken = tokenGenerator.signToken({
+        payload: userData,
+        signOptions: {
+          jwtid: uuidUtils.v1,
+          expiresIn: options.tokenOptions.expiresIn
         },
       });
+
       // authentication
       const auth = {
-        access_token: accessToken,
-        refresh_token: refreshToken,
-        expires_in: dataSecret.tokenLife,
-        permissions: userLogin.permissions,
-      };
-      // user info
-      const user = {
-        emailUser: userLogin.email,
-        fullName: `${userLogin.lastName} ${userLogin.firstName}`,
-        photoURL: userLogin.photoURL,
+        expires_in: options.tokenOptions.expiresIn,
+        permissions: userData.permissions,
       };
 
       const res = {
         result: {
           auth: auth,
-          user: user,
+          user: {
+            emailUser: userData.emailUser,
+            fullName: userData.fullName,
+            photoURL: userData.photoURL,
+          },
         },
+        accessToken: accessToken,
         message: 'LoginUserMessage',
       };
 
+      loggerFactory.info('Function loginUser has been end');
+
       return res;
     } catch (err) {
-      loggerFactory.error(`function loginUser has error`, {
-        requestId: `${requestId}`,
-        args: err,
+      loggerFactory.error(`Function loginUser has error`, {
+        args: err.message,
       });
       return Promise.reject(err);
     }
@@ -252,80 +274,69 @@ function UserService(params = {}) {
    * @param {*} opts
    */
   this.refreshTokenHandler = async function (args, opts) {
-    const { loggerFactory, requestId } = opts;
-    /**
-     * get refreshToken from client
-     */
-    const { refreshToken } = args;
+    const { logUtils } = opts;
+
+    const loggerFactory = logUtils.createLogger('story-book-api', 'refreshTokenHandler');
 
     try {
-      loggerFactory.debug(`function refreshTokenHandler start with args`, {
-        requestId: `${requestId}`,
-        args: { refreshToken },
+      loggerFactory.info(`Function refreshTokenHandler start with args`, {
+        args: args,
       });
 
-      if (isEmpty(refreshToken)) {
-        throw errorManager.errorBuilder('RefreshTokenInvalid');
-      }
-
-      let userLogin;
-      let newAccessToken;
-      let newRefreshToken;
-
-      await jwt.verify(refreshToken, dataSecret.refreshTokenSecret, (err, decoded) => {
-        if (!isEmpty(decoded)) {
-          userLogin = get(decoded, 'userLogin');
-          /**
-           * post new token
-           */
-          newAccessToken = jwt.sign({ userLogin }, dataSecret.tokenSecret, {
-            expiresIn: dataSecret.tokenLife,
-          });
-          /**
-           * post new refresh token
-           */
-          newRefreshToken = jwt.sign({ userLogin }, dataSecret.refreshTokenSecret, {
-            expiresIn: dataSecret.refreshTokenLife,
-          });
-        } else {
-          throw new Error(err.message);
-        }
-      });
-
-      loggerFactory.debug(`function refreshTokenHandler end with args`, {
-        requestId: `${requestId}`,
-        args: {
-          newAccessToken,
-          refreshToken,
+      const { newToken, payload } = tokenGenerator.refreshToken({
+        token: args.accessToken,
+        refreshOptions: {
+          jwtid: uuidUtils.v1,
+          expiresIn: options.tokenOptions.expiresIn
         },
       });
+
       // authentication
       const auth = {
-        access_token: newAccessToken,
-        refresh_token: newRefreshToken,
-        expires_in: dataSecret.tokenLife,
-        permissions: userLogin.permissions,
-      };
-      // user info
-      const user = {
-        emailUser: userLogin.email,
-        fullName: `${userLogin.lastName} ${userLogin.firstName}`,
-        photoURL: userLogin.pictureURL,
+        expires_in: options.tokenOptions.expiresIn,
+        permissions: payload.permissions,
       };
 
       const res = {
         result: {
           auth: auth,
-          user: user,
+          user: {
+            emailUser: payload.emailUser,
+            fullName: payload.fullName,
+            photoURL: payload.photoURL,
+          },
         },
+        accessToken: newToken,
         message: 'RefreshTokenMessage',
       };
 
+      loggerFactory.info(`Function refreshTokenHandler end`);
+
       return res;
     } catch (err) {
-      loggerFactory.error(`function refreshToken has error`, {
-        requestId: `${requestId}`,
-        args: { err },
+      loggerFactory.error(`Function refreshToken has error`, {
+        args: err.message,
+      });
+      return Promise.reject(err);
+    }
+  };
+
+  /**
+   * REFRESH TOKEN
+   * @param {*} args
+   * @param {*} opts
+   */
+  this.logoutUser = async function (args, opts) {
+    const { logUtils } = opts;
+
+    const loggerFactory = logUtils.createLogger('story-book-api', 'logoutUser');
+    try {
+      loggerFactory.debug(`Function logoutUser start with args`, {
+        args: args,
+      });
+    } catch (err) {
+      loggerFactory.error(`Function logoutUser has error`, {
+        args: err,
       });
       return Promise.reject(err);
     }
@@ -341,6 +352,36 @@ async function checkDuplicateEmail(email, dataMongoStore) {
   });
 
   return isDuplicate >= 1 ? true : false;
+}
+
+async function checkDuplicateSlug(slug, dataMongoStore) {
+  const isDuplicate = await dataMongoStore.count({
+    type: 'UserModel',
+    filter: {
+      slug: slug,
+    },
+  });
+
+  return isDuplicate >= 1 ? true : false;
+}
+
+function convertUserResponse(userLogin) {
+  const response = {};
+
+  if (!isEmpty(userLogin)) {
+    userLogin = userLogin.toJSON();
+    response.id = userLogin._id;
+    response.emailUser = userLogin.email;
+    response.fullName = `${userLogin.lastName.trim()} ${userLogin.firstName.trim()}`;
+    response.permissions = userLogin.permissions;
+    response.photoURL = userLogin.photoURL;
+
+    delete userLogin._id;
+
+    return response;
+  }
+
+  return response;
 }
 
 UserService.reference = {

@@ -2,6 +2,9 @@
 
 const permissions = require('./permissions');
 
+/**
+ * for paths verify tokens in cookie or header and check permissions of user login
+ */
 module.exports = [
   /**
    * BOARDS

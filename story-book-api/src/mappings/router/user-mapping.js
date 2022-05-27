@@ -1,6 +1,10 @@
 'use strict';
 
+const winext = require('winext');
+const lodash = winext.require('lodash');
 const UserService = require('../../services/web-admin-user');
+const profiles = require('../../../conf/profiles');
+const { get } = lodash;
 
 module.exports = [
   // user register
@@ -48,6 +52,17 @@ module.exports = [
     output: {
       transform: function (response) {
         return {
+          setCookies: {
+            'X-Access-Token': {
+              value: get(response, 'accessToken'),
+              options: {
+                maxAge: 86400,
+                httpOnly: true,
+                sameSite: 'strict',
+                secure: profiles.isProduction,
+              },
+            },
+          },
           body: response,
           message: response.message,
         };
@@ -63,14 +78,52 @@ module.exports = [
     input: {
       transform: function (req) {
         return {
-          refreshToken: req.body.refreshToken,
+          accessToken: req.cookies['X-Access-Token'],
         };
       },
     },
     output: {
       transform: function (response) {
         return {
+          setCookies: {
+            'X-Access-Token': {
+              value: get(response, 'accessToken'),
+              options: {
+                maxAge: 86400,
+                httpOnly: true,
+                sameSite: 'strict',
+                secure: profiles.isProduction,
+              },
+            },
+          },
           body: response,
+          message: response.message,
+        };
+      },
+    },
+  },
+  // user logout
+  {
+    pathName: '/auth/logout',
+    method: 'POST',
+    methodName: 'logoutUser',
+    serviceName: UserService,
+    input: {
+      transform: function (req) {
+        return {
+          email: req.body.email,
+          fullName: req.body.fullName,
+        };
+      },
+    },
+    output: {
+      transform: function (response) {
+        return {
+          clearCookie: {
+            'X-Access-Token': {
+              options: {},
+            },
+          },
           message: response.message,
         };
       },

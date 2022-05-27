@@ -3,7 +3,7 @@
 const winext = require('winext');
 const Promise = winext.require('bluebird');
 const lodash = winext.require('lodash');
-const { REDIS_EXPIRED } = require('../../constants');
+const options = require('../../conf/options');
 const { isEmpty } = lodash;
 
 function BoardService(params = {}) {
@@ -37,12 +37,12 @@ function BoardService(params = {}) {
    * @param {*} opts
    */
   this.getBoards = async function (args, opts = {}) {
-    const { loggerFactory, requestId } = opts;
+    const { logUtils } = opts;
+
+    const loggerFactory = logUtils.createLogger('story-book-api', 'getBoards');
 
     try {
-      loggerFactory.debug(`function getBoards start`, {
-        requestId: `${requestId}`,
-      });
+      loggerFactory.info(`Function getBoards has been start`);
 
       const params = args.params;
       const skip = parseInt(params._start) || 0;
@@ -75,24 +75,21 @@ function BoardService(params = {}) {
         total: total,
         message: 'BoardMessage',
       };
-      await redisClient.setEx(args.redisKey, REDIS_EXPIRED, JSON.stringify(res), async (err, reply) => {
+      await redisClient.setEx(args.redisKey, options.redisExpired, JSON.stringify(res), async (err, reply) => {
         if (!err) {
-          loggerFactory.debug(`redis setEx successfully with`, {
-            requestId: `${requestId}`,
+          loggerFactory.debug(`Redis setEx successfully with`, {
             args: reply,
           });
           await redisClient.disconnect();
         }
       });
 
-      loggerFactory.debug(`function getBoards end`, {
-        requestId: `${requestId}`,
-      });
+      loggerFactory.debug(`Function getBoards has been end`);
 
       return res;
     } catch (err) {
-      loggerFactory.error(`function getMessageBoards has error : ${err}`, {
-        requestId: `${requestId}`,
+      loggerFactory.error(`Function getMessageBoards has error : ${err}`, {
+        args: err.message,
       });
       return Promise.reject(err);
     }
@@ -126,12 +123,12 @@ function BoardService(params = {}) {
    * @param {*} opts
    */
   this.getBoardById = async function (args, opts = {}) {
-    const { loggerFactory, requestId } = opts;
+    const { logUtils } = opts;
+
+    const loggerFactory = logUtils.createLogger('story-book-api', 'getBoardById');
 
     try {
-      loggerFactory.debug(`function getBoardById start`, {
-        requestId: `${requestId}`,
-      });
+      loggerFactory.debug(`Function getBoardById has been start`);
 
       const boardId = args.id;
 
@@ -148,24 +145,21 @@ function BoardService(params = {}) {
       };
 
       // store to redis
-      await redisClient.setEx(args.redisKey, REDIS_EXPIRED, JSON.stringify(res), async (err, reply) => {
+      await redisClient.setEx(args.redisKey, options.redisExpired, JSON.stringify(res), async (err, reply) => {
         if (!err) {
-          loggerFactory.debug(`redis setEx successfully with`, {
-            requestId: `${requestId}`,
+          loggerFactory.debug(`Redis setEx successfully with`, {
             args: reply,
           });
           await redisClient.disconnect();
         }
       });
 
-      loggerFactory.debug(`function getBoardById end`, {
-        requestId: `${requestId}`,
-      });
+      loggerFactory.debug(`Function getBoardById has been end`);
 
       return res;
     } catch (err) {
-      loggerFactory.error(`function getBoardById has error: ${err}`, {
-        requestId: `${requestId}`,
+      loggerFactory.error(`Function getBoardById has error`, {
+        args: err.message,
       });
       return Promise.reject(err);
     }

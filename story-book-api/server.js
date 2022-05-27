@@ -7,6 +7,7 @@ const app = winext.initializer(sandbox,
   [
     'winext-logger',
     'winext-error-manager',
+    'winext-key-manager',
     'winext-authorization',
     'winext-repo-store',
     'winext-redis-store',
@@ -16,7 +17,8 @@ const app = winext.initializer(sandbox,
     'winext-runserver',
   ],
   {
-    mongo: 'story-book-model',
+    mongo: 'story-book-model-mongo',
+    sql: 'story-book-model-sql',
     graphql: 'story-book-model-graphql'
   }
 );

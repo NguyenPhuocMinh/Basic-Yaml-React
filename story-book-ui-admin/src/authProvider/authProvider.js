@@ -63,10 +63,10 @@ const authProvider = {
     }
   },
   checkAuth: () => {
-    const accessToken = localStorage.getItem('access_token');
-    return !isEmpty(accessToken)
-      ? Promise.resolve({ accessToken })
-      : Promise.reject();
+    const authenticated = localStorage.getItem('authenticated');
+    return authenticated
+      ? Promise.resolve({ authenticated: true })
+      : Promise.reject({ authenticated: false });
   },
   getPermissions: () => {
     const permissions = localStorage.getItem('permissions');

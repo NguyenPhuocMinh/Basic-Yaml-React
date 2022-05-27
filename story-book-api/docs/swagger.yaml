@@ -46,9 +46,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/commonResponse"
         400:
-          $ref: "#/components/responses/NotFound"
-        404:
           $ref: "#/components/responses/BadRequest"
+        404:
+          $ref: "#/components/responses/NotFound"
         500:
           $ref: "#/components/responses/ServerError"
   /auth/login:
@@ -71,9 +71,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/commonResponse"
         400:
-          $ref: "#/components/responses/NotFound"
-        404:
           $ref: "#/components/responses/BadRequest"
+        404:
+          $ref: "#/components/responses/NotFound"
         500:
           $ref: "#/components/responses/ServerError"
   /auth/refreshToken:
@@ -96,9 +96,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/commonResponse"
         400:
-          $ref: "#/components/responses/NotFound"
-        404:
           $ref: "#/components/responses/BadRequest"
+        404:
+          $ref: "#/components/responses/NotFound"
         500:
           $ref: "#/components/responses/ServerError"
   /home:
@@ -118,11 +118,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/commonResponse"
         400:
-          $ref: "#/components/responses/NotFound"
+          $ref: "#/components/responses/BadRequest"
         401:
           $ref: "#/components/responses/UnAuthorization"
         404:
-          $ref: "#/components/responses/BadRequest"
+          $ref: "#/components/responses/NotFound"
         500:
           $ref: "#/components/responses/ServerError"
   /contacts:
@@ -137,11 +137,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/commonResponse"
         400:
-          $ref: "#/components/responses/NotFound"
+          $ref: "#/components/responses/BadRequest"
         401:
           $ref: "#/components/responses/UnAuthorization"
         404:
-          $ref: "#/components/responses/BadRequest"
+          $ref: "#/components/responses/NotFound"
         500:
           $ref: "#/components/responses/ServerError"
   /boards:
@@ -171,13 +171,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/commonResponse"
         400:
-          $ref: "#/components/responses/NotFound"
+          $ref: "#/components/responses/BadRequest"
         401:
           $ref: "#/components/responses/UnAuthorization"
         403:
           $ref: "#/components/responses/Forbidden"
         404:
-          $ref: "#/components/responses/BadRequest"
+          $ref: "#/components/responses/NotFound"
         500:
           $ref: "#/components/responses/ServerError"
     post:
@@ -198,13 +198,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/commonResponse"
         400:
-          $ref: "#/components/responses/NotFound"
+          $ref: "#/components/responses/BadRequest"
         401:
           $ref: "#/components/responses/UnAuthorization"
         403:
           $ref: "#/components/responses/Forbidden"
         404:
-          $ref: "#/components/responses/BadRequest"
+          $ref: "#/components/responses/NotFound"
         500:
           $ref: "#/components/responses/ServerError"
   /boards/{id}:
@@ -228,13 +228,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/commonResponse"
         400:
-          $ref: "#/components/responses/NotFound"
+          $ref: "#/components/responses/BadRequest"
         401:
           $ref: "#/components/responses/UnAuthorization"
         403:
           $ref: "#/components/responses/Forbidden"
         404:
-          $ref: "#/components/responses/BadRequest"
+          $ref: "#/components/responses/NotFound"
         500:
           $ref: "#/components/responses/ServerError"
     put:
@@ -257,13 +257,13 @@ paths:
               schema:
                 $ref: "#/components/schemas/commonResponse"
         400:
-          $ref: "#/components/responses/NotFound"
+          $ref: "#/components/responses/BadRequest"
         401:
           $ref: "#/components/responses/UnAuthorization"
         403:
           $ref: "#/components/responses/Forbidden"
         404:
-          $ref: "#/components/responses/BadRequest"
+          $ref: "#/components/responses/NotFound"
         500:
           $ref: "#/components/responses/ServerError"
 ## components

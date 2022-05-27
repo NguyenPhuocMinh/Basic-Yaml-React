@@ -150,6 +150,10 @@ const TRANSLATIONS_VN = {
         country: 'Quốc gia',
         total: 'Tổng cộng',
         rank: 'Cấp hạng'
+      },
+      news: {
+        newBooks: 'Những cuốn sách mới',
+        favoriteAuthors: 'Tác giả hàng đầu được yêu thích'
       }
     },
     ancients: {

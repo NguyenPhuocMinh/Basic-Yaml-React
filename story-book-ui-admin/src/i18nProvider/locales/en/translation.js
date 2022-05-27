@@ -148,6 +148,10 @@ const TRANSLATIONS_EN = {
         country: 'Country',
         total: 'Total',
         rank: 'Rank'
+      },
+      news: {
+        newBooks: 'New books',
+        favoriteAuthors: 'Favorite top author'
       }
     },
     ancients: {

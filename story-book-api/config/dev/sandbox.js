@@ -1,66 +1,37 @@
 'use strict';
 
+const path = require('path');
 const winext = require('winext');
-const dotenv = winext.require('dotenv');
 const ip = winext.require('ip');
 const YAML = winext.require('yamljs');
-const path = require('path');
+const address = ip.address();
+
 const routerMappings = require('../../src/mappings');
 const enablePaths = require('../data/enablePaths');
 const publicPaths = require('../data/publicPaths');
 const protectedPaths = require('../data/protectedPaths');
 const errorCodes = require('../data/errorCodes');
 const messageCodes = require('../data/messageCodes');
-const secret = require('../data/secret');
-const address = ip.address();
-dotenv.config();
 
-const contextPath = process.env.CONTEXT_PATH;
+const profiles = require('../../conf/profiles');
+const options = require('../../conf/options');
 
 module.exports = {
   application: {
     dependencies: {
-      winext_logger: {
-        winston: {
-          levels: {
-            error: 0,
-            debug: 1,
-            warn: 2,
-            data: 3,
-            info: 4,
-          },
-          colors: {
-            error: 'bold red',
-            debug: 'bold blue',
-            warn: 'bold yellow',
-            data: 'bold magenta',
-            info: 'bold green',
-          },
-        },
-        log4js: {
-          appenders: {
-            out: { type: 'stdout' },
-          },
-          categories: {
-            default: {
-              appenders: ['out'],
-              level: 'debug',
-            },
-          },
-        },
-      },
+      winext_logger: {},
       winext_api_gateway: {
         kong: {
           enable: false, // disable kong
-          port: process.env.KONG_ADMIN_PORT || 8001,
+          port: profiles.kongAdminProt || 8001,
           service: {
-            name: process.env.SERVICE_NAME,
-            url: `http://${address}:${process.env.SERVER_PORT}/rest/api/`,
+            name: profiles.serviceName,
+            url: `http://${address}:${profiles.serverPort}/rest/api/`,
           },
           route: {
-            name: process.env.SERVICE_NAME,
+            name: profiles.serviceName,
             service: {
-              name: process.env.SERVICE_NAME,
+              name: profiles.serviceName,
             },
             hosts: [address],
             paths: ['/user-service'],
@@ -78,7 +49,7 @@ module.exports = {
               key_in_query: false,
             },
             route: {
-              name: process.env.SERVICE_NAME,
+              name: profiles.serviceName,
             },
           },
         },
@@ -87,16 +58,16 @@ module.exports = {
         consul: {
           enable: false, // disable consul
           init: {
-            host: process.env.CONSUL_HOST || address,
-            port: process.env.CONSUL_PORT || 8500, // default port for consul
+            host: profiles.consultHost || address,
+            port: profiles.consultPort || 8500, // default port for consul
             promisify: true,
           },
           register: {
-            id: process.env.SERVICE_ID,
-            name: process.env.SERVICE_NAME,
-            port: process.env.PORT || 8081,
+            id: profiles.serviceID,
+            name: profiles.serviceName,
+            port: profiles.serverPort || 8081,
             check: {
-              http: `http://${process.env.CONSUL_HOST || address}:${process.env.SERVER_PORT}${contextPath}/healths`,
+              http: `http://${profiles.consultHost || address}:${profiles.serverPort}${profiles.contextPath}/healths`,
               interval: '10s',
               timeout: '3s',
             },
@@ -106,34 +77,43 @@ module.exports = {
       winext_repo_store: {
         mongoose: {
           enable: false, // enable false for local
-          host: process.env.MONGO_HOST,
-          port: process.env.MONGO_PORT,
-          user: process.env.MONGO_USER,
-          password: process.env.MONGO_PASSWORD,
-          name: process.env.MONGO_DATABASE,
+          host: profiles.mongoHost,
+          port: profiles.mongoPort,
+          user: profiles.mongoUser,
+          password: profiles.mongoPassword,
+          name: profiles.mongoName,
+        },
+        mysql: {
+          enable: true, // enable true for start
+          host: profiles.sqlHost,
+          port: profiles.sqlPort,
+          user: profiles.sqlUser,
+          password: profiles.sqlPassword,
+          name: profiles.sqlName,
+          sequelizeOptions: options.sequelizeOptions,
         },
         graphql: {
           enable: true, // enable true for start
-          path: process.env.GRAPHQL_PATH,
+          path: profiles.graphqlPath,
           enableGraphiql: true,
           mocks: false, // true for default mocking || see https://www.apollographql.com/docs/apollo-server/testing/mocking
         },
       },
       winext_authorization: {
         enable: true, // enable false for disable check token
-        secretKey: secret.tokenSecret,
-        contextPath: contextPath,
+        contextPath: profiles.contextPath,
         enablePaths: enablePaths,
         publicPaths: publicPaths,
         protectedPaths: protectedPaths,
       },
       winext_runserver: {
         enable: false, // enable false for local
-        contextPath: contextPath,
-        pathDocs: process.env.DOCS_PATH,
-        port: process.env.SERVER_PORT,
-        host: process.env.SERVER_HOST,
-        dialectSwagger: 'YAML', // OPTIONS || YAML
+        contextPath: profiles.contextPath,
+        clientUIPath: profiles.clientUIPath,
+        pathDocs: profiles.docsPath,
+        port: profiles.serverPort,
+        host: profiles.serverHost,
+        dialectSwagger: options.dialectSwagger, // OPTIONS || YAML
         swaggerOptions: {
           definition: {
             openapi: '3.0.0',
@@ -170,10 +150,10 @@ module.exports = {
       winext_redis_store: {
         redis: {
           enable: false, // enable false for local
-          username: process.env.REDIS_USERNAME,
-          password: process.env.REDIS_PASSWORD,
-          host: process.env.REDIS_HOST || '127.0.0.1',
-          port: process.env.REDIS_PORT || 6379,
+          username: profiles.redisUsername,
+          password: profiles.redisPassword,
+          host: profiles.redisHost || '127.0.0.1',
+          port: profiles.redisPort || 6379,
         },
       },
     },

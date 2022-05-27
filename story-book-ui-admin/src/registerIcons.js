@@ -12,7 +12,9 @@ import {
   PersonAdd,
   Assessment,
   Add,
-  PendingActions
+  PendingActions,
+  PowerSettingsNew,
+  RecentActors
 } from '@mui/icons-material';
 
 const registerIcons = {
@@ -29,7 +31,9 @@ const registerIcons = {
   PersonAdd: () => <PersonAdd />,
   Assessment: () => <Assessment />,
   Add: () => <Add sx={{ width: 36, height: 36 }} />,
-  PendingActions: () => <PendingActions sx={{ width: 36, height: 36 }} />
+  PendingActions: () => <PendingActions sx={{ width: 36, height: 36 }} />,
+  PowerSettingsNew: () => <PowerSettingsNew />,
+  RecentActors: () => <RecentActors />
 };
 
 export default registerIcons;

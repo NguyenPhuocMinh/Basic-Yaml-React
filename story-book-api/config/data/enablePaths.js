@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * for paths that don't need to check tokens and permissions
+ */
 module.exports = [
   /**
    * LOGIN

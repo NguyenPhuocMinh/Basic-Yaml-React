@@ -12,17 +12,9 @@ const checkExpiredTime = () => {
 
 const handleRefreshToken = async () => {
   try {
-    const response = await httpClientAuthProvider.post(
-      '/refreshToken',
-      {
-        refreshToken: localStorage.getItem('refresh_token')
-      },
-      {
-        headers: {
-          'X-Access-Token': localStorage.getItem('access_token')
-        }
-      }
-    );
+    const response = await httpClientAuthProvider.post('/refreshToken', {
+      refreshToken: localStorage.getItem('refresh_token')
+    });
 
     const data = !isEmpty(response) && get(response, 'data.data.result', {});
 
@@ -50,7 +42,6 @@ export const refreshTokenHandler = () => {
 
 export const removeLogin = () => {
   // auth
-  localStorage.removeItem('access_token');
   localStorage.removeItem('refresh_token');
   localStorage.removeItem('expires_in');
   localStorage.removeItem('expire_at');
@@ -62,7 +53,6 @@ export const removeLogin = () => {
 };
 
 export const prepareResponse = (data = {}) => {
-  const accessToken = get(data, 'auth.access_token');
   const refreshToken = get(data, 'auth.refresh_token');
   const expiresIn = get(data, 'auth.expires_in');
   const permissions = get(data, 'auth.permissions');
@@ -72,7 +62,6 @@ export const prepareResponse = (data = {}) => {
   const photoURL = get(data, 'user.photoURL');
 
   // authenticated
-  localStorage.setItem('access_token', accessToken);
   localStorage.setItem('refresh_token', refreshToken);
   localStorage.setItem('expires_in', expiresIn);
   localStorage.setItem('expire_at', Date.now());

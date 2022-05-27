@@ -31,10 +31,15 @@ const errorCodes = {
     returnCode: 3006,
     statusCode: 400,
   },
-  RefreshTokenInvalid: {
-    message: 'RefreshToken invalid',
+  RefreshTokenNotFound: {
+    message: 'users.notification.refresh_token.not_found',
     returnCode: 3007,
     statusCode: 400,
+  },
+  DuplicateSlugRegister: {
+    message: 'users.notification.register.duplicate_slug',
+    returnCode: 3008,
+    statusCode: 409,
   },
 };
 

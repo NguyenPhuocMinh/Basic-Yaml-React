@@ -30,7 +30,7 @@ import { handleDataTable } from './Utils';
 import { formatQuantity } from '../../helpers';
 
 const QuickReportDetail = ({
-  data,
+  data = [],
   title,
   translate,
   to,
@@ -66,7 +66,7 @@ const QuickReportDetail = ({
                   component="p"
                   gutterBottom
                 >
-                  11
+                  Total: 11
                 </Typography>
               </Box>
             </Box>
@@ -77,7 +77,6 @@ const QuickReportDetail = ({
             dense={dense}
             sx={{
               maxHeight: 500,
-              overflowY: 'scroll'
             }}
           >
             {data.map((v) => {
@@ -319,28 +318,26 @@ const QuickReport = () => {
   const locale = i18n.language === 'vn' ? 'vi-VN' : 'en-US';
 
   return (
-    <Box sx={{ marginTop: '1em' }}>
-      <Grid container spacing={3}>
-        <QuickReportDetail
-          title="resources.dashboard.quickReport.newCustomers"
-          translate={translate}
-          to="/customers"
-          icon="Add"
-        />
-        <QuickReportDetail
-          title="resources.dashboard.quickReport.pendingOrders"
-          translate={translate}
-          to="/pendingOrders"
-          icon="PendingActions"
-        />
-        <BestSalesReportDetail
-          title="resources.dashboard.quickReport.bestSalesman"
-          translate={translate}
-          to="/sales"
-          locale={locale}
-        />
-      </Grid>
-    </Box>
+    <Grid container spacing={3}>
+      <QuickReportDetail
+        title="resources.dashboard.quickReport.newCustomers"
+        translate={translate}
+        to="/customers"
+        icon="Add"
+      />
+      <QuickReportDetail
+        title="resources.dashboard.quickReport.pendingOrders"
+        translate={translate}
+        to="/pendingOrders"
+        icon="PendingActions"
+      />
+      <BestSalesReportDetail
+        title="resources.dashboard.quickReport.bestSalesman"
+        translate={translate}
+        to="/sales"
+        locale={locale}
+      />
+    </Grid>
   );
 };
 

@@ -28,6 +28,7 @@ import { makeStyles } from '@mui/styles';
 // lodash
 import { get } from 'lodash';
 import { changeTheme, changeLanguage } from '../customStore/customActions';
+import registerIcons from '../registerIcons';
 
 const languages = [
   {
@@ -93,6 +94,9 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
 
     setOpenSetting(!openSetting);
   };
+
+  // menus
+  const menuList = handleMenus();
 
   return (
     <AppBarBootStrap position="fixed" open={isOpen}>
@@ -212,12 +216,27 @@ const AppBarLayout = ({ isOpen, toggleSidebar, ...props }) => {
               handleClose={handleCloseChangeProfile}
               location={location}
               navigate={navigate}
+              menus={menuList}
+              registerIcons={registerIcons}
             />
           </Box>
         </Box>
       </Toolbar>
     </AppBarBootStrap>
   );
+};
+
+const handleMenus = () => {
+  const menus = [
+    {
+      name: 'profile',
+      title: 'appBar.toolbar.profile.show_profile',
+      icon: 'RecentActors',
+      onClick: () => {}
+    }
+  ];
+
+  return menus;
 };
 
 export default AppBarLayout;

@@ -33,19 +33,37 @@
 
 #### Step 2: add .env file
 ```bash
+
+NODE_ENV=development
 #Server
-HOST=0.0.0.0
-PORT=7979
+SERVER_HOST=localhost
+SERVER_PORT=7979
 CONTEXT_PATH=/rest/api/v1
+DOCS_PATH=/api-docs
+CLIENT_UI_PATH=http://localhost:4000
+#SECRET
+SESSION_SECRET=***
+TOKEN_SECRET=***
+REFRESH_TOKEN_SECRET=***
+
+keyManager.json
+privateKey=***
+publicKey=***
+
 
 #Mongoose
 MONGO_HOST=localhost if use docker then change localhost to YourIpAddress
 MONGO_PORT=27017
 MONGO_DATABASE=DATABASE_NAME
+MONGO_USER=USER_NAME
+MONGO_PASSWORD=PASSWORD
 
 #REDIS
 REDIS_HOST=127.0.0.1
 REDIS_PORT=6379
+
+#GRAPHQL
+GRAPHQL_PATH=/graphql
 
 #CONSUL_INIT
 CONSUL_HOST=IP adress

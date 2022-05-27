@@ -83,15 +83,18 @@ const LoginPage = (props) => {
       authProvider
         .login(params)
         .then((res) => {
+          console.log("🚀 ~ file: LoginPage.js ~ line 86 ~ .then ~ res", res)
           if (res.status < 200 || res.status >= 400) {
             timer.current = window.setTimeout(() => {
               setLoading(false);
               const errorMessage = get(res, 'data.message');
               notify(`${errorMessage}`, { type: 'warning' });
+              localStorage.setItem('authenticated', false)
             }, 500);
           } else {
             timer.current = window.setTimeout(() => {
               setLoading(false);
+              localStorage.setItem('authenticated', true)
               const redirectUrl =
                 nextPathName + nextSearch || defaultAuthParams.afterLoginUrl;
               notify('users.notification.login.success', { type: 'success' });
