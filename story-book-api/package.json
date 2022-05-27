@@ -28,7 +28,7 @@
     "winext-api-gateway": "git+https://github.com/NguyenPhuocMinh/winext-api-gateway.git#1332cd800ff8464c3a0864e5ce47dcc2514ae879",
     "winext-authorization": "git+https://github.com/NguyenPhuocMinh/winext-authorization.git#5ecea3ba932dae02b0fa7d489dee6279a3bfa13d",
     "winext-error-manager": "git+https://github.com/NguyenPhuocMinh/winext-error-manager.git#5929f8f191f56f225ecfc518fc288f53575f6a99",
-    "winext-logger": "git+https://github.com/NguyenPhuocMinh/winext-logger.git#7119f5afe273e97f6799e3dc42e4747516d79704",
+    "winext-logger": "git+https://github.com/NguyenPhuocMinh/winext-logger.git#c5c89dd257dbec131f2e0e2432148d5922504409",
     "winext-mapping-store": "git+https://github.com/NguyenPhuocMinh/winext-mapping-store.git#4e593d941c05ae4dbaa26e11a5c352a4a27586d8",
     "winext-redis-store": "git+https://github.com/NguyenPhuocMinh/winext-redis-store.git#5ac83b7fdf4e1cbdfb0d4c71b373e9964159b092",
     "winext-repo-store": "git+https://github.com/NguyenPhuocMinh/winext-repo-store.git#db63e4afd20799333ceb4a050d65b9029ad022e3",
